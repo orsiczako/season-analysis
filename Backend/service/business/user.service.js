@@ -200,7 +200,6 @@ async function findUserByToken(token) {
  * Megformázza a user objektumot a kliens felé
  */
 function formatUser(user) {
-  console.log('🔍 formatUser called - user.colorSeason:', user.colorSeason ? user.colorSeason.season_name : 'NULL');
   
   const formatted = {
     id: user.account_id,
@@ -212,7 +211,6 @@ function formatUser(user) {
     favoriteColors: user.favoriteColors ? user.favoriteColors.map(c => c.color_hex) : []
   };
   
-  console.log('🔍 formatUser result - colorSeason:', formatted.colorSeason);
   
   return formatted;
 }
