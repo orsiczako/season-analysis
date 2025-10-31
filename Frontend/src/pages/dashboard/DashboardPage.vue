@@ -35,7 +35,7 @@
             @click="openModule(module.route)"
           >
             <div class="feature-card__header">
-              <img :src="`/${module.icon}`" :alt="module.title" class="feature-card__icon" />
+              <img :src="module.icon" :alt="module.title" class="feature-card__icon" />
               <div class="feature-card__badge">Tanácsadás</div>
             </div>
             

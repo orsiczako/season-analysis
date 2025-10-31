@@ -133,6 +133,7 @@
 
 import { ref, computed, onMounted } from 'vue'
 import { favoriteColorsService, userService } from '@/services'
+import { useAuth } from '@/composables/useAuth'
 
 /**
  * 7. Az AIChatPage setAnalysisResult() függvénye beállítja az analysisResult ref-et
@@ -158,6 +159,9 @@ const props = defineProps({
  * Eventek amit a komponens kibocsajt a szulo komponens fele
  */
 const emit = defineEmits(['new-analysis', 'colors-saved'])
+
+// Auth composable a user frissítéséhez
+const { refreshUser } = useAuth()
 
 // adding: Boolean ami jelzi hogy eppen folyamatban van-e a mentes
 // Igy megakadalyozzuk hogy tobbszor rakatthassanak a mentes gombra
@@ -241,6 +245,11 @@ onMounted(async () => {
         user.colorSeason = props.result.season
         user.colorAnalysisDate = new Date().toISOString()
         localStorage.setItem('authUser', JSON.stringify(user))
+        
+        // Frissítjük az auth composable-ben lévő user ref-et is
+        if (refreshUser) {
+          await refreshUser()
+        }
       }
     } catch (error) {
       console.warn('Failed to save color season to profile:', error)

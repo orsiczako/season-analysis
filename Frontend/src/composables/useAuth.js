@@ -179,6 +179,24 @@ export function useAuth() {
     if (route.query.passwordReset) setSuccess('auth.password_reset_success')
   }
 
+  // User profil újratöltése a szerverről
+  const refreshUser = async () => {
+    if (!token.value) return { success: false }
+    
+    try {
+      const result = await userService.getProfile()
+      if (result.success && result.data) {
+        user.value = result.data
+        localStorage.setItem('authUser', JSON.stringify(result.data))
+        return { success: true }
+      }
+      return { success: false }
+    } catch (error) {
+      console.error('Failed to refresh user:', error)
+      return { success: false, error }
+    }
+  }
+
   return {
     
     token: computed(() => token.value),
@@ -195,6 +213,7 @@ export function useAuth() {
     resetPassword,
     logout,
     initAuth,
+    refreshUser,
 
     // Form helpers
     validateForm,
