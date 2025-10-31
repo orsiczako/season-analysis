@@ -157,6 +157,10 @@ export default {
     // Felhasználói adatok betöltése a localStorage-ból
     this.loadUserData()
   },
+  activated() {
+    // Újratöltjük az adatokat amikor az oldal aktiválódik (pl. navigáció után)
+    this.refreshProfile()
+  },
   methods: {
     loadUserData() {
       // Felhasználói adatok betöltése localStorage-ból
