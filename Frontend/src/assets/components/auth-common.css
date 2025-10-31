@@ -1,0 +1,220 @@
+
+
+.content-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.header-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.login-container,
+.register-container,
+.reset-container,
+.forgot-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  z-index: 1;
+  padding: 20px;
+}
+
+.login-container h2,
+.register-container h2,
+.reset-container h2,
+.forgot-container h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--text-primary);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.login-container form,
+.register-container form,
+.reset-container form,
+.forgot-container form {
+  background: var(--card-bg);
+  border: 2px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: blur(10px);
+}
+
+.login-container label,
+.register-container label,
+.reset-container label,
+.forgot-container label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.login-container input,
+.register-container input,
+.reset-container input,
+.forgot-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 15px;
+  transition: all var(--transition-fast);
+}
+
+.login-container input:focus,
+.register-container input:focus,
+.reset-container input:focus,
+.forgot-container input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+
+.login-container button[type="submit"],
+.register-container button[type="submit"],
+.reset-container button[type="submit"],
+.forgot-container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 8px;
+}
+
+.login-container button[type="submit"]:hover,
+.register-container button[type="submit"]:hover,
+.reset-container button[type="submit"]:hover,
+.forgot-container button[type="submit"]:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.login-container button[type="button"],
+.register-container button[type="button"],
+.reset-container button[type="button"],
+.forgot-container button[type="button"],
+.login-container .back-btn,
+.register-container .back-btn,
+.reset-container .back-btn,
+.forgot-container .back-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 8px;
+}
+
+.login-container button[type="button"]:hover,
+.register-container button[type="button"]:hover,
+.reset-container button[type="button"]:hover,
+.forgot-container button[type="button"]:hover,
+.login-container .back-btn:hover,
+.register-container .back-btn:hover,
+.reset-container .back-btn:hover,
+.forgot-container .back-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary);
+}
+
+.error, .success {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.forgot-password-btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--primary) !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+  text-decoration: underline;
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.forgot-password-btn:hover {
+  color: var(--primary-dark) !important;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-primary);
+}
+
+.auth-footer p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.auth-footer a, .auth-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.auth-footer a:hover, .auth-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .login-container, .register-container, .reset-container, .forgot-container {
+    max-width: 100%;
+    padding: 12px;
+  }
+  .login-container form, .register-container form, .reset-container form, .forgot-container form {
+    padding: 32px 20px;
+  }
+  .login-container h2, .register-container h2, .reset-container h2, .forgot-container h2 {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,211 @@
+
+
+:root {
+  /* Világos téma */
+  --primary-50: #fdf2f8;
+  --primary-100: #fce7f3;
+  --primary-200: #fbcfe8;
+  --primary-300: #f9a8d4;
+  --primary-400: #f472b6;
+  --primary-500: #ec4899;
+  --primary-600: #db2777;
+  --primary-700: #be185d;
+  --primary-800: #9d174d;
+  --primary-900: #831843;
+
+  /* Semleges színek */
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  /*Ezek a színek a visszajelzésekhez kapcsolódnak*/
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+}
+
+/* Világos témában ezeket a színeket használjuk*/
+.theme-light,
+:root {
+  --bg-primary: #fdf2f8;
+  --bg-secondary: #fce7f3;
+  --bg-tertiary: var(--primary-50);
+  --bg-accent: var(--primary-100);
+
+  --text-primary: #701a75;
+  --text-secondary: #86198f;
+  --text-tertiary: #a21caf;
+  --text-accent: var(--primary-700);
+
+  --border-primary: #f3e8ff;
+  --border-secondary: #e9d5ff;
+  --border-accent: var(--primary-300);
+
+  --shadow-sm: 0 1px 2px 0 rgba(168, 85, 247, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(168, 85, 247, 0.15), 0 2px 4px -1px rgba(168, 85, 247, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(168, 85, 247, 0.15), 0 4px 6px -2px rgba(168, 85, 247, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(168, 85, 247, 0.15), 0 10px 10px -5px rgba(168, 85, 247, 0.1);
+
+  --primary: var(--primary-600);
+  --primary-hover: var(--primary-700);
+  --primary-light: var(--primary-100);
+  --primary-dark: var(--primary-800);
+
+  --header-bg: rgba(255, 255, 255, 0.98);
+  --sidebar-bg: rgba(252, 231, 243, 0.7);
+
+  --footer-bg: linear-gradient(135deg, #ffb6c1 0%, var(--primary-400) 50%, var(--primary-600) 100%);
+
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(236, 72, 153, 0.1);
+  --card-shadow: 0 8px 32px rgba(236, 72, 153, 0.1);
+  --card-hover-shadow: 0 16px 48px rgba(236, 72, 153, 0.15);
+
+  --input-bg: #ffffff;
+  --input-border: var(--border-secondary);
+  --input-focus-border: var(--primary);
+
+  --overlay-bg: rgba(112, 26, 117, 0.4);
+}
+
+/*Sötét módban ezeket*/
+.theme-dark {
+  --bg-primary: #1a0b2e;
+  --bg-secondary: #2d1b47;
+  --bg-tertiary: #3e2b5c;
+  --bg-accent: #4f3b6b;
+
+  --text-primary: #f8e8ff;
+  --text-secondary: #d4b3e8;
+  --text-tertiary: #b998d1;
+  --text-accent: #f472b6;
+
+  --border-primary: #4f3b6b;
+  --border-secondary: #5d4570;
+  --border-accent: #e879f9;
+
+  --shadow-sm: 0 1px 2px 0 rgba(139, 69, 19, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(139, 69, 19, 0.5), 0 2px 4px -1px rgba(139, 69, 19, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(139, 69, 19, 0.5), 0 4px 6px -2px rgba(139, 69, 19, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(139, 69, 19, 0.6), 0 10px 10px -5px rgba(139, 69, 19, 0.5);
+
+  --primary: #f472b6;
+  --primary-hover: #f9a8d4;
+  --primary-light: #3e2b5c;
+  --primary-dark: #fbcfe8;
+
+  --header-bg: rgba(45, 27, 71, 0.95);
+  --sidebar-bg: rgba(45, 27, 71, 0.7);
+  --footer-bg: linear-gradient(135deg, #f472b6 0%, #d946ef 50%, #a855f7 100%);
+
+  --card-bg: rgba(45, 27, 71, 0.8);
+  --card-border: rgba(232, 121, 249, 0.2);
+  --card-shadow: 0 8px 32px rgba(244, 114, 182, 0.1);
+  --card-hover-shadow: 0 16px 48px rgba(244, 114, 182, 0.2);
+
+  --input-bg: var(--bg-tertiary);
+  --input-border: var(--border-primary);
+  --input-focus-border: var(--primary);
+
+  --overlay-bg: rgba(26, 11, 46, 0.8);
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-accent { background-color: var(--bg-accent); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-accent { color: var(--text-accent); }
+
+.border-primary { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+.border-accent { border-color: var(--border-accent); }
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+
+/* Sidebar*/
+.glass-sidebar {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-dark .glass-sidebar {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+/* Csajos footer hover effekt */
+.footer-cute {
+  background: linear-gradient(135deg, #ffb6c1 0%, var(--primary-400) 50%, var(--primary-600) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-cute::before {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.2rem;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.footer-cute::-webkit-scrollbar {
+  width: 6px;
+}
+
+.footer-cute::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.footer-cute::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.footer-cute::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

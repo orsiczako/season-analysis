@@ -1,0 +1,405 @@
+// Alap gombstílus mixin – méret, lekerekítés, árnyék, animációk
+@mixin button-base {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Elsődleges (kiemelt) gomb stílus – fő szín, hover animációval
+@mixin button-primary {
+  @include button-base;
+  background: var(--primary);
+  color: white;
+
+  &:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// Másodlagos gomb stílus – visszafogott háttér és keret
+@mixin button-secondary {
+  @include button-base;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-secondary);
+
+  &:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-accent);
+  }
+}
+
+// Veszély (pl. törlés) gomb stílus – piros árnyalatokkal
+@mixin button-danger {
+  @include button-base;
+  background: var(--danger);
+  color: white;
+
+  &:hover {
+    background: var(--danger-dark);
+  }
+}
+
+// Sikeres művelethez való gomb stílus – zöld színekkel
+@mixin button-success {
+  @include button-base;
+  background: var(--success);
+  color: white;
+
+  &:hover {
+    background: var(--success);
+    filter: brightness(0.9);
+  }
+}
+
+// Alap kártya stílus – háttér, keret, árnyék, lebegés effekt
+@mixin card-base {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+}
+
+// Emelt kártya stílus – vastagabb keret és erősebb hover hatás
+@mixin card-elevated {
+  @include card-base;
+  border: 2px solid var(--border-primary);
+
+  &:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
+  }
+}
+
+// Alap inputmező stílus – keret, szín, fókusz effekt
+@mixin input-base {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+}
+
+// Flexbox elrendezés – középre igazítás vízszintesen és függőlegesen
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox elrendezés – elemek elosztása két szélen
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Flexbox oszlopos elrendezés
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// Flexbox oszlopos középre igazított elrendezés
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Szöveg egy sorba kényszerítése és túllógás elrejtése
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Szöveg színátmenetes kitöltése
+@mixin gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Üveg (glassmorphism) hatás háttérre
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Fókuszgyűrű effekt inputokra és gombokra
+@mixin focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+// Egységes, finom átmenet animációkhoz
+@mixin smooth-transition {
+  transition: all var(--transition-normal);
+}
+
+// Rács elrendezés automatikus oszlopkitöltéssel
+@mixin grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 15px;
+}
+
+// Háromoszlopos rács elrendezés
+@mixin grid-3-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+// Kétoszlopos rács elrendezés
+@mixin grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+// Reszponzív rács, ami automatikusan illeszkedik
+@mixin grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+// Szakasz alap paddingja
+@mixin section-padding {
+  padding: 30px 20px;
+}
+
+// Kártyák belső paddingja
+@mixin card-padding {
+  padding: 25px;
+}
+
+// Szakaszok közötti távolság
+@mixin section-spacing {
+  margin-bottom: 30px;
+}
+
+// Szövegek alatti térköz
+@mixin text-spacing {
+  margin-bottom: 15px;
+}
+
+// Teljesen lekerekített (tabletta) forma
+@mixin radius-pill {
+  border-radius: 50px;
+}
+
+// Kör alakú forma
+@mixin radius-circle {
+  border-radius: 50%;
+}
+
+// Közepesen lekerekített forma
+@mixin radius-md {
+  border-radius: 12px;
+}
+
+// Nagyobb lekerekített forma
+@mixin radius-lg {
+  border-radius: 16px;
+}
+
+// Kis árnyék a mélységhez
+@mixin shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Közepes árnyék
+@mixin shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+// Nagy árnyék
+@mixin shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+// Extra nagy árnyék
+@mixin shadow-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+// Négyzetes képarány
+@mixin aspect-square {
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+}
+
+// 16:9 képarány
+@mixin aspect-16-9 {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 100%;
+}
+
+// Gyors animációs átmenet
+@mixin transition-fast {
+  transition: all var(--transition-fast);
+}
+
+// Normál sebességű átmenet
+@mixin transition-normal {
+  transition: all var(--transition-normal);
+}
+
+// Lassú átmenet
+@mixin transition-slow {
+  transition: all var(--transition-slow);
+}
+
+// Csak áttűnés (opacity) átmenet
+@mixin transition-opacity {
+  transition: opacity var(--transition-fast);
+}
+
+// Csak elmozdulás (transform) átmenet
+@mixin transition-transform {
+  transition: transform var(--transition-fast);
+}
+
+// Hoverre enyhe megemelés és árnyék
+@mixin hover-lift {
+  transition: all var(--transition-fast);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+// Hoverre nagyobb méretre nagyítás
+@mixin hover-scale {
+  transition: all var(--transition-fast);
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Hoverre kisebb mértékű nagyítás
+@mixin hover-scale-small {
+  transition: all var(--transition-fast);
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+// Hoverre áttetszővé válás
+@mixin hover-opacity {
+  transition: opacity var(--transition-fast);
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Elem középre igazítása abszolút pozícionálással
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Elem teljes kitöltése abszolút pozícionálással
+@mixin fill-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// Sötét, félig átlátszó overlay réteg
+@mixin overlay-dark {
+  @include fill-absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+// Szöveg középre igazítása
+@mixin text-center {
+  text-align: center;
+}
+
+// Szöveg nagybetűssé alakítása
+@mixin text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// Másodlagos (halványabb) szöveg stílus
+@mixin text-muted {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+// Elem vizuálisan elrejtése, de elérhető marad segédeszközöknek
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Csak mobil képernyőn érvényes stílus
+@mixin mobile-only {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+// Tablet mérettől felfelé érvényes stílus
+@mixin tablet-up {
+  @media (min-width: 769px) {
+    @content;
+  }
+}
+
+// Asztali mérettől felfelé érvényes stílus
+@mixin desktop-up {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

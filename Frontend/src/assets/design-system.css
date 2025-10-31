@@ -1,0 +1,239 @@
+/* Egyszerűsített és újrahasználható design rendszer */
+
+/* Alap színek, méretek és változók */
+:root {
+  /* Alapszínek és fő árnyalatok */
+  --primary: #ec4899;
+  --primary-hover: #db2777;
+  --primary-light: rgba(236, 72, 153, 0.1);
+
+  /* Állapot színek: siker, hiba, figyelmeztetés, információ */
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --danger: #dc3545;
+  --danger-dark: #c82333;
+
+  /* Háttérszínek különböző rétegekhez */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-accent: rgba(236, 72, 153, 0.05);
+
+  /* Szövegszínek – fő, másodlagos és halvány */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+
+  /* Keretszínek – alap, másodlagos és kiemelt */
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
+  --border-accent: #ec4899;
+
+  /* Kártyákhoz használt háttér, keret és árnyék */
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Űrlapelemek háttér- és keretszínei */
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-focus-border: #ec4899;
+
+  /* Fejléc és oldalsáv színei */
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --sidebar-bg: rgba(255, 255, 255, 0.95);
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+
+  /* Árnyék mélységek */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* Térközök */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Lekerekítések */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Átmenetek sebessége */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Sötét téma beállításai */
+.theme-dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --bg-accent: rgba(244, 114, 182, 0.1);
+
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+
+  --border-primary: #374151;
+  --border-secondary: #4b5563;
+
+  --card-bg: rgba(31, 41, 55, 0.8);
+  --card-border: rgba(255, 255, 255, 0.1);
+
+  --input-bg: #374151;
+  --input-border: #4b5563;
+
+  --header-bg: rgba(17, 24, 39, 0.9);
+  --sidebar-bg: rgba(17, 24, 39, 0.95);
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+}
+
+/* Alap stílusok és reset */
+* {
+  box-sizing: border-box;
+}
+
+/* Test (body) alapstílus – háttér, betű, átmenet */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Szöveg igazítási segédosztályok */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Flexbox segédosztályok */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+
+/* Hézag segédosztályok */
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+
+/* Padding segédosztályok */
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+/* Margin segédosztályok */
+.m-xs { margin: var(--space-xs); }
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }
+
+/* Lekerekítés segédosztályok */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+
+/* Árnyék segédosztályok */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* Tipográfia – címsorok és bekezdések */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--space-md) 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Címsor méretek */
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+/* Bekezdés stílus */
+p {
+  margin: 0 0 var(--space-md) 0;
+  line-height: 1.6;
+}
+
+/* Fókusz kiemelés (pl. billentyűzetnél) */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Betöltés (loading) állapot – halványít és tiltja az interakciót */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Letiltott (disabled) állapot – halványítja az elemet */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Reszponzív segédosztályok kis képernyőkre */
+@media (max-width: 640px) {
+  .sm\:hidden { display: none; }
+  .sm\:block { display: block; }
+  .sm\:flex { display: flex; }
+}
+
+/* Reszponzív segédosztályok közepes képernyőkre */
+@media (max-width: 768px) {
+  .md\:hidden { display: none; }
+  .md\:block { display: block; }
+  .md\:flex { display: flex; }
+}
+
+/* Reszponzív segédosztályok nagyobb képernyőkre */
+@media (max-width: 1024px) {
+  .lg\:hidden { display: none; }
+  .lg\:block { display: block; }
+  .lg\:flex { display: flex; }
+}
+
+/* Átmenet segédosztályok – animáció sebesség */
+.transition { transition: all var(--transition-normal); }
+.transition-fast { transition: all var(--transition-fast); }
+.transition-slow { transition: all var(--transition-slow); }
+
+/* Egyszerű lebegés (hover) effektek */
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Nyomtatási beállítások – elrejt bizonyos elemeket */
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+}
