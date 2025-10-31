@@ -77,7 +77,7 @@ const modules = computed(() => [
   {
     id: 'ai-chat',
     route: '/chat',
-    icon: '/media/ai.png',
+    icon: 'media/ai.png',
     title: 'AI Színtanácsadó',
     description: 'Beszélgess az AI-al és fedezd fel a hozzád illő színeket',
     subtitle: 'Személyre szabott színtanácsadás chatbot segítségével',
