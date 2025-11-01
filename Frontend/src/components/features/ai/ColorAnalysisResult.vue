@@ -239,7 +239,7 @@ onMounted(async () => {
     try {
       const result = await userService.updateColorSeason(props.result.season)
       if (result.success) {
-        console.log('✅ Színtípus elmentve a profilba:', props.result.season)
+        console.log('Színtípus elmentve a profilba:', props.result.season)
         // Frissítjük a localStorage-ban tárolt user adatokat is
         const user = JSON.parse(localStorage.getItem('authUser') || '{}')
         user.colorSeason = props.result.season

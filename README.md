@@ -40,13 +40,19 @@ Season Analysis App is a full-stack web application for personal color analysis 
 - For production email, use an email API (SendGrid, Resend, Mailgun).
 - AI color analysis requires a valid Google Gemini API key.
 
-### Example use cases
-- Personal styling: Find out which colors suit you best for clothing, makeup, or accessories.
-- Color theory exploration: Learn about color seasons and how they relate to your appearance.
-- Save and organize favorite colors for future reference.
-- Use AI to get instant, personalized advice on color choices.
+### Use Case 
+![Use case ](Media/spec/use_case.png)
 
-If you run the backend locally, all features will work, including password recovery. For production, switch to an email API for notifications and password reset.
+---
+
+### Benefits
+- **Personalized guidance:** AI-driven color analysis tailored to individual features
+- **Organized color management:** Save and reference favorite colors anytime
+- **Educational:** Learn about color theory and seasonal color analysis
+- **Practical application:** Use recommendations for shopping, makeup, and styling decisions
+- **Convenient:** Access your color profile from any device
+
+If you run the backend locally, all features will work, including password recovery.
 
 ## Screenshots
 
@@ -71,4 +77,28 @@ The AI assistant guides users through a color analysis conversation, asking ques
 After the conversation, users receive their personalized color season recommendation with detailed explanations:
 
 <img src="Media/analysis.png" width="600" alt="Color analysis results showing recommended season">
+
+---
+
+## Future Plans
+
+The following features are planned for future development to enhance the Season Analysis App:
+
+### Capsule Wardrobe Builder
+Create a personalized capsule wardrobe based on your color season. This feature will help users build a minimal, versatile wardrobe where every piece complements their natural coloring and can be mixed and matched efficiently.
+
+### Intelligent Clothing Recommendations
+AI-powered clothing recommendations that suggest specific garments, styles, and combinations based on your color season, body type, and personal preferences. The system will learn from user feedback to provide increasingly personalized suggestions.
+
+### Skin Tone Analysis
+Advanced skin analysis feature that goes beyond color seasons to provide detailed insights about skin undertones, overtones, and characteristics. This will help users make better decisions about makeup, foundation shades, and skincare products.
+
+### AI Model Refinement
+Continuous improvement of the AI color analysis model. While the current system provides good results, ongoing refinement will enhance accuracy, reduce edge cases, and provide more nuanced seasonal classifications including sub-seasons (e.g., Light Summer, Deep Winter, Warm Autumn).
+
+### Mobile Application
+Native mobile app for iOS and Android using WebView technology. This approach is chosen for simplicity and efficiency, as it allows the existing web application to be wrapped in a mobile app without requiring separate native development. This way, all features remain synchronized across platforms without maintaining multiple codebases.
+
+---
+
 
