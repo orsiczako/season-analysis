@@ -227,7 +227,7 @@ export default {
         if (res.success && res.data) {
           // The API returns the data directly in res.data.favoriteColors
           this.favoriteColors = res.data.favoriteColors || []
-          console.log('✅ Loaded favorite colors:', this.favoriteColors)
+          console.log('Loaded favorite colors:', this.favoriteColors)
         } else {
           console.warn('Failed to load favorite colors:', res)
         }

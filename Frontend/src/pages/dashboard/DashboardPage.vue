@@ -46,7 +46,7 @@
             </div>
             
             <div class="feature-card__footer">
-              <span class="feature-card__cta">Indítás →</span>
+              <span class="feature-card__cta">Indítás</span>
             </div>
           </div>
         </div>
