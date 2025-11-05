@@ -3,6 +3,9 @@
 ## Important Notice
 Password recovery will **NOT WORK** on Railway because outbound SMTP is blocked. I could pay for a different pack... but I won't cause I'm poor. I could also switch to an email API, but I don't have any time (sry). If you want to use password reset, you must run the backend locally or switch to an email API service (e.g. SendGrid, Resend, Mailgun). Sorry for the inconvenience—next time I will use an email API, or I'll fix it in the future.
 
+## Server Status & AI Availability
+**Important:** If you encounter server errors or the AI chat is not responding, please wait 10-30 seconds and try again. This may happen during high traffic or when services are restarting.
+
 ## What does this app do?
 Season Analysis App is a full-stack web application for personal color analysis and recommendation. The app helps users discover their color season (Spring, Summer, Autumn, Winter) using AI-powered chat and analysis. Users can interact with an AI assistant, receive personalized color advice, and save their favorite colors to their profile. The app is designed for anyone interested in color theory, personal styling, or simply exploring which colors suit them best.
 
