@@ -5,8 +5,13 @@
     
     <PageHeader 
       :isDashboard="false" 
-      backRoute="/dashboard"
+      :backRoute="isGuestMode ? '/login' : '/dashboard'"
     />
+
+    <!-- Guest mód figyelmeztetés -->
+    <div v-if="isGuestMode" class="guest-warning">
+      <p><strong>Vendég mód:</strong> Próbáld ki a színelemzést! Regisztrálj a teljes élményért!</p>
+    </div>
 
     <!-- A fő tartalom: bal oldalon a chat, jobb oldalon (ha van) az eredményA dupla tagadás (!!) egy JavaScript trükk, ami bármilyen értéket boolean-né konvertál: -->
     <div class="content-container" :class="{'has-result': !!analysisResult}">
@@ -68,6 +73,7 @@
       <div v-if="analysisResult" class="result-container">
         <ColorAnalysisResult 
           :result="analysisResult"
+          :isGuestMode="isGuestMode"
           @new-analysis="resetChat"
         />
       </div>
@@ -77,8 +83,8 @@
 
 <script setup>
 
-import { ref, nextTick, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, nextTick, onMounted, computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 // Komponensek importálása
 import ChatMessage from '@/components/features/ai/ChatMessage.vue';
@@ -90,7 +96,10 @@ import AnimatedBackground from '@/components/layout/AnimatedBackground.vue';
 import { aiService } from '@/services';
 
 const router = useRouter();
+const route = useRoute();
 
+// Guest mód ellenőrzése
+const isGuestMode = computed(() => route.query.guest === 'true');
 
 const messagesContainer = ref(null);         // a chat scrollozható tartalma
 const conversationHistory = ref([]);         // a chat üzenetek listája
@@ -126,6 +135,11 @@ const startConversation = () => {
 
 /* Beszélgetés mentése localstorageba (felhasználóhoz kötve) */
 const saveConversationHistory = () => {
+  // Guest módban ne mentsük el a beszélgetéseket
+  if (isGuestMode.value) {
+    return;
+  }
+  
   try {
     const user = JSON.parse(localStorage.getItem('authUser') || 'null');
     const userId = user?.id || 'guest';
@@ -137,6 +151,11 @@ const saveConversationHistory = () => {
 
 /* Korábbi chat betöltése (felhasználóhoz kötve) */
 const loadConversationHistory = () => {
+  // Guest módban ne töltsünk be korábbi historyt
+  if (isGuestMode.value) {
+    return false;
+  }
+  
   try {
     const user = JSON.parse(localStorage.getItem('authUser') || 'null');
     const userId = user?.id || 'guest';
@@ -173,8 +192,10 @@ const sendMessage = async () => {
   scrollToBottom();
 
   try {
-    // AI hívás
-    const response = await aiService.chat(message, conversationHistory.value);
+    // AI hívás - vendég módban külön endpoint
+    const response = isGuestMode.value 
+      ? await aiService.chatGuest(message, conversationHistory.value)
+      : await aiService.chat(message, conversationHistory.value);
     
     if (response.success && response.data) {
       const aiMessage = response.data.response || '';

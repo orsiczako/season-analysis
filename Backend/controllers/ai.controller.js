@@ -19,7 +19,7 @@ async function chatWithAI(req, res) {
       return error(res, 'Message is required', 400, 'MESSAGE_REQUIRED');
     }
     
-    console.log('Message received:');
+    console.log('Authenticated user message received:', message);
     
     // Átadjuk a Gemininak az üzit, meg az előzményt
     const result = await geminiService.chat(message, conversationHistory || []);
@@ -32,6 +32,34 @@ async function chatWithAI(req, res) {
     return success(res, 'Chat response generated', result);
   } catch (error) {
     console.error('Chat controller error:', error);
+    return serverError(res, error);
+  }
+}
+
+/**
+ * Vendég mód - authentication nélkül
+ */
+async function chatWithAIGuest(req, res) {
+  try {
+    const { message, conversationHistory } = req.body;
+    
+    if (!message) {
+      return error(res, 'Message is required', 400, 'MESSAGE_REQUIRED');
+    }
+    
+    console.log('Guest message received:', message);
+    
+    // Átadjuk a Gemininak az üzit, meg az előzményt
+    const result = await geminiService.chat(message, conversationHistory || []);
+    
+    if (!result.success) {
+      console.error('Guest chat service failed:', result);
+      return serverError(res, new Error(result.message || 'Chat service failed'));
+    }
+    
+    return success(res, 'Guest chat response generated', result);
+  } catch (error) {
+    console.error('Guest chat controller error:', error);
     return serverError(res, error);
   }
 }
@@ -65,19 +93,13 @@ async function analyzeColorType(req, res) {
     try {
       const { ColorSeason } = dbModels;
       
-      console.log('🔍 Searching for season:', result.analysis.season);
-      
       // Megkeressük a season_id-t a season név alapján (spring/summer/autumn/winter)
       const seasonRecord = await ColorSeason.findOne({
         where: { season_name: result.analysis.season }
       });
       
-      console.log('🔍 Season record found?', !!seasonRecord, seasonRecord ? `ID: ${seasonRecord.season_id}` : 'NULL');
-      
       if (seasonRecord) {
-        console.log('🔍 Updating user', accountId, 'with season_id:', seasonRecord.season_id);
-        
-        const [affectedRows] = await User.update(
+        await User.update(
           {
             color_season_id: seasonRecord.season_id,
             color_analysis_date: new Date()
@@ -86,13 +108,12 @@ async function analyzeColorType(req, res) {
             where: { account_id: accountId }
           }
         );
-        
-        console.log('✅ User', accountId, 'color season updated to:', result.analysis.season, '- Affected rows:', affectedRows);
+        console.log(` User ${accountId} color season updated to: ${result.analysis.season}`);
       } else {
-        console.warn('⚠️  Season', result.analysis.season, 'not found in color_seasons table');
+        console.warn(`Season '${result.analysis.season}' not found in color_seasons table`);
       }
     } catch (dbError) {
-      console.error('❌ Failed to update user color season:', dbError);
+      console.error('Failed to update user color season:', dbError);
       // Nem bukik el az egész művelet
     }
     
@@ -107,5 +128,6 @@ async function analyzeColorType(req, res) {
 
 module.exports = {
   chatWithAI,
+  chatWithAIGuest,
   analyzeColorType
 };

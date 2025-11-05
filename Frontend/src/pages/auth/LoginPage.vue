@@ -46,6 +46,17 @@
         <button type="button" @click="goToForgotPassword" class="forgot-password-btn">
           Elfelejtettem a jelszót
         </button>
+        
+        <div class="guest-section">
+          <hr class="divider">
+          <p class="guest-text">Nem szeretnél regisztrálni?</p>
+          <button type="button" @click="goToGuestMode" class="guest-btn">
+            Kipróbálás vendégként
+          </button>
+          <p class="guest-disclaimer">
+            Vendég módban is beszélhetsz az AI-al.
+          </p>
+        </div>
       </form>
     </div>
   </div>
@@ -53,7 +64,7 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
   import { useAuth } from '@/composables/useAuth.js'
 import ThemeSwitcher from '@/components/common/theme/ThemeSwitcher.vue'
 import AnimatedBackground from '@/components/layout/AnimatedBackground.vue'
@@ -66,6 +77,7 @@ export default {
   },
   setup() {
     const route = useRoute()
+    const router = useRouter()
     const { login, errorMessage, successMessage, loading, validateForm, withLoading, checkQueryMessages, navigateToRegister, navigateToForgotPassword, navigateToDashboard, setError } = useAuth()
 
     // Local form state
@@ -103,6 +115,11 @@ export default {
       navigateToForgotPassword()
     }
 
+    const goToGuestMode = () => {
+      // Vendég módba lépés - meglévő chat oldalra irányítás guest paraméterrel
+      router.push('/chat?guest=true')
+    }
+
     return {
       form,
       errorMessage,
@@ -110,7 +127,8 @@ export default {
       loading,
       handleSubmit,
       goToRegister,
-      goToForgotPassword
+      goToForgotPassword,
+      goToGuestMode
     }
   }
 }
@@ -118,4 +136,47 @@ export default {
 
 <style scoped>
 @import '@/assets/components/auth-common.css';
+
+.guest-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+  opacity: 0.3;
+}
+
+.guest-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.guest-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.guest-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.guest-disclaimer {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
 </style>

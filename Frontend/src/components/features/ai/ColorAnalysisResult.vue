@@ -68,16 +68,25 @@
       </div>
       
       <!-- 
-        Mentes gomb
+        Mentes gomb vagy vendeg uzenete
       -->
       <div class="actions">
         <button 
+          v-if="!isGuestMode"
           class="btn btn--success" 
           @click="addSelectedToFavorites" 
           :disabled="adding || selectedColors.size === 0"
         >
           {{ adding ? 'Hozzáadás...' : `${selectedColors.size} szín mentése kedvencekhez` }}
         </button>
+        
+        <!-- Guest mode uzenete -->
+        <div v-if="isGuestMode" class="guest-message">
+          <p class="guest-text">
+            <span class="guest-icon">👤</span>
+            A színek mentéséhez regisztrálj vagy jelentkezz be!
+          </p>
+        </div>
       </div>
     </div>
 
@@ -152,6 +161,10 @@ const props = defineProps({
       // Ellenorizzuk hogy van-e season vagy seasonHu mezo
       return value.season || value.seasonHu
     }
+  },
+  isGuestMode: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -235,25 +248,28 @@ async function addSelectedToFavorites() {
 
 // Színtípus mentése a profilba amikor az eredmény megérkezik
 onMounted(async () => {
-  if (props.result?.season) {
-    try {
-      const result = await userService.updateColorSeason(props.result.season)
-      if (result.success) {
-        console.log('Színtípus elmentve a profilba:', props.result.season)
-        // Frissítjük a localStorage-ban tárolt user adatokat is
-        const user = JSON.parse(localStorage.getItem('authUser') || '{}')
-        user.colorSeason = props.result.season
-        user.colorAnalysisDate = new Date().toISOString()
-        localStorage.setItem('authUser', JSON.stringify(user))
-        
-        // Frissítjük az auth composable-ben lévő user ref-et is
-        if (refreshUser) {
-          await refreshUser()
-        }
+  // Guest módban ne mentsük el a színtípust
+  if (props.isGuestMode || !props.result?.season) {
+    return
+  }
+  
+  try {
+    const result = await userService.updateColorSeason(props.result.season)
+    if (result.success) {
+      console.log('Színtípus elmentve a profilba:', props.result.season)
+      // Frissítjük a localStorage-ban tárolt user adatokat is
+      const user = JSON.parse(localStorage.getItem('authUser') || '{}')
+      user.colorSeason = props.result.season
+      user.colorAnalysisDate = new Date().toISOString()
+      localStorage.setItem('authUser', JSON.stringify(user))
+      
+      // Frissítjük az auth composable-ben lévő user ref-et is
+      if (refreshUser) {
+        await refreshUser()
       }
-    } catch (error) {
-      console.warn('Failed to save color season to profile:', error)
     }
+  } catch (error) {
+    console.warn('Failed to save color season to profile:', error)
   }
 })
 </script>
@@ -465,5 +481,29 @@ onMounted(async () => {
 .btn--outline:hover:not(:disabled) {
   background: var(--color-primary);
   color: var(--text-primary);
+}
+
+.guest-message {
+  @include flex-center;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 2px dashed var(--color-primary);
+  text-align: center;
+}
+
+.guest-text {
+  @include flex-center;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.guest-icon {
+  font-size: 1.2rem;
 }
 </style>
