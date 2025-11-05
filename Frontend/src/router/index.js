@@ -58,7 +58,7 @@ const routes = [
     path: '/chat', 
     name: 'chat',
     component: AIChatPage,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: false, allowGuest: true } // Guest módban is elérhető
   }
 ]
 
@@ -71,10 +71,18 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // Ellenőrizzük, hogy a route megköveteli-e a bejelentkezést
   const requiresAuth = to.meta.requiresAuth
+  const allowGuest = to.meta.allowGuest
+  const isGuestMode = to.query.guest === 'true'
   const token = localStorage.getItem('authToken')
   const user = localStorage.getItem('authUser')
   
   if (requiresAuth) {
+    // Guest módban kivétel
+    if (allowGuest && isGuestMode) {
+      next()
+      return
+    }
+    
     // Token és user adatok szükségesek
     if (!token || !user) {
       console.warn('Access denied: No authentication token or user data')
