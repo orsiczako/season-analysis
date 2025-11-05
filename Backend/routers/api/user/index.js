@@ -57,8 +57,8 @@ module.exports = (User) => {
         return success(res, 'Registration successful', {
           user: result.user
         });
-      } catch (error) {
-        const msg = error.message === 'USERNAME_TAKEN' 
+      } catch (err) {
+        const msg = err.message === 'USERNAME_TAKEN' 
           ? 'Username already taken' 
           : 'Email already in use';
         return error(res, msg, 409);

@@ -8,6 +8,7 @@ Season Analysis App is a full-stack web application for personal color analysis 
 
 ### Main features
 - **AI-powered color analysis:** Users can chat with an AI (Google Gemini) to analyze their color type based on answers to style and appearance questions. The AI suggests a color season and provides tailored advice.
+- **Guest mode:** Visitors can try the AI color analysis without registration. Guest users can chat with the AI and receive color recommendations, but results are not saved to their profile.
 - **User registration and authentication:** Secure registration and login with JWT tokens. User data is stored in a MySQL database.
 - **Profile management:** Users can view and edit their profile, including their name, email, and assigned color season. The color season is displayed with a localized name and can be updated after new analysis.
 - **Favorite colors:** Users can save multiple favorite colors (1:N relationship) to their profile. Colors are stored as hex codes and can be added or removed at any time.
@@ -28,12 +29,13 @@ Season Analysis App is a full-stack web application for personal color analysis 
 - **Email:** Nodemailer (SMTP, only works locally)
 
 ### User journey
-1. **Registration:** Users sign up with their email, password, and name. Passwords are securely hashed.
-2. **Login:** Users log in and receive a JWT token for authenticated requests.
-3. **Profile:** Users can view their profile, see their color season, and manage favorite colors.
-4. **AI chat:** Users interact with the AI to analyze their color type. The AI asks questions and recommends a color season.
-5. **Save results:** The recommended color season is saved to the user's profile. Users can manually add favorite colors suggested by the AI.
-6. **Password recovery:** If a user forgets their password, they can request a reset link (only works locally).
+1. **Guest mode (optional):** Visitors can try the AI color analysis without registration by clicking "Kipróbálás vendégként" on the login page. Guest sessions provide full AI interaction but don't save results.
+2. **Registration:** Users sign up with their email, password, and name. Passwords are securely hashed.
+3. **Login:** Users log in and receive a JWT token for authenticated requests.
+4. **Profile:** Users can view their profile, see their color season, and manage favorite colors.
+5. **AI chat:** Users interact with the AI to analyze their color type. The AI asks questions and recommends a color season.
+6. **Save results:** The recommended color season is saved to the user's profile (registered users only). Users can manually add favorite colors suggested by the AI.
+7. **Password recovery:** If a user forgets their password, they can request a reset link (only works locally).
 
 ### Limitations
 - Password reset and email notifications only work locally due to Railway SMTP restrictions.
