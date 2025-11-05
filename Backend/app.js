@@ -68,7 +68,18 @@ process.on('unhandledRejection', (reason, promise) => {
     const seasonCount = await dbModels.ColorSeason.count();
     
     if (seasonCount === 0) {
-      console.log('ColorSeason tábla üres - fel kell tölteni manuálisan vagy seed-scripttel!');
+      console.log('ColorSeason tábla üres - automatikus feltöltés...');
+      try {
+        await dbModels.ColorSeason.bulkCreate([
+          { season_name: 'spring', season_display_name: 'Tavasz' },
+          { season_name: 'summer', season_display_name: 'Nyár' },
+          { season_name: 'autumn', season_display_name: 'Ősz' },
+          { season_name: 'winter', season_display_name: 'Tél' }
+        ]);
+        console.log('ColorSeason tábla feltöltve 4 évszakkal.');
+      } catch (seedError) {
+        console.error('Hiba a színévszakok feltöltésekor:', seedError);
+      }
     } else {
       console.log(`Adatbázis feltöltve: ${seasonCount} évszak`);
     }

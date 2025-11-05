@@ -59,9 +59,10 @@ The application follows a three-tier architecture pattern:
 
 ### Frontend Layer (Vue.js 3 + Vite)
 - Single Page Application hosted on Vercel
-- Vue Router for navigation with authentication guards
+- Vue Router for navigation with authentication guards and guest mode support
 - Composable-based state management (useAuth)
 - Axios for API communication with JWT token authentication
+- Guest mode: allows unauthenticated users to access AI chat functionality
 
 ### Backend Layer (Node.js + Express)
 - RESTful API hosted on Railway
@@ -149,8 +150,11 @@ The application follows a three-tier architecture pattern:
 - `DELETE /api/user/favorite-color` - Remove favorite color
 - `GET /api/user/favorite-colors` - Get all favorite colors
 
-**AI Chat** (Protected)
-- `POST /api/ai/chat` - Send message to AI, receive analysis
+**AI Chat**
+- `POST /api/ai/chat` - Send message to AI, receive analysis (Protected)
+- `POST /api/ai/chat-guest` - Guest mode AI chat (No authentication required)
+
+**Note:** Guest mode allows visitors to interact with the AI without registration. Guest sessions don't save analysis results to user profiles and conversation history is not persisted on the server.
 
 Common error codes: `INVALID_CREDENTIALS`, `USERNAME_TAKEN`, `EMAIL_TAKEN`, `INVALID_TOKEN`, `TOKEN_EXPIRED`, `MISSING_REQUIRED_FIELDS`
 
