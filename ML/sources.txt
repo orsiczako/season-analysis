@@ -1,0 +1,6 @@
+https://www.kaggle.com/datasets/muttaqin1113/face-skin-type
+
+https://www.kaggle.com/datasets/ritikasinghkatoch/normaldryoily-skin-type
+
+https://www.kaggle.com/datasets/dilaaurafutri/skin-type-classification-4-types
+
