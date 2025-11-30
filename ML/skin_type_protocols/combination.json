@@ -1,0 +1,174 @@
+{
+  "combinationSkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Kombinált Bőr (Combination Skin)",
+      "version": "4.0 Ultimate Edition",
+      "description": "Teljes körű, professzionális útmutató kombinált bőrtípus kiegyensúlyozásához, a zónázó ápoláshoz és sminkeléshez.",
+      "usage": "AI betanítás, bőrápolási tanácsadás, sminkoktatás"
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "combinationSkin",
+      "visualIndicators": [
+        "Az arc különböző területein eltérő tulajdonságok mutatkoznak egyszerre.",
+        "A T-zóna (homlok, orr, áll) olajos, fénylik és a pórusok itt láthatóbbak vagy tágabbak.",
+        "Az U-zóna (orcák, állkapocs vonala, halánték) normál vagy kifejezetten száraz, húzódó, esetleg hámló.",
+        "A pattanások és mitesszerek jellemzően csak a középvonalban (T-zóna) jelentkeznek."
+      ],
+      "tactileSensations": {
+        "textureVariance": "A homlok és az orr tapintása síkos vagy zsíros, míg az orcák érdesek vagy simák, de szárazak.",
+        "reactionToCleansing": "Arcmosás után az orcák feszülhetnek, miközben az orr hamar visszazsírosodik."
+      },
+      "commonConcerns": [
+        "Nehéz egyetlen terméket találni, ami mindenhol működik",
+        "Eltömődött pórusok a T-zónában",
+        "Szárazság vagy dehidratáltság az orcákon",
+        "A smink egyenetlen kopása (lefolyik az orról, de 'cserepesedik' az orcákon)"
+      ]
+    },
+    "corePhilosophyAndMyths": {
+      "primaryObjective": "Egyensúlyozás (Balancing). A cél nem a bőr egységesítése erőszakkal, hanem az eltérő igényű területek specifikus kezelése ('Zónázó' megközelítés).",
+      "theOneProductMyth": {
+        "misconception": "Egyetlen 'kombinált bőrre' való krém tökéletesen megold mindent.",
+        "reality": "Bár léteznek jó hibrid termékek, a legprofibb megközelítés a különböző zónák eltérő kezelése (pl. mattítás középen, hidratálás oldalt).",
+        "solution": "Adaptív rutin, amely felismeri, hogy a bőr állapota napról napra és évszakonként is változik."
+      }
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1Cleansing": {
+          "goal": "Gyengéd tisztítás szárítás nélkül.",
+          "productRecommendation": "Gél állagú lemosó (Gel Cleanser) vagy enyhe habzó lemosó.",
+          "advice": "Koncentrálj a T-zóna masszírozására a tisztításnál, az orcákat csak futólag érintsd a habbal, ne dörzsöld túl."
+        },
+        "step2Toning": {
+          "goal": "pH visszaállítás és hidratálás.",
+          "productType": "Kiegyensúlyozó tonik (Balancing Toner) vagy alkoholmentes hidratáló tonik.",
+          "technique": "Használj vattakorongot a T-zóna áttörlésére (enyhe fizikai hámlasztás), majd a tenyereddel nyomkodj tonikot az orcákba."
+        },
+        "step3Serums": {
+          "goal": "Minden zóna igényének kielégítése egy lépésben.",
+          "starIngredient": "Niacinamide (B3-vitamin).",
+          "mechanism": "Ez a 'jolly joker' hatóanyag: csökkenti a faggyút a zsíros részeken, de erősíti a barriert és hidratál a száraz részeken.",
+          "alternative": "Hialuronsav az egész arcra a könnyű hidratálásért."
+        },
+        "step4Moisturizing": {
+          "goal": "Hidratálás elnehezítés nélkül.",
+          "productType": "Könnyű emulzió, lotion vagy gél-krém.",
+          "technique": "Vidd fel a krémet az orcákra bőségesen, és a maradékot (ami az ujjadon maradt) simítsd át a T-zónán. Így nem tömíted el a pórusokat."
+        },
+        "step5SunProtection": {
+          "goal": "Könnyű védelem.",
+          "recommendation": "Fluid állagú, könnyen felszívódó fényvédő, amely nem hagy zsíros réteget, de nem is szárít mattra."
+        }
+      },
+      "eveningRegimen": {
+        "step1DoubleCleansing": {
+          "concept": "A smink és fényvédő alapos eltávolítása.",
+          "phase1": "Micellás víz vagy könnyű tisztító olaj.",
+          "phase2": "Vízbázisú lemosó a pórusok tisztítására."
+        },
+        "step2TargetedTreatment": {
+          "goal": "Lokális problémamegoldás (Spot Treatment).",
+          "tZoneAction": "Szalicilsav (BHA) vagy agyagmaszk használata csak a homlokon, orron és állon a mitesszerek ellen.",
+          "uZoneAction": "Ha szükséges, gyengédebb AHA (pl. tejsav) vagy gazdagabb szérum az orcákra.",
+          "rule": "Nem kötelező ugyanazt az aktív hatóanyagot mindenhova kenni!"
+        },
+        "step3NightCream": {
+          "goal": "Regenerálás.",
+          "productType": "Közepes textúrájú hidratáló.",
+          "proHack": "Ha az orcáid nagyon szárazak, keverj egy csepp arcolajat a krémhez, de csak az orcákra vidd fel."
+        }
+      },
+      "weeklyAddOns": {
+        "multiMasking": "A kombinált bőr legjobb technikája. Vigyél fel mélytisztító agyagmaszkot a T-zónára, és hidratáló krémmaszkot az orcákra és a szem alá egy időben.",
+        "exfoliation": "Gyengéd kémiai hámlasztás heti 1-2 alkalommal az egységes bőrfelszínért."
+      }
+    },
+    "professionalMakeupProtocol": {
+      "phase1SkinPreparation": {
+        "importance": "A tartós smink titka a zónázó előkészítés.",
+        "step1HydrationCheck": "Győződj meg róla, hogy a száraz részek (orcák) nem húzódnak. Ha igen, használj ott lokálisan egy testesebb krémet smink előtt.",
+        "step2PrimingStrategy": {
+          "primaryFunction": "Kettős hatás elérése (Multi-Priming).",
+          "technique": "Használj mattító, pórusösszehúzó primert a T-zónában az olajkontrollért. Használj hidratáló, fényvisszaverő primert az orcákon a ragyogásért és a 'plumping' hatásért.",
+          "alternative": "Ha csak egy terméket akarsz: válassz egy 'Balancing' vagy vízbázisú, természetes finishű primert."
+        }
+      },
+      "phase2FoundationApplication": {
+        "formulaSelection": {
+          "bestChoice": "Természetes (Natural) vagy Szatén (Satin) finishű folyékony alapozó.",
+          "reason": "Ez az arany középút: nem túl matt a száraz részeknek, és nem túl fényes a zsíros részeknek.",
+          "mineralOption": "Az Ásványi Por Alapozó (Mineral Foundation) kiváló választás kombinált bőrre is, mert nem szárít (ha jó minőségű), de felszívja a T-zóna olajosságát.",
+          "avoid": "Kerüld az extrém mattító (száríthat) és az extrém 'glowy' (lefolyhat) alapozókat."
+        },
+        "applicationTechnique": {
+          "method": "Kevert eszközhasználat.",
+          "tools": "Használj Beauty Blendert (nedves szivacsot) a krémesebb, természetesebb hatásért, ami jól hidratálja a száraz részeket is.",
+          "coverage": "Építsd fel a fedést vékonyan. A T-zónába tehetsz kicsit többet, az orcákon hagyd lélegezni a bőrt."
+        }
+      },
+      "phase3SettingAndLocking": {
+        "importance": "Stratégiai rögzítés (Strategic Powdering).",
+        "powderProtocol": {
+          "rule": "Soha ne púderezd le az egész arcot vastagon!",
+          "technique": "Vigyél fel mattító vagy transzparens púdert KIZÁRÓLAG a T-zónára (homlok, orr, áll) és esetleg a szem alá.",
+          "uZoneAdvice": "Hagyd az orcákat púder nélkül, vagy használj ott nagyon kevés, fényvisszaverő púdert, hogy megmaradjon a bőr természetes fénye."
+        },
+        "settingSpray": {
+          "product": "Könnyű, tartósító spray, amely nem mattít túlzottan, de nem is olajos.",
+          "function": "Egységesíti a különböző textúrákat (a matt T-zónát és a fényesebb orcákat)."
+        }
+      },
+      "phase4CheeksAndContour": {
+        "rule": "Krémes és Púderes termékek kombinálása.",
+        "advice": "Használhatsz gél-alapú pirosítót (Gel Blush), ami tartós a zsírosabb részek közelében is, de nem emeli ki a szárazságot. A highlightert csak az arccsontra tedd, kerüld a pórusos területet az orr mellett."
+      }
+    },
+    "troubleshootingAndMaintenance": {
+      "midDayTouchUpProtocol": {
+        "problem": "Az orr kifényesedik, miközben az alapozó az orcákon esetleg megrepedezik.",
+        "step1": "Itasd fel az olajat a T-zónából (Blotting Paper).",
+        "step2": "Púderezz vékonyan CSAK a T-zónára.",
+        "step3": "Ha az orcák száraznak tűnnek, használj hidratáló permetet az arc szélére, vagy nyomkodj be egy pici krémes highlightert az arccsontra a frissítéshez."
+      },
+      "seasonalAdaptation": {
+        "summer": "A bőr eltolódhat a zsírosabb irányba. Használj mattítóbb termékeket a T-zónában és könnyebb krémet.",
+        "winter": "A bőr eltolódhat a száraz irányba. Válts gazdagabb hidratálóra és hidratálóbb alapozóra, csökkentsd a púderezést."
+      }
+    },
+    "ingredientLibrary": {
+      "beneficialIngredients": [
+        {
+          "name": "Niacinamide",
+          "benefit": "Kiegyensúlyozza a faggyút és nyugtat."
+        },
+        {
+          "name": "Hyaluronic Acid",
+          "benefit": "Univerzális hidratáló minden zónára."
+        },
+        {
+          "name": "Panthenol (B5)",
+          "benefit": "Nyugtatja az érzékenyebb száraz részeket."
+        },
+        {
+          "name": "Lactic Acid",
+          "benefit": "Gyengéd hámlasztó, ami a száraz részeket sem bántja."
+        }
+      ],
+      "ingredientsToAvoid": [
+        {
+          "name": "Alcohol (in toners)",
+          "risk": "Kiszárítja az orcákat és fokozott olajtermelésre készteti a T-zónát."
+        },
+        {
+          "name": "Heavy Oils (Coconut)",
+          "risk": "Eltömítheti a T-zóna pórusait."
+        },
+        {
+          "name": "Overly harsh scrubs",
+          "risk": "Fizikai sérülést okozhatnak a szárazabb, vékonyabb bőrterületeken."
+        }
+      ]
+    }
+  }
+}

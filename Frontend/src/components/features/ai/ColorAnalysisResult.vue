@@ -72,21 +72,12 @@
       -->
       <div class="actions">
         <button 
-          v-if="!isGuestMode"
           class="btn btn--success" 
           @click="addSelectedToFavorites" 
           :disabled="adding || selectedColors.size === 0"
         >
           {{ adding ? 'Hozzáadás...' : `${selectedColors.size} szín mentése kedvencekhez` }}
         </button>
-        
-        <!-- Guest mode uzenete -->
-        <div v-if="isGuestMode" class="guest-message">
-          <p class="guest-text">
-            <span class="guest-icon">👤</span>
-            A színek mentéséhez regisztrálj vagy jelentkezz be!
-          </p>
-        </div>
       </div>
     </div>
 

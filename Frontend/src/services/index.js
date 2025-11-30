@@ -40,12 +40,7 @@ export const aiService = {
     )
   },
 
-  async chatGuest(message, conversationHistory = [], context = null) {
-    return apiCall(
-      () => apiClient.post('/api/ai/chat-guest', { message, conversationHistory, context }),
-      'AI chat hiba'
-    )
-  },
+
 
   async analyzeColorType(conversationHistory, accountId) {
     return apiCall(

@@ -1,0 +1,185 @@
+{
+  "oilySkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Zsíros Bőr (Oily Skin)",
+      "version": "4.0 Ultimate Edition",
+      "description": "Teljes körű, professzionális útmutató zsíros bőrtípus kezeléséhez, ápolásához és sminkeléséhez.",
+      "usage": "AI betanítás, bőrápolási tanácsadás, sminkoktatás"
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "oilySkin",
+      "visualIndicators": [
+        "Az arcbőr teljes felülete hajlamos a csillogásra, nem csak a T-zóna (homlok, orr, áll), hanem az orcák is.",
+        "A pórusok szabad szemmel is jól láthatóak, tágak, gyakran narancshéj-szerű textúrát adnak a bőrnek.",
+        "Reggel ébredéskor az arcbőrön már látható és tapintható olajréteg található.",
+        "A sminktermékek hajlamosak oxidálódni (sötétebbé vagy narancssárgássá válni) a nap folyamán a bőr pH-ja és olajtartalma miatt."
+      ],
+      "tactileSensations": {
+        "texture": "A bőr tapintása gyakran síkos vagy olajos, esetleg egyenetlen a pórusok és a bőr alatti apró dudorok (komedók) miatt.",
+        "elasticity": "A zsíros bőr általában vastagabb és rugalmasabb, később ráncosodik, mint a száraz bőr."
+      },
+      "commonConcerns": [
+        "Túlzott faggyútermelés (Seborrhea)",
+        "Póruseltömődés, mitesszerek (Blackheads) és pattanások (Acne)",
+        "A smink tartósságának hiánya (lecsúszás, foltosodás)",
+        "Fényes, zsíros hatású fotókon"
+      ]
+    },
+    "corePhilosophyAndMyths": {
+      "primaryObjective": "A faggyútermelés szabályozása (Sebum Control) és a bőr egyensúlyba hozása, nem pedig az olaj teljes és drasztikus megszüntetése.",
+      "theDryingMyth": {
+        "misconception": "A zsíros bőrt minél erősebben kell tisztítani és szárítani alkoholos termékekkel.",
+        "reality": "A bőr túlzott szárítása sérti a barriert. A bőr erre védekezési mechanizmussal reagál: a faggyúmirigyek még intenzívebb termelésbe kezdenek, hogy pótolják az elvesztett védőréteget. Ezt nevezzük reaktív seborrheának.",
+        "solution": "Hidratálni kell! A vízhiányos zsíros bőr a legrosszabb kombináció, mert egyszerre hámlik és zsírosodik."
+      }
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1Cleansing": {
+          "goal": "Az éjszaka termelődött faggyú és toxinok eltávolítása.",
+          "productRecommendation": "Gyengéd, víz bázisú, habzó lemosó vagy gél (Gel Cleanser).",
+          "technique": "Langyos vízzel moss arcot. A túl forró víz serkenti az olajtermelést, a túl hideg nem oldja fel a zsírt.",
+          "avoid": "Kerüld a szappanokat és az SLS-t (Sodium Lauryl Sulfate) tartalmazó agresszív tisztítókat."
+        },
+        "step2Toning": {
+          "goal": "A pH-érték visszaállítása és a pórusok tisztán tartása.",
+          "activeIngredients": "AHA (glikolsav, tejsav) vagy gyengéd gyümölcssavak.",
+          "benefits": "Segítik az elhalt hámsejtek eltávolítását, amelyek eltömítenék a pórusokat, és frissítik a bőrfelszínt."
+        },
+        "step3Serums": {
+          "goal": "Antioxidáns védelem és faggyúszabályozás.",
+          "starIngredient": "Niacinamide (B3-vitamin).",
+          "mechanism": "A Niacinamide klinikailag bizonyítottan csökkenti a faggyútermelést, összehúzza a pórusokat és csökkenti a gyulladást.",
+          "alternative": "C-vitamin szérum a foltok halványítására és a bőr ragyogásáért."
+        },
+        "step4Moisturizing": {
+          "goal": "Vízpótlás nehezítés nélkül.",
+          "productType": "Mattító fluid, gél-krém (Gel-Cream) vagy emulzió.",
+          "keyFeatures": "Olajmentes (Oil-Free), nem komedogén (Non-comedogenic).",
+          "advice": "Keress olyan összetevőket, mint a hialuronsav, ami vizet köt meg, nem olajat ad hozzá."
+        },
+        "step5SunProtection": {
+          "goal": "Védelem az UV sugárzás ellen (ami vastagítja a szaruréteget és pattanásokat okozhat).",
+          "recommendation": "Kémiai vagy fizikai fényvédő 'Dry-touch' vagy matt finish-sel.",
+          "proTip": "Az ásványi fényvédők (cink-oxid, titán-dioxid) természetes módon mattítanak."
+        }
+      },
+      "eveningRegimen": {
+        "step1DoubleCleansing": {
+          "concept": "A zsíros bőr 'Szent Grálja'.",
+          "phase1OilCleanse": "Olajos lemosó (Cleansing Oil) vagy Balzsam. Mivel a 'hasonló a hasonlót oldja', az olaj a leghatékonyabb a felesleges faggyú, a fényvédő és a smink feloldására a pórusok mélyéről.",
+          "phase2WaterCleanse": "Vízbázisú lemosó a maradék emulgeált olaj és szennyeződés eltávolítására."
+        },
+        "step2TargetedTreatment": {
+          "goal": "Póruskezelés és sejtregeneráció.",
+          "ingredients": "BHA (Szalicilsav) vagy Retinol.",
+          "mechanismBHA": "A szalicilsav zsírban oldódik, így képes behatolni a pórus belsejébe és feloldani az ott rekedt faggyúdugót (mitesszert).",
+          "mechanismRetinol": "Gyorsítja a sejtcserét, megakadályozza a pórusok eltömődését és simítja a bőrfelszínt."
+        },
+        "step3NightCream": {
+          "goal": "Regenerálás.",
+          "productType": "Könnyű éjszakai hidratáló, ceramidokkal a barrier erősítése érdekében."
+        }
+      },
+      "weeklyAddOns": {
+        "exfoliation": "Heti 1-2 alkalommal kémiai hámlasztás (BHA) az elhalt hámsejtek ellen.",
+        "masking": "Agyagmaszk (Kaolin vagy Bentonit) használata a felesleges olaj 'kiszívására'. Fontos: Ne hagyd teljesen megszáradni és repedezni a maszkot, mert az dehidratál."
+      }
+    },
+    "professionalMakeupProtocol": {
+      "phase1SkinPreparation": {
+        "importance": "A zsíros bőrnél az előkészítés határozza meg a smink 80%-át.",
+        "step1HydrationCheck": "A sminkelést tiszta, hidratált bőrön kezdd. Ha a bőröd szomjas, 'megissza' az alapozó nedvességtartalmát, és csak a pigmentpor marad a felszínen, ami foltos lesz.",
+        "step2PrimingStrategy": {
+          "primaryFunction": "Mattítás és textúra-simítás.",
+          "productSelection": "Mattító (Mattifying) primer olajelnyelő tulajdonságokkal.",
+          "siliconeDebate": {
+            "pros": "A szilikon alapú primerek (dimethicone) kiválóan töltik ki a tág pórusokat és 'simító' (blur) hatást adnak.",
+            "cons": "Mindennapi használatnál elzárhatják a bőrt, pattanásokat okozva. Ha a bőröd hajlamos aknéra, válassz vízbázisú mattító primert.",
+            "applicationTechnique": "A primert ütögesd be a pórusokba a T-zónában, ne kend szét, mint egy krémet."
+          }
+        }
+      },
+      "phase2FoundationApplication": {
+        "formulaSelection": {
+          "bestChoice": "Folyékony, olajmentes (Oil-Free), hosszan tartó (Long-wear, 24h) alapozó matt vagy fél-matt (demi-matte) finissel.",
+          "alternativeChoice": "Ásványi Por Alapozó (Mineral Foundation). Ez a típus a legbarátibb a zsíros bőrhöz, mert a porrészecskék magukba szívják az olajat, hagyják a bőrt lélegezni, és nem tömítenek.",
+          "avoid": "Kerüld a 'Dewy', 'Glow', 'Luminous' elnevezésű, illetve olaj alapú alapozókat és stick alapozókat."
+        },
+        "applicationTechnique": {
+          "method": "Stippling (Nyomkodó/Ütögető technika).",
+          "tool": "Nedves sminkszivacs (Beauty Blender) a természetesebb hatásért, vagy tömött szintetikus ecset (Kabuki) az erősebb fedésért.",
+          "rule": "Vékony rétegekben építsd fel a fedést. Egy vastag réteg hamarabb megfolyik, mint két vékony, jól eldolgozott réteg."
+        }
+      },
+      "phase3SettingAndLocking": {
+        "importance": "A smink rögzítése (Setting) kritikus lépés.",
+        "powderProtocol": {
+          "product": "Transzparens, laza fixáló púder (Loose Setting Powder) vagy Mattító kőpúder.",
+          "technique": "Press & Roll (Nyomd és Gördítsd). Ne söpörd az ecsetet az arcodon, mert az elmozdítja az alapozót. Vegyél fel púdert egy puffra vagy ecsetre, és határozott mozdulatokkal nyomd bele a bőrbe a T-zónában. Ez fizikailag 'bezárja' a sminket.",
+          "bakingTechnique": "Extrém zsírosodás esetén: Vigyél fel vastag réteg púdert a szem alá és az állra, hagyd hatni 5-10 percig, majd a felesleget söpörd le."
+        },
+        "settingSpray": {
+          "product": "Mattító fixáló spray.",
+          "function": "Összeolvasztja a púdert az alapozóval (megszünteti a poros hatást) és filmréteget képez a smink tetején."
+        }
+      },
+      "phase4CheeksAndContour": {
+        "rule": "Textúra-egyezés.",
+        "advice": "Kerüld a krémes pirosítókat és kontúr stickeket, mert ezek olajos bázisúak és lecsúszhatnak. Használj por állagú (powder) pirosítót, bronzosítót és highlightert a tartósság érdekében."
+      }
+    },
+    "troubleshootingAndMaintenance": {
+      "midDayTouchUpProtocol": {
+        "goldenRule": "SOHA ne púderezz közvetlenül az olajos bőrre! A por összekeveredik az olajjal és a sminkkel, csomós, 'cakey' maszkot képezve.",
+        "step1": "Itatás (Blotting). Használj mattító lapocskát (Blotting Paper) vagy egy papírzsebkendő rétegeit szétválasztva, finoman nyomkodd át az arcot a felesleges olaj felitatására.",
+        "step2": "Korrekció. Csak az itatás után vigyél fel egy vékony réteg mattító púdert a T-zónára.",
+        "step3": "Frissítés. Opcionálisan fújhatsz egy kevés arcpermetet a frissítéshez."
+      },
+      "largePoresHack": {
+        "tip": "A pórusokat nem lehet eltüntetni, de optikailag csalhatunk. Használj szilikon alapú, sűrű állagú 'pore filler' primert lokálisan, csak az érintett területre (pl. orcák belső része) ütögetve."
+      },
+      "sweatVsOil": {
+        "distinction": "Ha izzadsz is (pl. nyáron), használj vízálló (waterproof) fixálót, ne csak mattítót."
+      }
+    },
+    "ingredientLibrary": {
+      "beneficialIngredients": [
+        {
+          "name": "Salicylic Acid (BHA)",
+          "benefit": "Mélytisztítás, gyulladáscsökkentés, pórusfinomítás."
+        },
+        {
+          "name": "Niacinamide",
+          "benefit": "Faggyúszabályozás, barrier erősítés, folthalványítás."
+        },
+        {
+          "name": "Clay (Kaolin, Bentonite)",
+          "benefit": "Olajfelszívás, méregtelenítés."
+        },
+        {
+          "name": "Zinc Oxide",
+          "benefit": "Gyulladáscsökkentés, fizikai fényvédelem, mattítás."
+        },
+        {
+          "name": "Hyaluronic Acid",
+          "benefit": "Könnyű hidratálás."
+        }
+      ],
+      "ingredientsToAvoid": [
+        {
+          "name": "Alcohol Denat (nagy koncentrációban)",
+          "risk": "Bőrszárítás, irritáció, reaktív olajtermelés."
+        },
+        {
+          "name": "Coconut Oil, Cocoa Butter",
+          "risk": "Erősen komedogén (eltömíti a pórusokat)."
+        },
+        {
+          "name": "Mineral Oil (ásványi olaj)",
+          "risk": "Bár nem mindig komedogén, de 'fóliát' képezhet a bőrön, ami alatt a zsíros bőr befülledhet."
+        }
+      ]
+    }
+  }
+}

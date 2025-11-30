@@ -5,13 +5,8 @@
     
     <PageHeader 
       :isDashboard="false" 
-      :backRoute="isGuestMode ? '/login' : '/dashboard'"
+      :backRoute="'/dashboard'"
     />
-
-    <!-- Guest mód figyelmeztetés -->
-    <div v-if="isGuestMode" class="guest-warning">
-      <p><strong>Vendég mód:</strong> Próbáld ki a színelemzést! Regisztrálj a teljes élményért!</p>
-    </div>
 
     <!-- A fő tartalom: bal oldalon a chat, jobb oldalon (ha van) az eredményA dupla tagadás (!!) egy JavaScript trükk, ami bármilyen értéket boolean-né konvertál: -->
     <div class="content-container" :class="{'has-result': !!analysisResult}">
@@ -73,7 +68,6 @@
       <div v-if="analysisResult" class="result-container">
         <ColorAnalysisResult 
           :result="analysisResult"
-          :isGuestMode="isGuestMode"
           @new-analysis="resetChat"
         />
       </div>
@@ -98,8 +92,7 @@ import { aiService } from '@/services';
 const router = useRouter();
 const route = useRoute();
 
-// Guest mód ellenőrzése
-const isGuestMode = computed(() => route.query.guest === 'true');
+
 
 const messagesContainer = ref(null);         // a chat scrollozható tartalma
 const conversationHistory = ref([]);         // a chat üzenetek listája
@@ -135,15 +128,14 @@ const startConversation = () => {
 
 /* Beszélgetés mentése localstorageba (felhasználóhoz kötve) */
 const saveConversationHistory = () => {
-  // Guest módban ne mentsük el a beszélgetéseket
-  if (isGuestMode.value) {
-    return;
-  }
+  // Vendég mód eltávolítva, minden felhasználónál mentés
   
   try {
     const user = JSON.parse(localStorage.getItem('authUser') || 'null');
-    const userId = user?.id || 'guest';
-    localStorage.setItem(`aiChatHistory_${userId}`, JSON.stringify(conversationHistory.value));
+    const userId = user?.id;
+    if (userId) {
+      localStorage.setItem(`aiChatHistory_${userId}`, JSON.stringify(conversationHistory.value));
+    }
   } catch (error) {
     console.warn('Failed to save conversation history:', error);
   }
@@ -151,18 +143,17 @@ const saveConversationHistory = () => {
 
 /* Korábbi chat betöltése (felhasználóhoz kötve) */
 const loadConversationHistory = () => {
-  // Guest módban ne töltsünk be korábbi historyt
-  if (isGuestMode.value) {
-    return false;
-  }
+  // Vendég mód eltávolítva, minden felhasználónál betöltés
   
   try {
     const user = JSON.parse(localStorage.getItem('authUser') || 'null');
-    const userId = user?.id || 'guest';
-    const saved = localStorage.getItem(`aiChatHistory_${userId}`);
-    if (saved) {
-      conversationHistory.value = JSON.parse(saved);
-      return true;
+    const userId = user?.id;
+    if (userId) {
+      const saved = localStorage.getItem(`aiChatHistory_${userId}`);
+      if (saved) {
+        conversationHistory.value = JSON.parse(saved);
+        return true;
+      }
     }
   } catch (error) {
     console.warn('Failed to load conversation history:', error);
@@ -192,10 +183,8 @@ const sendMessage = async () => {
   scrollToBottom();
 
   try {
-    // AI hívás - vendég módban külön endpoint
-    const response = isGuestMode.value 
-      ? await aiService.chatGuest(message, conversationHistory.value)
-      : await aiService.chat(message, conversationHistory.value);
+    // AI hívás - csak normál endpoint
+    const response = await aiService.chat(message, conversationHistory.value);
     
     if (response.success && response.data) {
       const aiMessage = response.data.response || '';
@@ -254,9 +243,11 @@ const resetChat = () => {
   analysisResult.value = null;
   try {
     const user = JSON.parse(localStorage.getItem('authUser') || 'null');
-    const userId = user?.id || 'guest';
-    localStorage.removeItem(`aiChatHistory_${userId}`);
-    localStorage.removeItem(`aiLastAnalysisResult_${userId}`);
+    const userId = user?.id;
+    if (userId) {
+      localStorage.removeItem(`aiChatHistory_${userId}`);
+      localStorage.removeItem(`aiLastAnalysisResult_${userId}`);
+    }
   } catch (e) {
     console.warn('Failed to clear storage:', e);
   }
@@ -281,10 +272,12 @@ onMounted(() => {
   if (hasHistory) {
     try {
       const user = JSON.parse(localStorage.getItem('authUser') || 'null');
-      const userId = user?.id || 'guest';
-      const last = localStorage.getItem(`aiLastAnalysisResult_${userId}`);
-      if (last) {
-        analysisResult.value = JSON.parse(last);
+      const userId = user?.id;
+      if (userId) {
+        const last = localStorage.getItem(`aiLastAnalysisResult_${userId}`);
+        if (last) {
+          analysisResult.value = JSON.parse(last);
+        }
       }
     } catch (e) {
       console.warn('Failed to restore last analysis result:', e);

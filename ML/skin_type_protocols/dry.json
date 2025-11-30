@@ -1,0 +1,185 @@
+{
+  "drySkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Száraz Bőr (Dry Skin)",
+      "version": "4.0 Ultimate Edition",
+      "description": "Teljes körű, professzionális útmutató száraz bőrtípus kezeléséhez, barrier-építéshez és sminkeléséhez.",
+      "usage": "AI betanítás, bőrápolási tanácsadás, sminkoktatás"
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "drySkin",
+      "visualIndicators": [
+        "A bőr fakónak tűnik, hiányzik a természetes ragyogás, gyakran láthatók rajta hámló foltok (flaky patches).",
+        "A pórusok szinte láthatatlanok vagy nagyon kicsik, a bőrfelszín textúrált és érdességet mutathat.",
+        "Finom vonalak és ráncok korábban jelenhetnek meg a hidratáltság hiánya miatt.",
+        "A smink gyakran válik foltossá (patchy), mert a bőr 'kiszívja' belőle a nedvességet."
+      ],
+      "tactileSensations": {
+        "texture": "A bőr tapintása érdes, durva lehet a hámlás miatt.",
+        "elasticity": "Feszülő, kényelmetlen érzés tapasztalható, különösen arcmosás után, mintha a bőr 'kicsi lenne' az arcra.",
+        "absorbency": "A felvitt krémeket a bőr azonnal, szinte mohón beszívja ('szomjas bőr')."
+      },
+      "commonConcerns": [
+        "Krónikus vízhiány és lipidhiány",
+        "Korai öregedés jelei (finom vonalak)",
+        "Érzékenység és pirosság a gyenge barrier miatt",
+        "A smink 'cserepesedése' (cakey look)"
+      ]
+    },
+    "corePhilosophyAndMyths": {
+      "primaryObjective": "A bőr védőrétegének (barrier) megerősítése és a nedvesség bezárása (Occlusion), nem csak a felszíni nedvesítés.",
+      "theHydrationMyth": {
+        "misconception": "A sok vízivás önmagában megoldja a száraz bőr problémáját.",
+        "reality": "Bár a belső hidratálás fontos[cite: 90], a száraz bőrnek hiányoznak a természetes olajok (lipidek), amelyek bent tartanák a vizet. Külső lipidpótlás nélkül a víz elpárolog (TEWL - Transepidermal Water Loss).",
+        "solution": "Hidratáló (vízmegkötő) és Tápláló (olajpótló) összetevők kombinált használata."
+      }
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1Cleansing": {
+          "goal": "Tisztítás a természetes olajok eltávolítása nélkül.",
+          "productRecommendation": "Krémes lemosó (Cream Cleanser), tisztító tej vagy olajos lemosó.",
+          "technique": "Kerüld a habzó, szárító lemosókat. Langyos vizet használj, a forró víz tovább szárítja a bőrt.",
+          "avoid": "Magas pH-jú szappanok és erős tenzidek."
+        },
+        "step2Toning": {
+          "goal": "Azonnali hidratálás és pH kiegyenlítés.",
+          "activeIngredients": "Hialuronsav, Glicerin, Rózsavíz.",
+          "benefits": "A hidratáló tonikok 'előnedvesítik' a bőrt, így a krémek jobban felszívódnak. Kerüld az alkoholos tonikokat!",
+          "productReference": "Rose Hydrating Mist permetezése."
+        },
+        "step3Serums": {
+          "goal": "Mélyhidratálás és védelem.",
+          "starIngredient": "Hialuronsav (Hyaluronic Acid) és C-vitamin (olajbázisban).",
+          "mechanism": "A hialuronsav vizet vonz a bőrbe, feltöltve a finom ráncokat.",
+          "advice": "A szérumot mindig enyhén nedves bőrre vidd fel a jobb hatásért."
+        },
+        "step4Moisturizing": {
+          "goal": "A nedvesség és a hatóanyagok bezárása.",
+          "productType": "Gazdag, testes hidratáló krém (Rich Cream) vagy olaj.",
+          "keyFeatures": "Tartalmazzon ceramidokat, szkvalánt vagy növényi olajokat.",
+          "advice": "Ne sajnáld a krémet; a száraz bőrnek szüksége van a 'védőpajzsra'."
+        },
+        "step5SunProtection": {
+          "goal": "UV védelem extra ápolással.",
+          "recommendation": "Hidratáló fényvédő krém (Cream vagy Lotion állag), amely nem mattít."
+        }
+      },
+      "eveningRegimen": {
+        "step1DoubleCleansing": {
+          "concept": "Gyengéd tisztítás.",
+          "phase1OilCleanse": "Tisztító balzsam (Cleansing Balm) a smink leolvasztására dörzsölés nélkül.",
+          "phase2WaterCleanse": "Hidratáló tej vagy krémes lemosó a maradék eltávolítására.",
+          "importance": "A fizikai dörzsölés irritálhatja a száraz bőrt, az olaj kíméletesen tisztít."
+        },
+        "step2TargetedTreatment": {
+          "goal": "Sejtregeneráció és hámlasztás szárítás nélkül.",
+          "ingredients": "Tejsav (Lactic Acid) vagy PHA.",
+          "mechanismLacticAcid": "A tejsav egy gyengéd AHA, amely nemcsak hámlaszt, hanem hidratál is (humectant tulajdonságú).",
+          "mechanismRetinol": "Érett/száraz bőrre alacsony koncentrációjú retinol vagy peptidek."
+        },
+        "step3NightCream": {
+          "goal": "Mélytáplálás és okklúzió.",
+          "productType": "Nagyon gazdag éjszakai krém, esetleg arcolajjal (pl. Csipkebogyó olaj) kiegészítve."
+        }
+      },
+      "weeklyAddOns": {
+        "exfoliation": "Gyengéd enzimes hámlasztás vagy tejsav heti 1x az elhalt hámsejtek (flaky skin) eltávolítására, hogy a krémek be tudjanak szívódni.",
+        "masking": "Hidratáló éjszakai maszkok (Sleeping Mask) vagy fátyolmaszkok (Sheet Mask)."
+      }
+    },
+    "professionalMakeupProtocol": {
+      "phase1SkinPreparation": {
+        "importance": "A száraz bőr sminkelésénél a prep a legfontosabb lépés a foltosodás elkerülésére.",
+        "step1HydrationCheck": "A sminkelés előtt használj extra hidratáló réteget. Ha a bőröd 'szomjas', a sminket fogja beszívni.",
+        "step2PrimingStrategy": {
+          "primaryFunction": "Nedvességpótlás és simítás.",
+          "productSelection": "Hidratáló primer (Hydrating Primer) hialuronsavval vagy olajokkal.",
+          "matureSkinAdvice": "Érett bőrre enyhén fényes, szilikon tartalmú bázis is jó lehet a ráncok kitöltésére.",
+          "applicationTip": "Masszírozd be a primert, mint egy bőrápolót."
+        }
+      },
+      "phase2FoundationApplication": {
+        "formulaSelection": {
+          "bestChoice": "Folyékony vagy krém alapozók (Liquid/Cream Foundation) harmatos (dewy) vagy ragyogó (luminous) finissel.",
+          "alternativeChoice": "BB Krém (tápláló bio-aktív összetevőkkel) a mindennapokra.",
+          "avoid": "Kerüld a mattító, 'Long-wear' (ha alkoholos) és a por állagú alapozókat, mert ezek kiemelik a száraz részeket."
+        },
+        "applicationTechnique": {
+          "method": "Nyomkodó mozdulatok nedves eszközzel.",
+          "tool": "Nedves sminkszivacs (Beauty Blender). A víz a szivacsban segít hidratáltabbá tenni az alapozót és megakadályozza a 'mikro-hámlást'. Használhatod az ujjaidat is a krémek felmelegítésére.",
+          "proTip": "Keverj egy csepp arcolajat vagy hidratáló krémet az alapozódhoz a ragyogóbb, simább hatásért (Skin Tint effekt)."
+        }
+      },
+      "phase3SettingAndLocking": {
+        "importance": "A cél a tartósság a kiszáradás nélkül.",
+        "powderProtocol": {
+          "product": "Kerüld a fixáló púdert!.",
+          "exception": "Ha muszáj, csak a szem alá és a T-zónába vigyél fel minimális mennyiségű, finomra őrölt hidratáló púdert.",
+          "risk": "A púder beleül a ráncokba és kiemeli a száraz foltokat (cakey effect)."
+        },
+        "settingSpray": {
+          "product": "Hidratáló fixáló spray (Dewy Setting Spray).",
+          "function": "Ez a 'Szent Grál' a száraz bőrnek: lezárja a sminket, eltünteti a poros hatást és visszaadja a bőr fényét."
+        }
+      },
+      "phase4CheeksAndContour": {
+        "rule": "Krémes textúrák előnyben.",
+        "advice": "Használj krémpirosítót (Cream Blush) és folyékony highlightert. Ezek egybeolvadnak a bőrrel és nem ülnek meg a száraz felszínen."
+      }
+    },
+    "troubleshootingAndMaintenance": {
+      "midDayTouchUpProtocol": {
+        "goldenRule": "Ne púderezz rá a száraz bőrre napközben!",
+        "step1": "Használj hidratáló permetet (Face Mist) a bőr felfrissítésére.",
+        "step2": "Ha az alapozó elmozdult vagy kopott, egy kevés korrektorral vagy BB krémmel, ujjal ütögetve javítsd ki.",
+        "step3": "A ragyogás visszaállítására használj kevés krémes highlightert."
+      },
+      "flakySkinHack": {
+        "tip": "Ha az orrod vagy homlokod hámlani kezd a smink alatt, ne tépd le a bőrt! Vigyél fel egy icipici ajakbalzsamot vagy gazdag krémet lokálisan a hámló részre, hogy visszasimítsd a hámsejteket."
+      },
+      "seasonalAdaptation": {
+        "summer": "Használhatsz könnyebb textúrákat, de a fényvédelem és a hidratálás maradjon kulcsfontosságú.",
+        "winter": "Válts gazdagabb, olajosabb krémekre és primerekre. Ilyenkor a 'slugging' technika éjszaka életmentő lehet."
+      }
+    },
+    "ingredientLibrary": {
+      "beneficialIngredients": [
+        {
+          "name": "Hyaluronic Acid",
+          "benefit": "Vizet vonz a bőrbe, feltölti a ráncokat[cite: 52]."
+        },
+        {
+          "name": "Ceramides",
+          "benefit": "A bőr barrierjének építőkövei, segítenek megtartani a nedvességet."
+        },
+        {
+          "name": "Glycerin",
+          "benefit": "Erős vízmegkötő (humectant)."
+        },
+        {
+          "name": "Plant Oils (Rosehip, Jojoba, Argan)",
+          "benefit": "Táplálnak és záróréteget képeznek."
+        },
+        {
+          "name": "Lactic Acid",
+          "benefit": "Gyengéd hámlasztás és hidratálás egyben."
+        }
+      ],
+      "ingredientsToAvoid": [
+        {
+          "name": "Alcohol Denat",
+          "risk": "Elvonja a vizet a bőrből, irritál és szárít."
+        },
+        {
+          "name": "Clay (Kaolin)",
+          "risk": "Felszívja az olajokat, amire a száraz bőrnek nagy szüksége van."
+        },
+        {
+          "name": "Matte/Powder finish products",
+          "risk": "Maszkos hatást és kényelmetlen feszülést okoznak."
+        }
+      ]
+    }
+  }
+}

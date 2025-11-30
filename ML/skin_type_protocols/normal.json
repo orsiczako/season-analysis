@@ -1,0 +1,164 @@
+{
+  "normalSkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Normál Bőr (Normal Skin)",
+      "version": "4.0 Ultimate Edition",
+      "description": "Teljes körű, professzionális útmutató normál bőrtípus fenntartásához, az öregedésgátlás megelőző lépéseihez és sminkeléséhez.",
+      "usage": "AI betanítás, bőrápolási tanácsadás, sminkoktatás"
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "normalSkin",
+      "visualIndicators": [
+        "A bőr megjelenése kiegyensúlyozott, se nem túl olajos, se nem túl száraz.",
+        "A pórusok kicsik, alig láthatóak, és nem jellemző rájuk az eltömődés.",
+        "A bőrfelszín sima, egyenletes tónusú, minimális bőrhibával.",
+        "A bőrnek természetes, egészséges fénye van (nem zsíros csillogás)."
+      ],
+      "tactileSensations": {
+        "texture": "Bársonyos, puha tapintású.",
+        "elasticity": "Jó rugalmasság és feszesség jellemzi.",
+        "reaction": "Minimális irritáció vagy reakció lép fel új termékek használatakor."
+      },
+      "commonConcerns": [
+        "A status quo fenntartása",
+        "Megelőzés (anti-aging)",
+        "Szezonális változások miatti enyhe kilengések",
+        "Ragyogásvesztés (dullness) a környezeti hatások miatt"
+      ]
+    },
+    "corePhilosophyAndMyths": {
+      "primaryObjective": "Fenntartás és Védelem (Maintenance & Protection). A cél a bőr barrierjének támogatása, hogy a normál állapot minél tovább megmaradjon.",
+      "theLowMaintenanceMyth": {
+        "misconception": "A normál bőrrel semmit sem kell csinálni, mert tökéletes.",
+        "reality": "Minden bőr öregszik és ki van téve az UV-sugárzásnak illetve a szennyeződéseknek. Ápolás nélkül a normál bőr idővel szárazzá vagy problémássá válhat.",
+        "solution": "Egy következetes, megelőző rutin (Preventative Routine) kialakítása."
+      }
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1Cleansing": {
+          "goal": "Frissítés.",
+          "productRecommendation": "Bármilyen gyengéd lemosó (habzó, gél vagy krém) megfelel, a lényeg, hogy ne szárítson.",
+          "advice": "Reggel elegendő egy nagyon enyhe tisztítás a felesleges éjszakai krémek eltávolítására."
+        },
+        "step2Toning": {
+          "goal": "Antioxidáns védelem és hidratálás.",
+          "productType": "Hidratáló tonik vagy esszencia.",
+          "benefits": "Vízbázisú tonikok használata segít megőrizni a bőr nedvességtartalmát."
+        },
+        "step3Serums": {
+          "goal": "Ragyogásfokozás és védelem.",
+          "starIngredient": "C-vitamin (Ascorbic Acid).",
+          "mechanism": "Semlegesíti a szabadgyököket, megelőzi a korai öregedést és fenntartja az üde arcszínt."
+        },
+        "step4Moisturizing": {
+          "goal": "A barrier támogatása.",
+          "productType": "Könnyű hidratáló krém vagy lotion.",
+          "advice": "Válassz olyan terméket, ami kényelmes viselet és gyorsan beszívódik."
+        },
+        "step5SunProtection": {
+          "goal": "A legfontosabb lépés: UV védelem.",
+          "recommendation": "Széles spektrumú SPF 30+ fényvédő. Normál bőrön szinte bármelyik formula (kémiai vagy fizikai) jól működik."
+        }
+      },
+      "eveningRegimen": {
+        "step1Cleansing": {
+          "concept": "A napközbeni szennyeződések eltávolítása.",
+          "method": "Dupla tisztítás javasolt, ha sminkelsz vagy fényvédőt használsz, de egy lépésben is elegendő lehet egy hatékony lemosóval.",
+          "importance": "A tiszta bőr az alapja a sminknek."
+        },
+        "step2Treatment": {
+          "goal": "Sejtregeneráció (Anti-aging).",
+          "ingredients": "Gyengéd AHA (pl. Glikolsav) heti pár alkalommal, vagy alacsony hatóanyagtartalmú Retinol.",
+          "purpose": "A bőr textúrájának finomítása és a kollagéntermelés serkentése."
+        },
+        "step3NightCream": {
+          "goal": "Tápanyagpótlás.",
+          "productType": "Közepes textúrájú, tápláló éjszakai krém."
+        }
+      },
+      "weeklyAddOns": {
+        "exfoliation": "Heti 1x kémiai hámlasztás a fakóság ellen. Fontos, hogy a bőrradírozás (exfoliating) megtörténjen a smink felvitele előtt a sima alapért.",
+        "masking": "Bármilyen maszk használható a bőr aktuális állapotától függően (hidratáló, tisztító vagy ragyogásfokozó)."
+      }
+    },
+    "professionalMakeupProtocol": {
+      "phase1SkinPreparation": {
+        "importance": "Szabadság a választásban.",
+        "step1BaseCheck": "Mivel nincsenek extrém száraz vagy zsíros területek, a prep a kívánt végeredménytől függ.",
+        "step2PrimingStrategy": {
+          "primaryFunction": "A tartósság növelése és a textúra finomítása.",
+          "selectionBasis": "Nem feltétlenül szükséges primer, ha a bőr jól előkészített.",
+          "finishBasedChoice": "Használj mattító primert, ha matt hatást szeretnél, vagy fényes (illuminating) primert, ha 'dewy' hatást.",
+          "skinConcernCheck": "Ha vannak finom vonalak, kerüld a túl mattító primert."
+        }
+      },
+      "phase2FoundationApplication": {
+        "formulaSelection": {
+          "bestChoice": "BB Krém (BB Cream) vagy színezett hidratáló.",
+          "reason": "Kiváló mindennapi termék normál bőrre, építhető fedést és semleges (se nem túl matt, se nem túl fényes) finisht ad.",
+          "bonus": "A BB krémek gyakran tartalmaznak tápláló bio-aktív összetevőket, így a smink egyben bőrápolás is.",
+          "alternative": "Bármilyen alapozó formula (folyékony, stick, por) jól működik, a választás a kívánt fedéstől függ."
+        },
+        "applicationTechnique": {
+          "method": "Rugalmas alkalmazás.",
+          "tools": "Ujjak, ecset vagy szivacs – a normál bőr mindegyiket jól tolerálja."
+        }
+      },
+      "phase3SettingAndLocking": {
+        "importance": "A finomhangolás.",
+        "powderProtocol": {
+          "rule": "Csak szükség szerint.",
+          "technique": "Egy leheletnyi áttetsző púder a T-zónára elég a tartóssághoz, anélkül, hogy elnehezítené az arcot.",
+          "settingSpray": "Használj fixáló sprayt a természetes bőrkép (skin-like finish) eléréséhez."
+        },
+        "avoid": "A túlzott 'baking' technika felesleges és természetellenes hatást kelthet normál bőrön."
+      },
+      "phase4CheeksAndContour": {
+        "rule": "Bármilyen textúra játszik.",
+        "advice": "A normál bőr a tökéletes vászon: nyugodtan kísérletezhetsz krémes és por állagú pirosítókkal, bronzosítókkal is."
+      }
+    },
+    "troubleshootingAndMaintenance": {
+      "midDayTouchUpProtocol": {
+        "problem": "Enyhe kifényesedés vagy a smink kopása.",
+        "solution": "Egy kevés itatópapír vagy púder a T-zónára bőven elegendő. Általában a normál bőr tartja legjobban a sminket.",
+        "refresh": "Arcpermet használata a frissesség megőrzésére."
+      },
+      "seasonalAdaptation": {
+        "summer": "A bőr enyhén zsírosabbá válhat – válts könnyebb hidratálóra és használj picit több púdert.",
+        "winter": "A bőr enyhén szárazabbá válhat – válts gazdagabb krémre és hidratáló primerre."
+      }
+    },
+    "ingredientLibrary": {
+      "beneficialIngredients": [
+        {
+          "name": "Vitamin C",
+          "benefit": "Ragyogás és védelem a környezeti ártalmak ellen."
+        },
+        {
+          "name": "Peptides",
+          "benefit": "Kollagéntermelés serkentése a feszesség megőrzéséért."
+        },
+        {
+          "name": "Antioxidants",
+          "benefit": "Általános védelem a bőr öregedése ellen."
+        },
+        {
+          "name": "Hyaluronic Acid",
+          "benefit": "Univerzális hidratáló."
+        }
+      ],
+      "ingredientsToAvoid": [
+        {
+          "name": "Overly harsh acids",
+          "risk": "Feleslegesen irritálhatják a kiegyensúlyozott bőrt."
+        },
+        {
+          "name": "Heavy occlusives (Vaseline)",
+          "risk": "Ha nincs rá szükség, eltömítheti a pórusokat (bár ritkán)."
+        }
+      ]
+    }
+  }
+}

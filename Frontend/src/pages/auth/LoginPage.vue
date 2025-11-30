@@ -47,16 +47,7 @@
           Elfelejtettem a jelszót
         </button>
         
-        <div class="guest-section">
-          <hr class="divider">
-          <p class="guest-text">Nem szeretnél regisztrálni?</p>
-          <button type="button" @click="goToGuestMode" class="guest-btn">
-            Kipróbálás vendégként
-          </button>
-          <p class="guest-disclaimer">
-            Vendég módban is beszélhetsz az AI-al.
-          </p>
-        </div>
+
       </form>
     </div>
   </div>
@@ -115,10 +106,7 @@ export default {
       navigateToForgotPassword()
     }
 
-    const goToGuestMode = () => {
-      // Vendég módba lépés - meglévő chat oldalra irányítás guest paraméterrel
-      router.push('/chat?guest=true')
-    }
+
 
     return {
       form,
@@ -128,7 +116,6 @@ export default {
       handleSubmit,
       goToRegister,
       goToForgotPassword,
-      goToGuestMode
     }
   }
 }
