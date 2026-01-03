@@ -1,0 +1,158 @@
+/* Form konténer stílusok */
+.login-container form,
+.register-container form,
+.reset-container form,
+.forgot-container form {
+    background: var(--card-bg);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(12px);
+    transition: all var(--transition-base);
+}
+
+.login-container form:hover,
+.register-container form:hover,
+.reset-container form:hover,
+.forgot-container form:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+/* Submit gombok */
+.login-container button[type="submit"],
+.register-container button[type="submit"],
+.reset-container button[type="submit"],
+.forgot-container button[type="submit"] {
+    width: 100%;
+    padding: var(--space-2);
+    background: #3D3D3D;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    margin-top: var(--space-2);
+    box-shadow: none;
+}
+
+.theme-dark .login-container button[type="submit"],
+.theme-dark .register-container button[type="submit"],
+.theme-dark .reset-container button[type="submit"],
+.theme-dark .forgot-container button[type="submit"] {
+    background: #F5F5F5;
+    color: #3D3D3D;
+}
+
+.login-container button[type="submit"]:hover:not(:disabled),
+.register-container button[type="submit"]:hover:not(:disabled),
+.reset-container button[type="submit"]:hover:not(:disabled),
+.forgot-container button[type="submit"]:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    opacity: 0.95;
+}
+
+.login-container button[type="submit"]:active,
+.register-container button[type="submit"]:active,
+.reset-container button[type="submit"]:active,
+.forgot-container button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+.login-container button[type="submit"]:disabled,
+.register-container button[type="submit"]:disabled,
+.reset-container button[type="submit"]:disabled,
+.forgot-container button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Másodlagos gombok (vissza, regisztráció stb.) */
+.login-container button[type="button"],
+.register-container button[type="button"],
+.reset-container button[type="button"],
+.forgot-container button[type="button"] {
+    width: 100%;
+    padding: var(--space-2);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    margin-top: var(--space-2);
+}
+
+.login-container button[type="button"]:hover,
+.register-container button[type="button"]:hover,
+.reset-container button[type="button"]:hover,
+.forgot-container button[type="button"]:hover {
+    border-color: var(--primary);
+    background: var(--primary-subtle);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.error,
+.success {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+    font-size: var(--text-sm);
+    text-align: center;
+}
+
+.error {
+    background: var(--error-light);
+    color: var(--error-dark);
+    border: 1px solid var(--error);
+}
+
+.success {
+    background: var(--success-light);
+    color: var(--success-dark);
+    border: 1px solid var(--success);
+}
+
+@media (max-width: 768px) {
+
+    .login-container form,
+    .register-container form,
+    .reset-container form,
+    .forgot-container form {
+        padding: var(--space-8) var(--space-6);
+    }
+
+    .login-container,
+    .register-container,
+    .reset-container,
+    .forgot-container {
+        max-width: 100%;
+        padding: var(--space-3);
+    }
+
+    .login-container h2,
+    .register-container h2,
+    .reset-container h2,
+    .forgot-container h2 {
+        font-size: var(--text-2xl);
+    }
+
+    .login-container button[type="submit"],
+    .register-container button[type="submit"],
+    .reset-container button[type="submit"],
+    .forgot-container button[type="submit"],
+    .login-container button[type="button"],
+    .register-container button[type="button"],
+    .reset-container button[type="button"],
+    .forgot-container button[type="button"] {
+        font-size: var(--text-xs);
+    }
+}
