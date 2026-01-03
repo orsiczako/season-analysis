@@ -36,7 +36,8 @@ function serverError(res, err = null) {
   console.error('Server error:', err);
   return res.status(500).json({
     success: false,
-    message: 'Server error occurred'
+    message: 'SERVER_ERROR',
+    errorCode: 'SERVER_ERROR'
   });
 }
 

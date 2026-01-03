@@ -35,7 +35,7 @@ const validateEmailTemplate = (req, res, next) => {
   if (!emailTemplate || !emailTemplate.subject || !emailTemplate.html) {
     console.log('Invalid email template');
     //Akkor gatya -> 400
-    return ApiResponse.validationError(res, 'Email template is required');
+    return ApiResponse.validationError(res, 'EMAIL_TEMPLATE_INVALID');
   }
   
   //Ha minden oksa, akkor a kérés folytatódhat, mehet a kövire

@@ -5,7 +5,7 @@
 const userService = require('../service/business/user.service');
 const dbModels = require('../dbo');
 
-const { User, ColorSeason, FavoriteColor } = dbModels;
+const { User, ColorSeason } = dbModels;
 
 // Helper function to format user with season info
 function formatUserWithSeason(user) {
@@ -21,7 +21,7 @@ function formatUserWithSeason(user) {
 }
 
 async function login(username, password) {
-  
+
   // Input validáció
   if (!username || !password) {
     return { success: false, error: 'USERNAME_AND_PASSWORD_REQUIRED' };
@@ -33,7 +33,7 @@ async function login(username, password) {
 
   //Meghívjuk a service login függvényét, az visszaadja az eredményt
   const result = await userService.login(username, password);
-  
+
   return result;
 }
 
@@ -85,24 +85,23 @@ async function resetPassword(token, newPassword) {
 
 async function getUserProfile(userId) {
   // Debug: asszociációk ellenőrzése
-  
-  const user = await User.findOne({ 
+
+  const user = await User.findOne({
     where: { account_id: userId },
     include: [
-      { model: ColorSeason, as: 'colorSeason' },
-      { model: FavoriteColor, as: 'favoriteColors' }
+      { model: ColorSeason, as: 'colorSeason' }
     ]
   });
-  
+
   if (!user) {
     return { success: false, error: 'USER_NOT_FOUND' };
   }
 
-  
+
   const formatted = userService.formatUser(user);
 
-  return { 
-    success: true, 
+  return {
+    success: true,
     user: formatted
   };
 }
@@ -121,20 +120,20 @@ async function changePassword(userId, currentPassword, newPassword) {
 }
 
 async function deleteAccount(userId) {
-  
+
   if (!userId) {
     return { success: false, error: 'MISSING_USER_ID' };
   }
 
   const user = await User.findOne({ where: { account_id: userId } });
-  
+
   if (!user) {
     return { success: false, error: 'USER_NOT_FOUND' };
   }
 
   try {
     await user.destroy();
-    
+
     return { success: true };
   } catch (error) {
     console.error('Error deleting user account:', error);
@@ -154,7 +153,7 @@ async function updateColorSeason(userId, season) {
   }
 
   const user = await User.findOne({ where: { account_id: userId } });
-  
+
   if (!user) {
     return { success: false, error: 'USER_NOT_FOUND' };
   }
@@ -174,13 +173,13 @@ async function updateColorSeason(userId, season) {
     });
 
     // Újratöltjük a usert az asszociációval együtt
-    const updatedUser = await User.findOne({ 
+    const updatedUser = await User.findOne({
       where: { account_id: userId },
       include: [{ model: ColorSeason, as: 'colorSeason' }]
     });
 
-    return { 
-      success: true, 
+    return {
+      success: true,
       user: formatUserWithSeason(updatedUser)
     };
   } catch (error) {
@@ -189,83 +188,79 @@ async function updateColorSeason(userId, season) {
   }
 }
 
-async function addFavoriteColor(userId, colorHex) {
+async function getAnalysesResults(userId) {
+  const { SkinAnalysis } = require('../dbo');
 
-  if (!userId || !colorHex) {
-    return { success: false, error: 'MISSING_REQUIRED_FIELDS' };
-  }
+  const user = await User.findOne({
+    where: { account_id: userId },
+    include: [{ model: ColorSeason, as: 'colorSeason' }]
+  });
 
-  // Hex színformátum ellenőrzése
-  const hexRegex = /^#[0-9A-Fa-f]{6}$/;
-  if (!hexRegex.test(colorHex)) {
-    return { success: false, error: 'INVALID_HEX_COLOR' };
-  }
-
-  const user = await User.findOne({ where: { account_id: userId } });
-  
   if (!user) {
     return { success: false, error: 'USER_NOT_FOUND' };
   }
 
-  try {
-    // Check duplicate in favorite_colors table
-    const exists = await FavoriteColor.findOne({ where: { user_id: userId, color_hex: colorHex } });
-    if (exists) return { success: false, error: 'COLOR_ALREADY_EXISTS' };
+  // Get latest skin analysis
+  const skinAnalysis = await SkinAnalysis.findOne({
+    where: { account_id: userId },
+    order: [['created_at', 'DESC']]
+  });
 
-    await FavoriteColor.create({ user_id: userId, color_hex: colorHex });
+  let skinAnalysisData = null;
+  let protocolData = null;
+  let problemsProtocolData = null;
 
-    const favorites = await FavoriteColor.findAll({ where: { user_id: userId } });
+  if (skinAnalysis) {
+    // Parse skin_problems - lehet JSON string vagy array
+    let skinProblems = skinAnalysis.skin_problems || [];
+    if (typeof skinProblems === 'string') {
+      try {
+        skinProblems = JSON.parse(skinProblems);
+      } catch (e) {
+        skinProblems = [];
+      }
+    }
 
-    return {
-      success: true,
-      favoriteColors: favorites.map(f => f.color_hex)
+    skinAnalysisData = {
+      id: skinAnalysis.analysis_id,
+      skinType: skinAnalysis.skin_type,
+      skinProblems: skinProblems,
+      analyzedAt: skinAnalysis.created_at
     };
-  } catch (error) {
-    console.error('Error adding favorite color:', error);
-    return { success: false, error: 'UPDATE_FAILED' };
+
+    // Try to load protocol for skin type
+    try {
+      const skinAnalysisService = require('../service/ai/skin-analysis.service');
+      const protocolRes = await skinAnalysisService.getSkinProtocol(skinAnalysis.skin_type);
+      if (protocolRes.success) {
+        protocolData = protocolRes.data;
+      }
+
+      // Load skin problems protocols if there are detected problems
+      if (skinProblems && skinProblems.length > 0) {
+        const problemsForProtocol = skinProblems.map(p => ({ problem: p }));
+        const problemsRes = await skinAnalysisService.getSkinProblemsProtocol(problemsForProtocol);
+        if (problemsRes.success) {
+          problemsProtocolData = problemsRes.data;
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load skin protocol:', err);
+    }
   }
-}
-
-async function removeFavoriteColor(userId, colorHex) {
-  
-  if (!userId || !colorHex) {
-    return { success: false, error: 'MISSING_REQUIRED_FIELDS' };
-  }
-
-  const user = await User.findOne({ where: { account_id: userId } });
-  
-  if (!user) {
-    return { success: false, error: 'USER_NOT_FOUND' };
-  }
-
-  try {
-    const record = await FavoriteColor.findOne({ where: { user_id: userId, color_hex: colorHex } });
-    if (record) await record.destroy();
-
-    const favorites = await FavoriteColor.findAll({ where: { user_id: userId } });
-
-    return {
-      success: true,
-      favoriteColors: favorites.map(f => f.color_hex)
-    };
-  } catch (error) {
-    console.error('Error removing favorite color:', error);
-    return { success: false, error: 'UPDATE_FAILED' };
-  }
-}
-
-async function getFavoriteColors(userId) {
-  const user = await User.findOne({ where: { account_id: userId } });
-
-  if (!user) {
-    return { success: false, error: 'USER_NOT_FOUND' };
-  }
-
-  const favorites = await FavoriteColor.findAll({ where: { user_id: userId } });
 
   return {
     success: true,
-    favoriteColors: favorites.map(f => f.color_hex)
+    data: {
+      colorSeason: user.colorSeason ? {
+        id: user.colorSeason.season_id,
+        name: user.colorSeason.season_name,
+        displayName: user.colorSeason.season_display_name
+      } : null,
+      skinAnalysis: skinAnalysisData,
+      protocol: protocolData,
+      problemsProtocol: problemsProtocolData
+    }
   };
 }
 
@@ -278,7 +273,5 @@ module.exports = {
   changePassword,
   deleteAccount,
   updateColorSeason,
-  addFavoriteColor,
-  removeFavoriteColor,
-  getFavoriteColors
+  getAnalysesResults
 };
