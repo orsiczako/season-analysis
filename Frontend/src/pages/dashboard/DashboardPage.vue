@@ -835,4 +835,14 @@ body {
   gap: var(--space-2);
   z-index: 1001;
 }
+
+.theme-dark .user-details * {
+  color: var(--text-secondary);
+}
+
+.theme-dark .user-avatar,
+.theme-dark .nav-menu * {
+  color: var(--primary-700);
+
+}
 </style>
