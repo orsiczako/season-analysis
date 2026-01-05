@@ -274,7 +274,6 @@ async function chatWithImage(req, res) {
 
 module.exports = {
   chatWithAI,
-  chatWithAIGuest,
   analyzeColorType,
   analyzeSkin,
   chatWithImage
