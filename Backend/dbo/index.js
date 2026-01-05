@@ -10,7 +10,7 @@ Btw kis megjegyzés miért éppen sequelize-t használok:
 -Beépített függvényeket használok, ami tök jó SQL injection ellen, és amúgy tök érdekes
 a Sequelize nem úgy épít SQL-t, hogy mondjuk WHERE email ' " + userinput + " ' ', hanem SELECT ... WHERE email = ? + a userinput
 szóval nem változtat a lekérdezésen, na de anyways
-*/ 
+*/
 
 //Sequalize példány, ami majd csacsog az adatbázissal
 const sequelize = new Sequelize(
@@ -21,17 +21,18 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: 'mysql',
-    
+
   }
 );
 
 // Modellek importálása 
 const UserModels = require('./user/index.js')(sequelize);
 const ColorSeason = require('./color-analysis/index')(sequelize);
-const FavoriteColor = require('./user/favorite-color')(sequelize);
+const SkinAnalysisModels = require('./user/skin-analysis')(sequelize);
 
 // Asszociációk (kapcsolatok) definiálása
 const { User } = UserModels;
+const { SkinAnalysis } = SkinAnalysisModels;
 
 // User → ColorSeason (N:1)
 User.belongsTo(ColorSeason, {
@@ -44,22 +45,22 @@ ColorSeason.hasMany(User, {
   as: 'users'
 });
 
-// User → FavoriteColor (1:N)
-User.hasMany(FavoriteColor, {
-  foreignKey: 'user_id',
-  as: 'favoriteColors',
+// User → SkinAnalysis (1:N)
+User.hasMany(SkinAnalysis, {
+  foreignKey: 'account_id',
+  as: 'skinAnalyses',
   onDelete: 'CASCADE'
 });
 
-FavoriteColor.belongsTo(User, {
-  foreignKey: 'user_id',
+SkinAnalysis.belongsTo(User, {
+  foreignKey: 'account_id',
   as: 'user'
 });
 
 //Ezeket kapjuk ha require
-module.exports = { 
-  sequelize, 
+module.exports = {
+  sequelize,
   ...UserModels,
   ColorSeason,
-  FavoriteColor
+  SkinAnalysis
 };

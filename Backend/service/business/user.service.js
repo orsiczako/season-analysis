@@ -2,9 +2,9 @@
  * User Service - Business logic only (function-based)
  */
 
-const { 
-  encryptPassword, 
-  verifyPassword, 
+const {
+  encryptPassword,
+  verifyPassword,
   generateSecureToken,
   hashToken,
   verifyToken,
@@ -15,30 +15,29 @@ const {
 const { sendMail } = require('../helpers/email.helper');
 const dbModels = require('../../dbo');
 
-const { User, ColorSeason, FavoriteColor } = dbModels;
+const { User, ColorSeason } = dbModels;
 
 /**
  * Bejelentkezés, jelszó ellenőrzés és JWT generálás
  */
 async function login(username, password) {
-  
+
   //Megkeresi usert az adatbázisban, a színévszakkal együtt
-  const user = await User.findOne({ 
+  const user = await User.findOne({
     where: { login_name: username },
     include: [
-      { model: ColorSeason, as: 'colorSeason' },
-      { model: FavoriteColor, as: 'favoriteColors' }
+      { model: ColorSeason, as: 'colorSeason' }
     ]
   });
-  
+
   //Ha nincs, akkor hiba
   if (!user) {
     return { success: false, error: 'INVALID_CREDENTIALS' };
   }
-  
+
   //Jelszó ellenőrzés, 
   const passwordValid = await verifyPassword(password, user.login_password_hash);
-  
+
   if (!passwordValid) {
     return { success: false, error: 'INVALID_CREDENTIALS' };
   }
@@ -48,8 +47,8 @@ async function login(username, password) {
   //A formázott user adat alapján JWT token generálása
   const token = generateJwtToken(userData);
 
-  return { 
-    success: true, 
+  return {
+    success: true,
     user: userData,
     token: token
   };
@@ -76,8 +75,8 @@ async function register(userData) {
   });
 
   //A sikeres regisztráció után visszaadjuk a formázott user adatokat
-  return { 
-    success: true, 
+  return {
+    success: true,
     user: formatUser(newUser)
   };
 }
@@ -88,7 +87,7 @@ async function register(userData) {
 async function forgotPassword(email, emailTemplate) {
   //Megkeresi a usert email alapján
   const user = await User.findOne({ where: { email_address: email } });
-  
+
   // Mindig sikerrel tér vissza, hogy ne lehessen kideríteni, létezik-e a user, emögött is biztonsági okok állnak (user enumeration)
   if (!user) return { success: true };
 
@@ -99,14 +98,14 @@ async function forgotPassword(email, emailTemplate) {
     password_recovery_expires: generateExpiration(24)
   });
 
-//Craftolunk egy linket, az encodeURIComponent azért kell, hogy ha speciális karakter van az email címben, akkor se szakadjon meg a link
+  //Craftolunk egy linket, az encodeURIComponent azért kell, hogy ha speciális karakter van az email címben, akkor se szakadjon meg a link
   const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}&email=${encodeURIComponent(email)}`;
   //Az email tartalmát előkészítjük
   const emailContent = prepareEmailContent(emailTemplate, resetLink, user.full_name);
-  
+
   //Aztán itt már elküldjük az emailt, visszakapjuk az eredményt
   const result = await sendMail(email, emailTemplate.subject, emailContent.text, emailContent.html);
-  
+
   if (!result.success) {
     return { success: false, error: 'EMAIL_FAILED' };
   }
@@ -120,7 +119,7 @@ async function forgotPassword(email, emailTemplate) {
 async function resetPassword(token, newPassword) {
   //Megkeresi a usert a token alapján
   const user = await findUserByToken(token);
-  
+
   if (!user) return { success: false, error: 'INVALID_TOKEN' };
   // Ellenőrizzük, hogy a token nem járt-e le
   if (isExpired(user.password_recovery_expires)) {
@@ -143,7 +142,7 @@ async function resetPassword(token, newPassword) {
 async function changePassword(userId, currentPassword, newPassword) {
   //Itt már azonosított userrel dolgozunk
   const user = await User.findOne({ where: { account_id: userId } });
-  
+
   if (!user) {
     return { success: false, error: 'USER_NOT_FOUND' };
   }
@@ -200,18 +199,17 @@ async function findUserByToken(token) {
  * Megformázza a user objektumot a kliens felé
  */
 function formatUser(user) {
-  
+
   const formatted = {
     id: user.account_id,
     username: user.login_name,
     email: user.email_address,
     fullName: user.full_name,
     colorSeason: user.colorSeason ? user.colorSeason.season_name : null,
-    colorAnalysisDate: user.color_analysis_date,
-    favoriteColors: user.favoriteColors ? user.favoriteColors.map(c => c.color_hex) : []
+    colorAnalysisDate: user.color_analysis_date
   };
-  
-  
+
+
   return formatted;
 }
 
@@ -222,8 +220,8 @@ function prepareEmailContent(template, resetLink, userName = 'Felhasználó') {
   const html = template.html
     .replace(/\{recoveryLink\}/g, resetLink)
     .replace(/\{userFullName\}/g, userName);
-  
-  const text = template.text ? 
+
+  const text = template.text ?
     template.text
       .replace(/\{recoveryLink\}/g, resetLink)
       .replace(/\{userFullName\}/g, userName) : '';
