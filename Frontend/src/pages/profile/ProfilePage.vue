@@ -1,193 +1,261 @@
 <template>
-  <div class="profile-page">
-    <AnimatedBackground />
-    
-    <!-- Header -->
-    <PageHeader 
-      :isDashboard="false" 
-      backRoute="/dashboard"
-    />
-
-    <!-- Main content -->
-    <main class="main-content">
-      <div class="profile-container">
-        <!-- Profil header -->
-        <ProfileHeader
-          :avatar="userProfile.avatar"
-          :fullName="userProfile.fullName"
-          :email="userProfile.email"
-        />
-
-    <!-- Profil beállítások -->
-    <div class="profile-settings">
-      <!-- Személyes adatok -->
-      <div class="settings-section card">
-        <h3 class="section-title">
-          Személyes adatok
-        </h3>
-        <div class="profile-info-display">
-          <div class="form-group">
-            <label>Teljes név</label>
-            <div class="info-value">{{ userProfile.fullName || 'Nincs megadva' }}</div>
-          </div>
-          <div class="form-group">
-            <label>Email cím</label>
-            <div class="info-value">{{ userProfile.email || 'Nincs megadva' }}</div>
-          </div>
-          <div class="form-group">
-            <label>Színtípus</label>
-            <div class="info-value color-season" v-if="userProfile.colorSeason">
-              <span :class="['season-badge', `season-${userProfile.colorSeason}`]">
-                {{ getSeasonName(userProfile.colorSeason) }}
-              </span>
-              <small v-if="userProfile.colorAnalysisDate" class="analysis-date">
-                Elemzés dátuma: {{ formatDate(userProfile.colorAnalysisDate) }}
-              </small>
+  <div class="profile-wrapper">
+    <PageHeader back-to="/dashboard" />
+    <div class="profile-page">
+      <AnimatedBackground />
+      <main class="main-content">
+        <div class="profile-container">
+          <div class="profile-hero"
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="profile-avatar">
+              <!-- Source: https://feathericons.com/ -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-user">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
             </div>
-            <div class="info-value" v-else>
-              <span class="no-analysis">Még nem végzett színelemzést</span>
-              <router-link to="/chat" class="analysis-link">
-                Kezdje el itt
-              </router-link>
+            <div class="profile-info">
+              <h1 class="profile-name">
+                {{ userProfile.fullName }}
+              </h1>
+              <p class="profile-username">
+                {{ userProfile.username }}
+              </p>
+              <p class="profile-email">
+                {{ userProfile.email }}
+              </p>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Jelszó módosítás -->
-      <PasswordChangeForm
-        @success="handlePasswordSuccess"
-        @error="handlePasswordError"
-      />
-
-      <!-- Fiók törlése -->
-      <DeleteAccountSection
-        @success="handleDeleteSuccess"
-        @error="handleDeleteError"
-      />
-
-      <!-- Kedvenc színek -->
-      <div class="settings-section card">
-        <h3 class="section-title">
-          Kedvenc színek
-          <span v-if="favoriteColors.length > 0" class="color-count">({{ favoriteColors.length }})</span>
-        </h3>
-        <div v-if="favoriteColors.length" class="favorite-colors-section">
-          <div class="favorite-colors">
-            <div 
-              v-for="colorHex in favoriteColors"
-              :key="colorHex"
-              class="fav-color"
-              :class="{ selected: selectedForDeletion.has(colorHex) }"
-              :title="colorHex"
-              @click="toggleColorSelection(colorHex)"
-            >
-              <div class="dot" :style="{ backgroundColor: colorHex }"></div>
-              <span class="hex">{{ colorHex }}</span>
-              <div v-if="selectedForDeletion.has(colorHex)" class="selected-indicator">✓</div>
-            </div>
-          </div>
-          <div v-if="selectedForDeletion.size > 0" class="color-actions">
-            <button 
-              class="btn btn--danger" 
-              @click="deleteSelectedColors"
-              :disabled="deleting"
-            >
-              {{ deleting ? 'Törlés...' : `${selectedForDeletion.size} szín törlése` }}
+          <div class="profile-tabs">
+            <button v-for="tab in tabs" :key="tab.id" :class="['tab-btn', { active: activeTab === tab.id }]"
+              @click="activeTab = tab.id">
+              {{ tab.label }}
             </button>
           </div>
-        </div>
-        <div v-else class="no-favorites">Még nincs kedvenc szín elmentve.</div>
-      </div>
-    </div>
 
-    <!-- Toast üzenetek -->
-    <ToastMessage
-      :visible="toast.visible"
-      :message="toast.message"
-      :type="toast.type"
-      :duration="toast.duration"
-      @hide="hideToast"
-    />
-      </div>
-    </main>
+          <div class="tab-content">
+            <div v-if="activeTab === 'personal'" class="tab-panel">
+              <div class="settings-card">
+                <h3 class="section-title">
+                  Személyes adatok
+                </h3>
+
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label>Teljes név</label>
+                    <input v-model="editForm.fullName" type="text" class="input-field" :disabled="!isEditing"
+                      placeholder="Add meg a neved">
+                  </div>
+
+                  <div class="form-field">
+                    <label>Felhasználónév</label>
+                    <input v-model="editForm.username" type="text" class="input-field" :disabled="!isEditing"
+                      placeholder="Felhasználónév">
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label>Email cím</label>
+                    <input v-model="editForm.email" type="email" class="input-field" :disabled="!isEditing"
+                      placeholder="email@example.com">
+                  </div>
+                </div>
+
+                <div class="card-actions">
+                  <button v-if="!isEditing" class="btn btn-primary" @click="startEdit">
+                    Szerkesztés
+                  </button>
+                  <template v-else>
+                    <button class="btn btn-secondary" @click="cancelEdit">
+                      Mégse
+                    </button>
+                    <button class="btn btn-primary" :disabled="saving" @click="saveChanges">
+                      {{ saving ? 'Mentés...' : 'Mentés' }}
+                    </button>
+                  </template>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="activeTab === 'security'" class="tab-panel">
+              <div class="settings-card">
+                <h3 class="section-title">
+                  Jelszó módosítás
+                </h3>
+                <form @submit.prevent="handleChangePassword">
+                  <div class="form-grid">
+                    <div class="form-field full-width">
+                      <label>Jelenlegi jelszó</label>
+                      <input v-model="passwordForm.current" type="password" class="input-field"
+                        :disabled="passwordLoading" placeholder="Jelenlegi jelszó">
+                    </div>
+                    <div class="form-field">
+                      <label>Új jelszó</label>
+                      <input v-model="passwordForm.new" type="password" class="input-field" :disabled="passwordLoading"
+                        placeholder="Min. 6 karakter">
+                    </div>
+                    <div class="form-field">
+                      <label>Új jelszó megerősítése</label>
+                      <input v-model="passwordForm.confirm" type="password" class="input-field"
+                        :disabled="passwordLoading" placeholder="Jelszó megerősítése">
+                    </div>
+                  </div>
+                  <div class="card-actions">
+                    <button type="submit" class="btn btn-primary" :disabled="passwordLoading">
+                      {{ passwordLoading ? 'Mentés...' : 'Jelszó frissítése' }}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div v-if="activeTab === 'account'" class="tab-panel">
+              <div class="settings-card danger-card">
+                <div class="danger-header">
+                  <h3 class="section-title danger-title">
+                    Fiók törlése
+                  </h3>
+                  <p class="danger-description">
+                    A fiók törlése végleges és visszavonhatatlan.
+                  </p>
+                </div>
+                <div class="card-actions">
+                  <button type="button" class="btn btn-danger" :disabled="deleteLoading" @click="handleDeleteAccount">
+                    {{ deleteLoading ? 'Törlés...' : 'Fiók törlése' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
-import AnimatedBackground from '@/components/layout/AnimatedBackground.vue'
-import PageHeader from '@/components/layout/PageHeader.vue'
-import ToastMessage from '@/components/common/feedback/ToastMessage.vue'
-import ProfileHeader from '@/components/profile/ProfileHeader.vue'
-import PasswordChangeForm from '@/components/profile/PasswordChangeForm.vue'
-import DeleteAccountSection from '@/components/profile/DeleteAccountSection.vue'
-import { apiClient, userService, favoriteColorsService } from '@/services'
+import AnimatedBackground from '@/layouts/AnimatedBackground.vue'
+import PageHeader from '@/components/common/layout/PageHeader.vue'
+import { apiClient, userService } from '@/services'
+import { useToast } from '@/composables/useToast'
+import { useLocalStorage } from '@/composables/useLocalStorage'
 
 export default {
   name: 'ProfileView',
   components: {
     AnimatedBackground,
-    PageHeader,
-    ToastMessage,
-    ProfileHeader,
-    PasswordChangeForm,
-    DeleteAccountSection
+    PageHeader
+  },
+  setup() {
+    const toast = useToast()
+    return { toast }
   },
   data() {
     return {
-  favoriteColors: [],
-  selectedForDeletion: new Set(),
-  deleting: false,
+      activeTab: 'personal',
+      tabs: [
+        { id: 'personal', label: 'Személyes adatok' },
+        { id: 'security', label: 'Biztonság' },
+        { id: 'account', label: 'Fiók kezelése' }
+      ],
+      isEditing: false,
+      saving: false,
+      editForm: {
+        fullName: '',
+        username: '',
+        email: ''
+      },
       userProfile: {
         fullName: '',
+        username: '',
         email: '',
-        colorSeason: null,
-        colorAnalysisDate: null,
-        avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjZDIxOTdmIi8+CjxjaXJjbGUgY3g9IjUwIiBjeT0iMzUiIHI9IjE1IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjAgODBjMC0xNi41Njg1IDEzLjQzMTUtMzAgMzAtMzBzMzAgMTMuNDMxNSAzMCAzMCIgZmlsbD0id2hpdGUiLz4KPC9zdmc+'
       },
-      toast: {
-        visible: false,
-        message: '',
-        type: 'success',
-        duration: 4000
-      }
+      passwordLoading: false,
+      passwordForm: {
+        current: '',
+        new: '',
+        confirm: ''
+      },
+      deleteLoading: false
     }
   },
   mounted() {
-    // Felhasználói adatok betöltése a localStorage-ból
     this.loadUserData()
   },
   activated() {
-    // Újratöltjük az adatokat amikor az oldal aktiválódik (pl. navigáció után)
     this.refreshProfile()
   },
   methods: {
     loadUserData() {
-      // Felhasználói adatok betöltése localStorage-ból
       const userData = localStorage.getItem('authUser')
       if (userData) {
         try {
           const user = JSON.parse(userData)
           this.userProfile = {
+            ...this.userProfile,
             fullName: user.fullName || user.full_name || '',
-            email: user.email || '',
-            colorSeason: user.colorSeason || null,
-            colorAnalysisDate: user.colorAnalysisDate || null,
-            avatar: this.userProfile.avatar // Megtartjuk az alapértelmezett avatart
+            username: user.username || '',
+            email: user.email || ''
           }
+          this.editForm = { ...this.userProfile }
         } catch (error) {
           console.error('Error parsing user data:', error)
         }
       }
+      this.refreshProfile() // Háttérben frissítünk
+    },
 
-      // Próbáljuk meg frissíteni a profilt a szerverről
-      this.refreshProfile()
+    startEdit() {
+      this.isEditing = true
+      this.editForm = { ...this.userProfile }
+    },
+
+    cancelEdit() {
+      this.isEditing = false
+      this.editForm = { ...this.userProfile }
+    },
+
+    // --- ITT A JAVÍTOTT RÉSZ ---
+    async saveChanges() {
+      this.saving = true
+      try {
+        // Valódi API hívás
+        const result = await userService.updateProfile({
+          fullName: this.editForm.fullName,
+          username: this.editForm.username,
+          email: this.editForm.email
+        })
+
+        if (result.success) {
+          // Frissítsd a globális user state-et, hogy a dashboard és sidebar is azonnal frissüljön
+          if (this.$options?.setupState?.refreshUser) {
+            await this.$options.setupState.refreshUser();
+          }
+          // Ha a szerver visszaadja a frissített usert, azt használjuk, ha nem, akkor a formot
+          const updatedUser = result.data?.user || { ...this.userProfile, ...this.editForm }
+          this.userProfile = updatedUser
+          // LocalStorage frissítése, hogy reloadnál is megmaradjon
+          let storedUser = JSON.parse(localStorage.getItem('authUser') || '{}')
+          const mergedUser = { ...storedUser, ...updatedUser }
+          localStorage.setItem('authUser', JSON.stringify(mergedUser))
+          this.isEditing = false
+          this.toast.success('Profil sikeresen frissítve!')
+        } else {
+          this.toast.error(result.message || 'Hiba történt a mentés során')
+        }
+      } catch (error) {
+        console.error('Save error:', error)
+        this.toast.error('Váratlan hiba történt a mentés során')
+      } finally {
+        this.saving = false
+      }
     },
 
     async refreshProfile() {
       const result = await userService.getProfile()
-      
-      // Ha 404 (user törölve lett), logolja ki automatikusan
+
       if (!result.success && result.error && result.error.response?.status === 404) {
         console.warn('User account deleted, logging out...')
         localStorage.removeItem('authToken')
@@ -196,386 +264,337 @@ export default {
         return
       }
 
-      // Ha egyéb hiba, csak warning
-      if (!result.success) {
-        console.warn('Could not refresh profile from server:', result.message)
-        return
-      }
+      if (!result.success) return
 
-      // Ha sikeres
       if (result.data.user) {
         const user = result.data.user
         this.userProfile = {
           ...this.userProfile,
           fullName: user.fullName || '',
-          email: user.email || '',
-          colorSeason: user.colorSeason || null,
-          colorAnalysisDate: user.colorAnalysisDate || null
+          username: user.username || '',
+          email: user.email || ''
         }
-        
-        // Frissítsük a localStorage-t is
+        // LocalStorage szinkronizálás
         localStorage.setItem('authUser', JSON.stringify(user))
+        // Ha nem szerkeszt éppen, a formot is frissítjük
+        if (!this.isEditing) {
+          this.editForm = { ...this.userProfile }
+        }
       }
-
-      // Frissítsük a kedvenc színeket is
-      this.loadFavoriteColors()
     },
 
-    async loadFavoriteColors() {
+    async handleChangePassword() {
+      if (!this.passwordForm.current || !this.passwordForm.new || !this.passwordForm.confirm) {
+        this.toast.error('Kérlek töltsd ki az összes mezőt!')
+        return
+      }
+      if (this.passwordForm.new !== this.passwordForm.confirm) {
+        this.toast.error('Az új jelszavak nem egyeznek!')
+        return
+      }
+      if (this.passwordForm.new.length < 6) {
+        this.toast.error('Az új jelszónak legalább 6 karakter hosszúnak kell lennie!')
+        return
+      }
+
+      this.passwordLoading = true
       try {
-        const res = await favoriteColorsService.getFavoriteColors()
-        if (res.success && res.data) {
-          // The API returns the data directly in res.data.favoriteColors
-          this.favoriteColors = res.data.favoriteColors || []
-          console.log('Loaded favorite colors:', this.favoriteColors)
+        const response = await apiClient.put('/api/user/change-password', {
+          currentPassword: this.passwordForm.current,
+          newPassword: this.passwordForm.new
+        })
+        if (response.data.success) {
+          this.toast.success('Jelszó sikeresen megváltoztatva!')
+          this.passwordForm = { current: '', new: '', confirm: '' }
         } else {
-          console.warn('Failed to load favorite colors:', res)
+          this.toast.error(response.data.message || 'Hiba a jelszó változtatásakor')
         }
-      } catch (e) {
-        console.warn('Error loading favorite colors:', e)
-      }
-    },
-
-    toggleColorSelection(colorHex) {
-      if (this.selectedForDeletion.has(colorHex)) {
-        this.selectedForDeletion.delete(colorHex)
-      } else {
-        this.selectedForDeletion.add(colorHex)
-      }
-      // Trigger reactivity
-      this.selectedForDeletion = new Set(this.selectedForDeletion)
-    },
-
-    async deleteSelectedColors() {
-      if (this.selectedForDeletion.size === 0) return
-      
-      // Confirmation dialog
-      const confirmed = confirm(`Biztosan törölni szeretnéd a kijelölt ${this.selectedForDeletion.size} színt?`)
-      if (!confirmed) return
-      
-      this.deleting = true
-      try {
-        let deletedCount = 0
-        const colorsToDelete = Array.from(this.selectedForDeletion)
-        
-        console.log('🗑️ Deleting colors:', colorsToDelete)
-        
-        for (const hex of colorsToDelete) {
-          try {
-            const res = await favoriteColorsService.removeFavoriteColor(hex)
-            if (res.success) {
-              deletedCount++
-              console.log(`🗑️ Deleted color: ${hex}`)
-            } else {
-              console.warn('Failed to delete favorite color:', hex, res)
-            }
-          } catch (error) {
-            console.warn('Error deleting favorite color:', hex, error)
-          }
-        }
-        
-        // Show success message
-        if (deletedCount > 0) {
-          this.showSuccessToast(`${deletedCount} szín sikeresen törölve!`)
-          // Clear selection and reload colors
-          this.selectedForDeletion.clear()
-          this.selectedForDeletion = new Set()
-          await this.loadFavoriteColors()
-        } else {
-          this.showErrorToast('Nem sikerült törölni a színeket.')
-        }
-        
-      } catch (e) {
-        console.error('Delete colors error:', e)
-        this.showErrorToast('Hiba történt a színek törlésekor.')
+      } catch (err) {
+        let message = 'Hiba a jelszó változtatásakor'
+        if (err?.response?.status === 400) message = 'Hibás jelenlegi jelszó!'
+        else if (err?.response?.status === 401) message = 'Nem vagy bejelentkezve!'
+        this.toast.error(message)
       } finally {
-        this.deleting = false
+        this.passwordLoading = false
       }
     },
 
-    getSeasonName(season) {
-      const seasonNames = {
-        spring: 'Tavasz',
-        summer: 'Nyár', 
-        autumn: 'Ősz',
-        winter: 'Tél'
+    async handleDeleteAccount() {
+      const confirmed = confirm(
+        'Biztosan törölni szeretnéd a fiókodat? Ez a művelet nem visszavonható! Összes adatod véglegesen törlésre kerül.'
+      )
+      if (!confirmed) return
+
+      this.deleteLoading = true
+      try {
+        const response = await apiClient.delete('/api/user/delete-account')
+        if (response.data.success) {
+          this.toast.success('Fiók sikeresen törölve!')
+
+          const { clearAllAIData, getUserId } = useLocalStorage()
+          const id = getUserId()
+          clearAllAIData(id)
+          localStorage.removeItem('authUser')
+          localStorage.removeItem('authToken')
+
+          setTimeout(() => {
+            this.$router.push('/login')
+          }, 2000)
+        } else {
+          this.toast.error(response.data.message || 'Hiba történt a fiók törlése során')
+        }
+      } catch (err) {
+        let message = 'Hiba történt a fiók törlése során. Próbáld újra!'
+        if (err?.response?.status === 401) message = 'Nem vagy bejelentkezve!'
+        this.toast.error(message)
+      } finally {
+        this.deleteLoading = false
       }
-      return seasonNames[season] || season
-    },
-
-    formatDate(dateString) {
-      if (!dateString) return ''
-      const date = new Date(dateString)
-      return date.toLocaleDateString('hu-HU')
-    },
-
-    handlePasswordSuccess(message) {
-      this.showSuccessToast(message)
-    },
-
-    handlePasswordError(message) {
-      this.showErrorToast(message)
-    },
-
-    handleDeleteSuccess(message) {
-      this.showSuccessToast(message)
-    },
-
-    handleDeleteError(message) {
-      this.showErrorToast(message)
-    },
-
-    showSuccessToast(message) {
-      this.toast = {
-        visible: true,
-        message,
-        type: 'success',
-        duration: 4000
-      }
-    },
-
-    showErrorToast(message) {
-      this.toast = {
-        visible: true,
-        message,
-        type: 'error',
-        duration: 4000
-      }
-    },
-
-    hideToast() {
-      this.toast.visible = false
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
-@import '@/assets/mixins.scss';
-@import '@/assets/components/view-common.css';
+<style lang="scss">
+@use '@/assets/mixins.scss' as *;
 
-.profile-page {
+.profile-wrapper {
   position: relative;
+  width: 100%;
   min-height: 100vh;
 }
 
+.page-header {
+  z-index: 1000 !important;
+}
+
+.profile-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  overflow: visible;
+  position: relative;
+}
+
 .main-content {
-  padding-top: 70px; /* Space for fixed PageHeader */
-  padding-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  padding: 72px 0 80px;
 }
 
 .profile-container {
-  max-width: 800px;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 var(--space-6);
 }
 
-/* Settings sections */
-.profile-settings {
-  @include flex-col;
-  gap: 25px;
+/* Hero */
+.profile-hero {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
-.settings-section {
-  @include card-base;
-  padding: 25px;
+.profile-avatar {
+  @include avatar-wrapper(80px);
+  border: 3px solid var(--secondary-400);
+  margin: var(--space-2) 0;
+}
 
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
+.theme-dark .profile-avatar {
+  background: var(--bg-primary);
+}
+
+.profile-info {
+  margin-top: var(--space-2);
+}
+
+.profile-name {
+  @include page-title;
+  font-size: var(--text-2xl);
+  margin: 0 0 var(--space-2);
+}
+
+.profile-username,
+.profile-email {
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+.profile-username {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.profile-email {
+  color: var(--text-tertiary);
+}
+
+/*  */
+.profile-tabs {
+  display: flex;
+  margin-bottom: var(--space-10);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.tab-btn {
+  @include tab-btn;
+  margin-bottom: -1px;
+}
+
+.tab-content {
+  min-height: 300px;
+}
+
+.tab-panel {
+  animation: fadeIn 0.3s ease;
+}
+
+.settings-card {
+  @include glass-card;
+  padding: var(--space-6) var(--space-8) var(--space-8) var(--space-8);
+  margin-top: 10px;
 }
 
 .section-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--text-primary);
+  @include section-title;
+  margin: 0 0 34px 0px;
+  font-size: var(--text-xl);
 }
 
-.favorite-colors-section {
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-field.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-field {
   @include flex-col;
-  gap: 16px;
+
+  label {
+    @include label-style;
+  }
 }
 
-.favorite-colors {
-  @include flex-center;
-  flex-wrap: wrap;
-  gap: 12px;
+.input-field {
+  @include input-field;
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
 }
 
-.fav-color {
-  @include flex-center;
-  gap: 8px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-primary);
-  border-radius: 20px;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-  user-select: none;
-}
-
-.fav-color:hover {
-  background: var(--bg-tertiary, #f0f0f0);
-  border-color: var(--color-primary, #1976d2);
-  transform: translateY(-1px);
-}
-
-.fav-color.selected {
-  background: var(--color-primary-light, rgba(25, 118, 210, 0.1));
-  border-color: var(--color-primary, #1976d2);
-  color: var(--color-primary-dark, #1565c0);
-}
-
-.fav-color .dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid rgba(0,0,0,0.1);
-  flex-shrink: 0;
-}
-
-.fav-color .hex {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.selected-indicator {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 20px;
-  height: 20px;
-  background: var(--color-success, #4caf50);
-  color: white;
-  border-radius: 50%;
-  @include flex-center;
-  font-size: 0.7rem;
-  font-weight: bold;
-  border: 2px solid var(--bg-primary, #fff);
-}
-
-.color-count {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  font-weight: normal;
-}
-
-.color-actions {
+.card-actions {
   @include flex-center;
   gap: 12px;
-  flex-wrap: wrap;
-  padding-top: 12px;
+  justify-content: flex-end;
+  padding-top: 24px;
   border-top: 1px solid var(--border-primary);
 }
 
-.btn--danger {
-  background: var(--color-danger, #f44336);
+.btn {
+  @include btn-base;
+  border-radius: var(--radius-full);
+}
+
+.btn-primary {
+  @include gradient-btn-primary;
+  background: var(--secondary-500);
+
+  &:hover:not(:disabled) {
+    background: var(--secondary-600);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--secondary-500);
+  border: 1.5px solid var(--secondary-500);
+
+  &:hover:not(:disabled) {
+    background: var(--secondary-50);
+    color: var(--secondary-600);
+    border-color: var(--secondary-600);
+  }
+}
+
+.btn-danger {
+  background: var(--error);
   color: white;
   border: none;
-}
 
-.btn--danger:hover:not(:disabled) {
-  background: var(--color-danger-dark, #d32f2f);
-}
-
-.btn--danger:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.no-favorites {
-  color: var(--text-secondary);
-  font-style: italic;
-  padding: 20px;
-  @include text-center;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  border: 1px dashed var(--border-primary);
-}
-
-.profile-info-display {
-  @include flex-col;
-  gap: 15px;
-}
-
-.info-item,
-.form-group {
-  @include flex-col;
-  gap: 8px;
-
-  label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  &:hover:not(:disabled) {
+    background: var(--error-dark);
   }
 }
 
-.info-value {
-  padding: 0.75rem 1rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-size: 1rem;
-  line-height: 1.5;
+.danger-card {
+  @include glass-card;
+  padding: var(--space-6) var(--space-8) var(--space-8) var(--space-8);
+  margin-top: 10px;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 2px 8px #ef44441a;
 }
 
-.color-season {
-  @include flex-col;
-  gap: 8px;
+.danger-header {
+  margin-bottom: 24px;
 }
 
-.season-badge {
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
+.danger-title {
+  color: var(--text-secondary);
+  font-size: 18px;
   font-weight: 600;
-  width: fit-content;
-  color: white;
-
-  &.season-spring { background: linear-gradient(45deg, #FF6B35, #F7931E); }
-  &.season-summer { background: linear-gradient(45deg, #A8DADC, #457B9D); }
-  &.season-autumn { background: linear-gradient(45deg, #D2691E, #8B4513); }
-  &.season-winter { background: linear-gradient(45deg, #4169E1, #000080); }
+  margin: 0 0 8px;
 }
 
-.analysis-date {
-  font-size: 0.85rem;
+.danger-description {
   color: var(--text-secondary);
-  display: block;
-  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
 }
 
-.no-analysis {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--text-secondary);
-  font-style: italic;
-}
 
-.analysis-link {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 0.5rem;
 
-  &:hover {
-    text-decoration: underline;
-  }
-}
 
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 1.1rem;
+@media (max-width: 640px) {
+  .page-header {
+    z-index: 1000 !important;
   }
 
-  .profile-info-display {
-    grid-template-columns: 1fr;
+  .page-header .header-right {
+    min-width: 56px !important;
+    flex-shrink: 0 !important;
+    overflow: visible !important;
+  }
+
+  .main-content {
+    padding: 80px 0 60px;
+  }
+
+  .profile-container {
+    padding: 0 var(--space-4);
+  }
+
+  .settings-card {
+    padding: 24px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
   }
 }
 </style>
