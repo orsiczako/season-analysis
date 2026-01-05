@@ -264,6 +264,38 @@ async function getAnalysesResults(userId) {
   };
 }
 
+/**
+ * Profil frissítése: teljes név, felhasználónév, email
+ */
+async function updateProfile(userId, { fullName, username, email }) {
+  if (!userId) {
+    return { success: false, message: 'USER_ID_REQUIRED' };
+  }
+  if (!fullName && !username && !email) {
+    return { success: false, message: 'NO_FIELDS_TO_UPDATE' };
+  }
+
+  const user = await User.findOne({ where: { account_id: userId } });
+  if (!user) {
+    return { success: false, message: 'USER_NOT_FOUND' };
+  }
+
+  // Only update provided fields
+  const updateData = {};
+  if (fullName) updateData.full_name = fullName;
+  if (username) updateData.login_name = username;
+  if (email) updateData.email_address = email;
+
+  try {
+    await user.update(updateData);
+    // Frissített user visszaadása
+    return { success: true, user: formatUserWithSeason(user) };
+  } catch (error) {
+    console.error('Profile update error:', error);
+    return { success: false, message: 'UPDATE_FAILED' };
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -273,5 +305,6 @@ module.exports = {
   changePassword,
   deleteAccount,
   updateColorSeason,
-  getAnalysesResults
+  getAnalysesResults,
+  updateProfile
 };
