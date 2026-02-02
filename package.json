@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "eslint-plugin-vue": "^10.6.2",
+    "vite-svg-loader": "^5.1.0"
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "drySkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Száraz Bőr ",
+      "version": "5.0 User-Friendly Edition",
+      "complexityLevel": "Könnyen érthető / Edukációs",
+      "description": "Gyakorlati útmutató a húzódó érzés megszüntetéséhez, a bőr mély táplálásához és a védőréteg (barrier) újjáépítéséhez.",
+      "lastUpdated": "2024-Jelenleg",
+      "tags": [
+        "táplálás",
+        "barrier-építés",
+        "komfortérzet",
+        "anti-aging"
+      ]
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "drySkin",
+      "clinicalDefinition": "A bőröd 'lusta' olajtermelő: nem gyárt elég természetes zsíradékot, ami bent tartaná a vizet. Ezért a nedvesség egyszerűen elpárolog belőle.",
+      "visualMapping": {
+        "Global_Face": {
+          "area": "Teljes arc, nyak",
+          "symptoms": "A pórusaid alig láthatóak (ez az előnye!), de az arcod fénytelen, matt. Mosolygáskor apró, finom vonalak jelenhetnek meg, mint a gyűrött papíron."
+        },
+        "Critical_Zones": {
+          "area": "Szemkörnyék, Száj, Orcák",
+          "symptoms": "Ezek a részek a legérzékenyebbek: szeles időben hamar kipirosodnak, néha hámlanak vagy érdes tapintásúak."
+        }
+      },
+      "sensoryAnalysis": {
+        "morning": "Ébredéskor a bőröd 'szomjas', mintha egy számmal kisebb lenne az arcodra a bőr. Nincs reggeli zsíros réteg, sőt, inkább feszül.",
+        "midDay": "Légkondis irodában vagy fűtött szobában délutánra már viszkethet vagy kényelmetlen lehet.",
+        "touchTest": "Tapintása vékony, papírszerű, néhol érdes lehet, nem pedig puha és rugalmas."
+      }
+    },
+    "physiologicalBasis": {
+      "rootCause": "Hiányoznak a 'téglák közötti habarcs' elemei (a lipidek és zsírsavak). Mivel a sejtek között rések vannak, a víz kiszökik, a környezeti irritáló anyagok pedig bejutnak.",
+      "barrierStatus": "Lyukacsos védelem. Olyan, mint egy tető, amiről hiányzik pár cserép: nem tartja bent a meleget és beázik.",
+      "phBalance": "Könnyebben felborul, ezért hajlamosabb az irritációra és a pirosságra."
+    },
+    "coreMethodologies": {
+      "LipidReplacementTherapy": "A víz önmagában nem elég! Ha csak vizet teszel a száraz bőrre, az elpárolog és még szárazabb lesz. Zsírt (olajat/krémet) kell pótolnod, hogy pótold a hiányzó védőréteget.",
+      "OcclusionStrategy": "A 'fedő' technika. Használj sűrűbb krémeket, amik fizikai gátat képeznek a bőrön, és mechanikusan bent tartják a nedvességet.",
+      "MicroExfoliation": "A száraz bőr néha nem válik le magától (ez a hámlás). Finoman segíteni kell neki, hogy a hidratáló krém egyáltalán be tudjon szívódni az elhalt réteg alá.",
+      "MoistureSandwich": "Rétegezés: Először a vizes állagú termékek, aztán az olajosak, végül a sűrű krémek."
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1_Cleansing": {
+          "goal": "Gyengéd ébresztés.",
+          "product": "Krémes lemosó vagy tisztító tej. Ha nagyon száraz a bőröd, reggel elég csak a langyos víz.",
+          "technique": "Kerüld a habzó lemosókat, mert azok szárítanak! A tejet simítsd át az arcodon, majd töröld le egy nedves kendővel."
+        },
+        "step2_EssenceToner": {
+          "goal": "Az első korty víz.",
+          "product": "Tejszerű tonik vagy esszencia (sűrűbb, mint a víz).",
+          "technique": "Ne vattával töröld (az dörzsöl), hanem öntsd a tenyeredbe és nyomkodd a bőrödbe. Mehet belőle 2 réteg is!"
+        },
+        "step3_FunctionalSerums": {
+          "primary": "Olajban oldódó C-vitamin",
+          "reason": "Ez a fajta C-vitamin nem csíp, mélyen táplál és védi a bőrt.",
+          "secondary": "Peptid szérum",
+          "reason": "Segít tömörebbé tenni a bőrt és feltölteni a finom ráncokat."
+        },
+        "step4_Moisturizing": {
+          "concept": "A főfogás.",
+          "product": "Gazdag, tápláló krém (pl. ceramidokkal vagy shea vajjal).",
+          "proTip": "Ha extra ragyogást akarsz: cseppents egy csepp arcolajat a krémedbe a tenyeredben, mielőtt felkennéd."
+        },
+        "step5_SunProtection": {
+          "critical": "Védelem ápolással.",
+          "formula": "Hidratáló fényvédő krém.",
+          "finish": "Fényesebb, krémesebb típusokat keress, ne mattítókat."
+        }
+      },
+      "eveningRegimen": {
+        "step1_OilCleansing": {
+          "goal": "Komfortos tisztítás.",
+          "product": "Tisztító balzsam (Cleansing Balm).",
+          "technique": "Száraz bőrre kend fel. Az olaj feloldja a szennyeződést, miközben már elkezdi puhítani a bőrt. Vízzel érintkezve tejessé válik és leöblíthető."
+        },
+        "step2_CreamCleansing": {
+          "goal": "Maradékok eltávolítása.",
+          "product": "Nem habzó krémes lemosó.",
+          "benefit": "Úgy tisztít, hogy utána nem feszül az arcod."
+        },
+        "step3_ActiveTreatments": {
+          "concept": "Óvatos megújulás.",
+          "OptionA_Exfoliation": "PHA vagy Tejsav. Ezek a leggyengédebb hámlasztók, amik közben hidratálnak is.",
+          "OptionB_Retinoid": "Retinol olajban vagy Bakuchiol. Mindig tegyél alá hidratálót!",
+          "OptionC_Recovery": "Ha feszül a bőröd, hagyd az aktív anyagokat, és csak hidratálj."
+        },
+        "step4_OcclusiveAndSlugging": {
+          "goal": "A nedvesség bezárása éjszakára.",
+          "product": "Vastag éjszakai krém + Arcolaj.",
+          "sluggingHack": "A 'Slugging': Kend be vékonyan vazelinnel a legszárazabb részeket a rutin végén. Ez 100%-os gátat képez, reggelre hihetetlenül puha lesz a bőröd."
+        }
+      },
+      "weekendSpaProtocol": {
+        "frequency": "Heti 1-2 alkalom, amikor kényeztetnéd magad.",
+        "steps": [
+          "Enzimes peeling (nincs dörzsölés, csak feloldja az elhalt bőrt).",
+          "Fátyolmaszk (Sheet Mask) - hagyd fent 20 percig, pihenj közben.",
+          "Masszázs: Arcolajjal masszírozd át az arcod, hogy serkentsd a vérkeringést.",
+          "Éjszakai maszk (amit nem kell lemosni)."
+        ]
+      }
+    },
+    "ingredientArchitecture": {
+      "heroIngredients": [
+        {
+          "name": "Ceramidok",
+          "role": "A Habarcs",
+          "synergy": "Ezek tartják össze a bőrsejtjeidet, hogy ne repedezzen meg a védőréteg."
+        },
+        {
+          "name": "Urea",
+          "role": "A Puhító",
+          "importance": "Különleges anyag: egyszerre hidratál és segít megszabadulni az érdes, kemény bőrtől."
+        },
+        {
+          "name": "Squalane",
+          "role": "Az Azonosító",
+          "note": "Egy olaj, ami szinte ugyanolyan, mint amit a bőrödnek termelnie kéne. Könnyen beszívódik."
+        },
+        {
+          "name": "Panthenol (B5)",
+          "role": "A Nyugtató",
+          "benefit": "Ha viszket vagy piros a bőröd, ez segít megnyugtatni."
+        }
+      ],
+      "riskyCombinations": [
+        "Retinol + C-vitamin egyszerre: A vékony bőrödnek ez túl sok irritáció lehet egyszerre.",
+        "Agyagmaszk + Habzó lemosó: Ez a kombináció kiszívja az utolsó csepp olajat is a bőrödből -> azonnali feszülés.",
+        "Forró víz + Bőrradír: Tilos! A forró víz leoldja a lipideket, a radír pedig felsérti a bőrt."
+      ]
+    },
+    "professionalMakeupArtistry": {
+      "prepAndPrime": {
+        "hydrationLayering": "Alapozás előtt alaposan hidratálj. Ha a bőröd 'szomjas', be fogja szívni a vizet az alapozódból, és a festék foltosan marad a felszínen.",
+        "oilPrime": "Primer helyett használj 1-2 csepp száraz olajat. Ez adja a legszebb, legegységesebb alapot."
+      },
+      "foundationEngineering": {
+        "textureMatch": "Folyékony, krémes alapozók, szérum-alapozók.",
+        "diyGlow": "Keverj egy pici folyékony highlightert vagy arcolajat az alapozódba a kézfejeden, mielőtt felkennéd.",
+        "tools": "Csak nedves szivaccsal dolgozz! Az ecset felborzolhatja a száraz bőrdarabkákat."
+      },
+      "powderStrategy": {
+        "zeroPowderRule": "Lehetőleg kerüld a púdert, mert kiemeli a szárazságot és a ráncokat.",
+        "alternative": "Ha fixálni kell, használj hidratáló fixáló spray-t."
+      },
+      "fixation": {
+        "mistSelection": "Glicerines, fényes (Dewy) spray-k, amik rugalmas réteget képeznek, nem száradnak kopogósra."
+      }
+    },
+    "troubleshootingAndCrisisManagement": {
+      "scenario_FlakyFoundation": {
+        "symptoms": "Alapozás után úgy néz ki a bőröd, mintha hámlana.",
+        "fix": "Ne dörzsöld! Fújj rá sok hidratáló permetet, és a nedves szivaccsal ütögesd át. Ha nem segít: tegyél pici ajakbalzsamot az ujjadra, és nyomd rá a hámló részre."
+      },
+      "scenario_RednessItch": {
+        "symptoms": "Bármit kensz fel, csíp.",
+        "fix": "Sérült a védőréteged. Állj le a savakkal és vitaminokkal. Használj egyszerű, patikai cinkes krémet (popsikenőcs-jellegűt) éjszakára pár napig."
+      },
+      "scenario_Dullness": {
+        "symptoms": "Szürke, fáradt az arcod.",
+        "fix": "Masszírozd át! A vérkeringés hiánya okozza. Egy kis arcolajos masszázs csodákat tesz."
+      }
+    },
+    "seasonalAdaptationStrategy": {
+      "Spring": {
+        "focus": "Téli bőr leváltása.",
+        "action": "Kezdd el a gyengéd hámlasztást (PHA), hogy frissüljön a felszín."
+      },
+      "Summer": {
+        "focus": "Védelem.",
+        "action": "Nyáron is kell hidratáló! A nap és a klór szárít. Használj könnyedebb, tejes állagú krémeket."
+      },
+      "Autumn": {
+        "focus": "Felkészülés.",
+        "action": "Vezesd be az arcolajokat az esti rutinba."
+      },
+      "Winter": {
+        "focus": "Páncél.",
+        "action": "Nappalra is használj zsírosabb krémet (Cold Cream), főleg ha sokat vagy kint. Éjszakára jöhet a vazelinis lezárás."
+      }
+    },
+    "holisticLifestyleFactors": {
+      "dietaryLipids": {
+        "internalOiling": "Belülről is olajozni kell! Egyél avokádót, diót, lazacot. A kollagén italpor is sokat segíthet a hidratáltságban.",
+        "hydration": "A vízivás fontos, de önmagában kevés. A bőrödnek zsírra is szüksége van a víz megtartásához."
+      },
+      "environment": {
+        "humidifier": "A párásító a legjobb barátod télen. Ha a levegő nem száraz, a bőröd sem szárad ki annyira.",
+        "showerRules": "Csak langyos vízzel zuhanyozz! A forró víz leoldja azt a kevés természetes olajat is,amid van."
+      }
+    }
+  }
+}

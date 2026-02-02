@@ -1,50 +1,94 @@
 ﻿<template>
-  <div class="content-wrapper">
-    <AnimatedBackground />
-    <div class="header-controls">
-      <ThemeSwitcher />
-    </div>
-    <div class="register-container">
-      <h2>Regisztráció</h2>
-      <form @submit.prevent="handleSubmit">
-        <label for="username">Felhasználónév</label>
-        <input type="text" id="username" v-model="form.username" required>
-        <label for="email">Email</label>
-        <input type="email" id="email" v-model="form.email" required>
-        <label for="fullName">Teljes név</label>
-        <input type="text" id="fullName" v-model="form.fullName" required>
-        <label for="password">Jelszó</label>
-        <input type="password" id="password" v-model="form.password" required>
-        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
-        <button type="submit" :disabled="loading">{{ loading ? 'Regisztráció...' : 'Regisztráció' }}</button>
-        <button type="button" @click="goToLogin">Vissza a bejelentkezéshez</button>
-      </form>
-    </div>
-  </div>
+  <AuthLayout title="Regisztráció" container-class="register-container">
+    <form novalidate @submit.prevent="handleSubmit">
+      <FormInput id="username" v-model="form.username" label="Felhasználónév" type="text" :error="errors.username"
+        @blur="validateField('username')" />
+
+      <FormInput id="email" v-model="form.email" label="Email" type="email" :error="errors.email"
+        @blur="validateField('email')" />
+
+      <FormInput id="fullName" v-model="form.fullName" label="Teljes név" type="text" :error="errors.fullName"
+        @blur="validateField('fullName')" />
+
+      <FormInput id="password" v-model="form.password" label="Jelszó" type="password" :error="errors.password"
+        @blur="validateField('password')" />
+
+      <MessageDisplay :error-message="errorMessage" />
+
+      <BaseButton type="submit" variant="primary" size="lg" full-width :loading="loading">
+        Regisztráció
+      </BaseButton>
+
+      <BaseButton type="button" variant="ghost" size="md" full-width @click="goToLogin">
+        Vissza a bejelentkezéshez
+      </BaseButton>
+    </form>
+  </AuthLayout>
 </template>
+
 <script>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { useAuth } from '@/composables/useAuth.js'
-import ThemeSwitcher from '@/components/common/theme/ThemeSwitcher.vue'
-import AnimatedBackground from '@/components/layout/AnimatedBackground.vue'
+import { validateForm, fieldValidators, translateError } from '@/data/validation-messages.js'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import FormInput from '@/components/common/forms/FormInput.vue'
+import MessageDisplay from '@/components/common/feedback/MessageDisplay.vue'
+import BaseButton from '@/components/common/base/BaseButton.vue'
+
 export default {
   name: 'RegisterView',
-  components: { ThemeSwitcher, AnimatedBackground },
+  components: {
+    AuthLayout,
+    FormInput,
+    MessageDisplay,
+    BaseButton
+  },
   setup() {
-    const { register, errorMessage, loading, validateForm, withLoading, navigateToLogin } = useAuth()
+    const { register, errorMessage, loading, withLoading, navigateToLogin, setError } = useAuth()
+
     const form = ref({ username: '', email: '', fullName: '', password: '' })
+    const errors = reactive({})
+
+    const rules = {
+      username: 'username',
+      email: 'email',
+      fullName: 'fullName',
+      password: 'password'
+    }
+
+    const validateField = (field) => {
+      errors[field] = fieldValidators[rules[field]]?.(form.value[field]) || null
+    }
+
     const handleSubmit = async () => {
-      if (!validateForm(form.value, ['username', 'email', 'fullName', 'password'])) return
+      const result = validateForm(form.value, rules)
+      Object.assign(errors, result.errors)
+
+      if (!result.isValid) return
+
       await withLoading(async () => {
-        const result = await register(form.value)
-        if (result.success) navigateToLogin({ registered: '1' })
+        const regResult = await register(form.value)
+        if (regResult.success) {
+          navigateToLogin({ registered: '1' })
+        } else {
+          setError(translateError(regResult.message))
+        }
       })
     }
-    const goToLogin = () => navigateToLogin()
-    return { form, errorMessage, loading, handleSubmit, goToLogin }
+
+    return {
+      form,
+      errors,
+      errorMessage,
+      loading,
+      handleSubmit,
+      validateField,
+      goToLogin: navigateToLogin
+    }
   }
 }
 </script>
+
 <style scoped>
-@import '@/assets/components/auth-common.css';
+/* Auth stílusok a main.js-ből jönnek */
 </style>

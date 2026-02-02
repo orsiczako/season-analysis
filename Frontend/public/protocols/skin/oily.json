@@ -1,0 +1,187 @@
+{
+  "oilySkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Zsíros Bőr (A 'Túlbuzgó' Típus)",
+      "version": "5.0 User-Friendly Edition",
+      "complexityLevel": "Könnyen érthető / Edukációs",
+      "description": "Gyakorlati útmutató a csillogás megszelídítéséhez, a pórusok tisztán tartásához és a smink helyben marasztalásához.",
+      "lastUpdated": "2024-Jelenleg",
+      "tags": ["faggyú-kontroll", "pórus-tisztítás", "mattítás", "anti-akné"]
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "oilySkin",
+      "clinicalDefinition": "A bőröd egy kis olajgyár: a faggyúmirigyeid túlóráznak, és több védőanyagot (sebumot) termelnek, mint amennyire szükség lenne.",
+      "visualMapping": {
+        "Global_Face": {
+          "area": "Teljes arc (nem csak a T-zóna!)",
+          "symptoms": "Az egész arcod hajlamos a fénylésre. A pórusaid szabad szemmel is jól láthatóak (mint egy narancs héja), főleg az orr környékén."
+        },
+        "Critical_Zones": {
+          "area": "Áll, homlok, orr",
+          "symptoms": "Gyakori vendégek a mitesszerek (fekete pöttyök) és néha a gyulladt pattanások is."
+        }
+      },
+      "sensoryAnalysis": {
+        "morning": "Ébredéskor úgy érzed, mintha egy vékony olajréteg lenne az arcodon. Egy papírzsepi azonnal rátapadna.",
+        "midDay": "Délre a sminked elkezd 'leolvadni', az arcod pedig csillogni, mintha most jöttél volna az edzőteremből.",
+        "touchTest": "Tapintásra síkos, olajos, a bőröd pedig vastagabbnak, ellenállóbbnak érződik."
+      },
+      "riskFactor": "A 'szárítási mánia'. Mivel szabadulni akarsz az olajtól, hajlamos lehetsz szétmaratni az arcod alkoholos cuccokkal. Ezzel csak olaj a tűzre: a bőröd pánikba esik, és MÉG TÖBB zsírt termel."
+    },
+    "physiologicalBasis": {
+      "rootCause": "Genetika és hormonok. A pórusaid érzékenyebben reagálnak a hormonokra, ezért termelnek annyi faggyút. Jó hír: a zsíros bőr sokkal később ráncosodik, mert folyamatosan 'puhítja' magát!",
+      "barrierStatus": "Vastag és erős, de gyakran vízhiányos. Igen, a bőröd lehet egyszerre zsíros (sok olaj) és dehidratált (kevés víz).",
+      "phBalance": "Hajlamos eltolódni, ami kedvez a pattanást okozó baktériumoknak."
+    },
+    "coreMethodologies": {
+      "HydrationIsKey": "Jegyezd meg: Az olaj nem víz! Ha nem adsz vizet a bőrödnek (könnyű krémekkel), akkor ő olajjal próbálja pótolni a hiányt. Hidratálj, hogy ne zsírosodj!",
+      "TheOilDissolvesOilRule": "Ne félj az olajos lemosóktól! Kémia óra: a zsírban a zsír oldódik legjobban. Egy jó olajos lemosó kiszedi a dzsuvát a pórusaid mélyéről.",
+      "GentleExfoliation": "Ne radírozd szét az arcod szemcsés radírokkal (pl. barackmag), mert mikrosérüléseket okozol, és terjeszted a bacikat. Használj kémiai hámlasztót (BHA)."
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1_Cleansing": {
+          "goal": "Az éjszakai 'termés' eltávolítása.",
+          "product": "Gyengéd habzó lemosó vagy gél.",
+          "technique": "Langyos vízzel moss arcot! A forró víz beindítja az olajtermelést, a hideg meg nem oldja le a zsírt."
+        },
+        "step2_Toning": {
+          "goal": "Pórusok karbantartása.",
+          "product": "Szalicilsavas (BHA) tonik vagy pórusösszehúzó.",
+          "benefit": "A szalicilsav be tud mászni a pórus mélyére és kitakarítja onnan a zsírt."
+        },
+        "step3_FunctionalSerums": {
+          "primary": "Niacinamide + Cink",
+          "reason": "Ez a dinamikus duó. A Niacinamide szabályozza a faggyút, a Cink pedig mattít és gyulladást csökkent.",
+          "secondary": "Hialuronsav",
+          "reason": "Könnyű vizet ad a bőrnek anélkül, hogy elnehezítené."
+        },
+        "step4_Moisturizing": {
+          "concept": "Könnyű, mint a pehely.",
+          "product": "Gél-krém (Gel Cream), Fluid vagy Mattító lotion.",
+          "technique": "Kerüld a nehéz, zsíros krémeket! Olyat keress, amire rá van írva: 'Oil-free' (olajmentes) vagy 'Non-comedogenic' (nem tömíti el a pórusokat)."
+        },
+        "step5_SunProtection": {
+          "critical": "Ne hagyd ki, mert a napfoltok sötétebbek maradnak pattanás után.",
+          "formula": "Mattító fényvédő ('Dry Touch' vagy 'Anti-Shine').",
+          "finish": "Olyat válassz, ami púderesre szárad."
+        }
+      },
+      "eveningRegimen": {
+        "step1_DoubleCleansing": {
+          "goal": "Mélytisztítás.",
+          "phase1": "Olajos lemosó (Cleansing Oil) vagy Balzsam. Kend száraz bőrre, masszírozd be, majd vizezd be és mosd le. Látni fogod, ahogy olvad a smink!",
+          "phase2": "Vizes bázisú lemosó a maradék eltüntetésére.",
+          "rule": "Ez a lépés a legfontosabb a mitesszerek ellen."
+        },
+        "step2_ActiveTreatments": {
+          "concept": "Célzott támadás.",
+          "Night1_Exfoliation": "BHA (Szalicilsav) folyadék – a legjobb barátod a mitesszerek ellen.",
+          "Night2_Retinoid": "Retinol – hosszútávon átprogramozza a pórusokat és csökkenti az olajosságot.",
+          "Night3_Recovery": "Nyugtatás (Centella vagy Aloe Vera) – ha túl sokat hámlasztasz, a bőröd 'bedurcásodik' és még zsírosabb lesz."
+        },
+        "step3_NightCream": {
+          "goal": "Bezárás.",
+          "product": "Könnyű éjszakai gél-krém.",
+          "tip": "Ha pattanásos vagy, használhatsz teafaolajos krémet is."
+        }
+      },
+      "weekendSpaProtocol": {
+        "frequency": "Heti 1-2 alkalom.",
+        "steps": [
+          "Agyagmaszk (Kaolin vagy Szén): Ez úgy működik, mint egy mágnes, kiszívja a felesleges olajat. FONTOS: Mosd le, mielőtt teljesen kőkeményre száradna, különben kiszívja a vizet is a bőrödből!",
+          "Hidratáló maszk utána, hogy visszapótold a nedvességet."
+        ]
+      }
+    },
+    "ingredientArchitecture": {
+      "heroIngredients": [
+        {
+          "name": "Szalicilsav (BHA)",
+          "role": "A Kéményseprő",
+          "synergy": "Zsírban oldódik, így egyedüliként képes a pórus belsejében takarítani."
+        },
+        {
+          "name": "Niacinamide",
+          "role": "A Forgalomirányító",
+          "importance": "Megmondja a faggyúmirigyeknek, hogy 'nyugi, nem kell annyi olaj'."
+        },
+        {
+          "name": "Agyag (Kaolin, Bentonit)",
+          "role": "A Porszívó",
+          "benefit": "Fizikailag felszívja a felesleges zsírt a felszínről."
+        },
+        {
+          "name": "Cink (Zinc)",
+          "role": "A Mattító",
+          "note": "Segít kordában tartani a fénylést és a baktériumokat."
+        }
+      ],
+      "riskyCombinations": [
+        "Alkohol (Tonikban) + Erős bőrradír: Ez a halálos ítélet. A bőröd vörös lesz, fájni fog, és cserébe másnap reggelre kétszer annyi olajat termel.",
+        "Kókuszolaj: Bár egészségesnek hangzik, a zsíros bőr pórusait betonként tömíti el. Kerüld az arcodon!"
+      ]
+    },
+    "professionalMakeupArtistry": {
+      "prepAndPrime": {
+        "philosophy": "Matt alapok.",
+        "strategy": "Használj mattító primert a T-zónában. Olyat keress, ami 'pore filler' (póruskitöltő) hatású, így simább lesz a felszín.",
+        "application": "Ütögesd be a pórusaidba, ne kend szét, mint egy krémet!"
+      },
+      "foundationEngineering": {
+        "textureMatch": "Matt vagy fél-matt (demi-matte), olajmentes alapozó. Az Ásványi Por alapozó (Mineral Powder) is szuper, mert hagyja lélegezni a bőrt.",
+        "technique": "Használj nedves szivacsot és nyomkodó mozdulatokat. Ha kenegeted, csak csíkos lesz az olajos alapon.",
+        "goal": "Tartósság. Kerüld a 'Glow' és 'Dewy' alapozókat, mert rajtad 1 óra múlva 'Zsírosbödön' hatása lesz."
+      },
+      "powderStrategy": {
+        "targeted": "A 'Baking' technika a barátod lehet különleges alkalmakkor (vastag púder, hagyd rajta 5 percig, söpörd le), de hétköznap elég egy alapos púderezés a T-zónában.",
+        "product": "Laza, áttetsző púder (Loose Powder) vagy Kőpúder."
+      },
+      "fixation": {
+        "mistSelection": "Kifejezetten mattító fixáló spray. Ez 'bezárja' a sminket és megakadályozza, hogy lecsússzon az arcodról."
+      }
+    },
+    "troubleshootingAndCrisisManagement": {
+      "scenario_MidDayShine": {
+        "symptoms": "Ebédidőre csillog az orrod.",
+        "fix": "SOHA ne púderezz közvetlenül az olajra! Csomós lesz (mint a sár). Először itasd fel az olajat (mattító lapocska vagy egy zsepi egyik rétege), és CSAK UTÁNA púderezz."
+      },
+      "scenario_Breakout": {
+        "symptoms": "Megjelent egy nagy, gyulladt pattanás.",
+        "fix": "Ne nyomd ki! Tegyél rá pattanástapaszt (pimple patch) éjszakára. Ez kiszívja a váladékot és védi a fertőzéstől."
+      },
+      "scenario_MakeupOxidation": {
+        "symptoms": "Az alapozód narancssárgává válik napközben.",
+        "fix": "Az olaj reakcióba lép a festékkel. Használj erősebb primert, vagy válassz egy árnyalattal világosabb alapozót, mert a bőrödön úgyis sötétedni fog."
+      }
+    },
+    "seasonalAdaptationStrategy": {
+      "Spring": {
+        "focus": "Tavaszi nagytakarítás.",
+        "action": "Jöhetnek a könnyebb szérumok, elhagyhatod a nappali krémet, ha a fényvédőd elég hidratáló."
+      },
+      "Summer": {
+        "focus": "Túlélés.",
+        "action": "A legkönnyebb textúrák kellenek. Napközben többször is moshatsz arcot (csak vízzel), és használj vízálló fényvédőt, mert az izzadság lemossa a simát."
+      },
+      "Autumn": {
+        "focus": "Helyreállítás.",
+        "action": "A nyári napsütés vastagítja a bőrt -> több mitesszer. Ilyenkor a leghasznosabb egy kozmetikai tisztítás vagy hámlasztó kúra."
+      },
+      "Winter": {
+        "focus": "Egyensúly.",
+        "action": "Még a zsíros bőr is kiszáradhat a széltől. Ilyenkor használj picit testesebb krémet éjszaka (pl. ceramidos), hogy ne repedezzen ki a bőröd."
+      }
+    },
+    "holisticLifestyleFactors": {
+      "dietaryInputs": {
+        "sugarSpike": "A cukor és a finomított szénhidrátok (fehér liszt) megemelik az inzulint, ami közvetlen parancsot ad a bőrnek: 'Termelj több olajat!'.",
+        "dairy": "Sokaknál a tejtermékek is fokozzák a gyulladást és a pattanásokat."
+      },
+      "hygiene": {
+        "pillowcase": "Cserélj párnahuzatot 2-3 naponta! A zsíros bőrön imádnak lakmározni a baktériumok, és éjszaka visszafertőzöd magad a párnádról.",
+        "phoneScreen": "Töröld le a telefonod kijelzőjét naponta! Az arcunkhoz érő telefon a pattanások egyik fő oka az orcákon."
+      }
+    }
+  }
+}

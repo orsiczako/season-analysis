@@ -168,8 +168,7 @@ async function analyzeSkin(req, res) {
 
       const analysisData = {
         skin_type: analysisResult.data.skinType,
-        skin_problems: detectedProblems,
-        analysis_date: new Date()
+        skin_problems: detectedProblems
       };
 
       if (existingAnalysis) {
@@ -195,7 +194,6 @@ async function analyzeSkin(req, res) {
     // Hiba esetén is töröljük az ideiglenes fájlt
     if (tempFilePath) {
       try {
-        const fs = require('fs').promises;
         await fs.unlink(tempFilePath);
         console.log('Temp file deleted after error:', tempFilePath);
       } catch (unlinkErr) {
@@ -274,7 +272,6 @@ async function chatWithImage(req, res) {
 
 module.exports = {
   chatWithAI,
-  chatWithAIGuest,
   analyzeColorType,
   analyzeSkin,
   chatWithImage

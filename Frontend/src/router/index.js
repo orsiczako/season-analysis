@@ -6,99 +6,100 @@ import RegisterPage from '@/pages/auth/RegisterPage.vue'
 import ForgotPasswordPage from '@/pages/auth/ForgotPasswordPage.vue'
 import ResetPasswordPage from '@/pages/auth/ResetPasswordPage.vue'
 
- 
+
 import DashboardPage from '@/pages/dashboard/DashboardPage.vue'
 import ProfilePage from '@/pages/profile/ProfilePage.vue'
 import AIChatPage from '@/pages/ai-chat/AIChatPage.vue'
+import SkinAnalysisPage from '@/pages/skin-analysis/SkinAnalysisPage.vue'
+import ResultsPage from '@/pages/results/ResultsPage.vue'
 
 
 const routes = [
-  // Redirect root to login
-  { 
-    path: '/', 
-    redirect: '/login' 
+  {
+    path: '/',
+    redirect: '/login'
   },
-  
-  // Auth routes (simplified)
-  { 
-    path: '/login', 
+
+  {
+    path: '/login',
     name: 'login',
     component: LoginPage
   },
-  { 
-    path: '/register', 
+  {
+    path: '/register',
     name: 'register',
     component: RegisterPage
   },
-  { 
-    path: '/forgot-password', 
+  {
+    path: '/forgot-password',
     name: 'forgot-password',
     component: ForgotPasswordPage
   },
-  { 
-    path: '/reset-password', 
+  {
+    path: '/reset-password',
     name: 'reset-password',
     component: ResetPasswordPage
   },
-  
-  // Main app routes (flat structure)
-  { 
-    path: '/dashboard', 
+
+  {
+    path: '/dashboard',
     name: 'dashboard',
     component: DashboardPage,
     meta: { requiresAuth: true }
   },
-  { 
-    path: '/profile', 
+  {
+    path: '/profile',
     name: 'profile',
     component: ProfilePage,
     meta: { requiresAuth: true }
   },
   {
-    path: '/chat', 
+    path: '/chat',
     name: 'chat',
     component: AIChatPage,
-    meta: { requiresAuth: false, allowGuest: true } // Guest módban is elérhető
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/skin-analysis',
+    name: 'skin-analysis',
+    component: SkinAnalysisPage,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/results',
+    name: 'results',
+    component: ResultsPage,
+    meta: { requiresAuth: true }
   }
 ]
-
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
 
-// Authentication guard
 router.beforeEach((to, from, next) => {
-  // Ellenőrizzük, hogy a route megköveteli-e a bejelentkezést
   const requiresAuth = to.meta.requiresAuth
-  const allowGuest = to.meta.allowGuest
-  const isGuestMode = to.query.guest === 'true'
   const token = localStorage.getItem('authToken')
   const user = localStorage.getItem('authUser')
-  
+
+  // 1. Védett útvonalak ellenőrzése
   if (requiresAuth) {
-    // Guest módban kivétel
-    if (allowGuest && isGuestMode) {
-      next()
-      return
-    }
-    
-    // Token és user adatok szükségesek
+    // Ha nincs token vagy user adat, irány a login
     if (!token || !user) {
-      console.warn('Access denied: No authentication token or user data')
-      // Nincs token vagy user, redirect login oldalra
+      console.warn('Access denied: Authentication required')
       next('/login')
       return
     }
   }
-  
-  // Ha már be van jelentkezve és login/register oldalra megy, redirect dashboard-ra
+
+  // 2. Már bejelentkezett felhasználó visszairányítása
+  // Ha be van lépve, ne engedjük vissza a Login/Register oldalra
   if ((to.path === '/login' || to.path === '/register') && token && user) {
     next('/dashboard')
     return
   }
-  
-  // Minden rendben, lehet menni
+
+  // 3. Minden rendben, mehet tovább
   next()
 })
 

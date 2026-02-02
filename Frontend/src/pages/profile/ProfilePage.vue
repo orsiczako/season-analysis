@@ -8,13 +8,7 @@
           <div class="profile-hero"
             style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="profile-avatar">
-              <!-- Source: https://feathericons.com/ -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-user">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+              <User :size="48" />
             </div>
             <div class="profile-info">
               <h1 class="profile-name">
@@ -136,17 +130,18 @@
 </template>
 
 <script>
+import { User } from 'lucide-vue-next'
 import AnimatedBackground from '@/layouts/AnimatedBackground.vue'
 import PageHeader from '@/components/common/layout/PageHeader.vue'
 import { apiClient, userService } from '@/services'
 import { useToast } from '@/composables/useToast'
-import { useLocalStorage } from '@/composables/useLocalStorage'
 
 export default {
   name: 'ProfileView',
   components: {
     AnimatedBackground,
-    PageHeader
+    PageHeader,
+    User
   },
   setup() {
     const toast = useToast()
@@ -260,7 +255,7 @@ export default {
         console.warn('User account deleted, logging out...')
         localStorage.removeItem('authToken')
         localStorage.removeItem('authUser')
-        this.$router.push('/auth/login')
+        this.$router.push('/')
         return
       }
 
@@ -327,27 +322,23 @@ export default {
 
       this.deleteLoading = true
       try {
-        const response = await apiClient.delete('/api/user/delete-account')
-        if (response.data.success) {
+        const response = await userService.deleteAccount()
+        if (response.success) {
           this.toast.success('Fiók sikeresen törölve!')
-
-          const { clearAllAIData, getUserId } = useLocalStorage()
-          const id = getUserId()
-          clearAllAIData(id)
-          localStorage.removeItem('authUser')
-          localStorage.removeItem('authToken')
-
-          setTimeout(() => {
-            this.$router.push('/login')
-          }, 2000)
         } else {
-          this.toast.error(response.data.message || 'Hiba történt a fiók törlése során')
+          this.toast.error(response.message || 'Hiba történt a fiók törlése során')
         }
       } catch (err) {
         let message = 'Hiba történt a fiók törlése során. Próbáld újra!'
         if (err?.response?.status === 401) message = 'Nem vagy bejelentkezve!'
         this.toast.error(message)
       } finally {
+        // Mindig töröljük a localStorage-ot és navigáljunk el, akár sikerült, akár nem
+        localStorage.removeItem('authUser')
+        localStorage.removeItem('authToken')
+        localStorage.clear()
+        sessionStorage.clear()
+        this.$router.push('/')
         this.deleteLoading = false
       }
     }

@@ -1,13 +1,8 @@
-/**
- * USER API routes 
- */
 
 const express = require('express');
 const userController = require('../../../controllers/user.controller');
 const { success, error } = require('../../../service/helpers/api-response.helper');
-const asyncHandler = require('../../../service/middlewares/async-handler.middleware');
-const { validateRequired, validateEmailTemplate } = require('../../../service/middlewares/request-validation.middleware');
-const { authenticateToken } = require('../../../service/middlewares/auth.middleware');
+const { asyncHandler, authenticateToken, validateRequired, validateEmailTemplate } = require('../../../service/middlewares');
 
 module.exports = (User) => {
   const router = express.Router();
@@ -24,11 +19,8 @@ module.exports = (User) => {
       const result = await userController.login(username, password);
 
       if (!result.success) {
-
-        const msg = result.error === 'INVALID_CREDENTIALS'
-          ? 'Invalid username or password'
-          : 'Server error occurred';
-        return error(res, msg, 401);
+        // A hibakódot errorCode mezőben visszaadjuk
+        return error(res, '', 401, result.error || 'INVALID_CREDENTIALS');
       }
 
 
@@ -42,7 +34,17 @@ module.exports = (User) => {
       });
     })
   );
-
+  router.put('/profile',
+    authenticateToken,
+    asyncHandler(async (req, res) => {
+      const { fullName, username, email } = req.body;
+      const result = await userController.updateProfile(req.user.id, { fullName, username, email });
+      if (!result.success) {
+        return error(res, '', 400, result.message || 'UPDATE_FAILED');
+      }
+      return success(res, 'Profil frissítve', { user: result.user });
+    })
+  );
   // POST /register
   router.post('/register',
     //Username, jelszó, email és teljes név meg van adva?
@@ -58,10 +60,8 @@ module.exports = (User) => {
           user: result.user
         });
       } catch (err) {
-        const msg = err.message === 'USERNAME_TAKEN'
-          ? 'Username already taken'
-          : 'Email already in use';
-        return error(res, msg, 409);
+        const errorCode = err.message === 'USERNAME_TAKEN' ? 'USERNAME_TAKEN' : 'EMAIL_TAKEN';
+        return error(res, '', 409, errorCode);
       }
     })
   );
@@ -77,7 +77,7 @@ module.exports = (User) => {
       const result = await userController.forgotPassword(email, emailTemplate);
 
       if (!result.success && result.error === 'EMAIL_FAILED') {
-        return error(res, 'Email sending failed', 500);
+        return error(res, '', 500, 'EMAIL_FAILED');
       }
 
       return success(res, 'Password recovery email sent');
@@ -93,10 +93,8 @@ module.exports = (User) => {
       const result = await userController.resetPassword(token, password);
 
       if (!result.success) {
-        const msg = result.error === 'INVALID_TOKEN'
-          ? 'Invalid or expired token'
-          : 'Token expired';
-        return error(res, msg, 400);
+        const errorCode = result.error === 'INVALID_TOKEN' ? 'INVALID_TOKEN' : 'TOKEN_EXPIRED';
+        return error(res, '', 400, errorCode);
       }
 
       return success(res, 'Password reset successful');
@@ -110,7 +108,7 @@ module.exports = (User) => {
       const result = await userController.getUserProfile(req.user.id);
 
       if (!result.success) {
-        return error(res, 'User not found', 404);
+        return error(res, '', 404, 'USER_NOT_FOUND');
       }
 
       return success(res, 'Profile retrieved', {
@@ -133,10 +131,8 @@ module.exports = (User) => {
       const result = await userController.changePassword(req.user.id, currentPassword, newPassword);
 
       if (!result.success) {
-        const msg = result.error === 'INVALID_CURRENT_PASSWORD'
-          ? 'Current password is incorrect'
-          : 'Server error occurred';
-        return error(res, msg, result.error === 'INVALID_CURRENT_PASSWORD' ? 400 : 500);
+        const statusCode = result.error === 'INVALID_CURRENT_PASSWORD' ? 400 : 500;
+        return error(res, '', statusCode, result.error || 'PASSWORD_CHANGE_FAILED');
       }
 
       return success(res, 'Password changed successfully');
@@ -150,7 +146,7 @@ module.exports = (User) => {
       const result = await userController.deleteAccount(req.user.id);
 
       if (!result.success) {
-        return error(res, 'Server error occurred', 500);
+        return error(res, '', 500, 'DELETE_ACCOUNT_FAILED');
       }
 
       return success(res, 'Account deleted successfully');
@@ -167,10 +163,8 @@ module.exports = (User) => {
       const result = await userController.updateColorSeason(req.user.id, season);
 
       if (!result.success) {
-        const msg = result.error === 'INVALID_SEASON'
-          ? 'Invalid season'
-          : 'Server error occurred';
-        return error(res, msg, result.error === 'INVALID_SEASON' ? 400 : 500);
+        const statusCode = result.error === 'INVALID_SEASON' ? 400 : 500;
+        return error(res, '', statusCode, result.error || 'INVALID_SEASON');
       }
 
       return success(res, 'Color season updated', {
@@ -186,7 +180,7 @@ module.exports = (User) => {
       const result = await userController.getAnalysesResults(req.user.id);
 
       if (!result.success) {
-        return error(res, 'Failed to get analyses results', 500);
+        return error(res, '', 500, 'GET_ANALYSES_FAILED');
       }
 
       return success(res, 'Analyses results retrieved', result.data);

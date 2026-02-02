@@ -128,29 +128,14 @@ async function analyzeSkin(imagePath) {
  * Betölti a bőrtípushoz tartozó ápolási protokollt
  */
 async function getSkinProtocol(skinType) {
-  try {
-    const protocolPath = path.join(__dirname, '..', '..', '..', 'ML', 'protocols', 'skin', `${skinType}.json`);
+  const protocolPath = path.join(__dirname, '..', '..', '..', 'ML', 'protocols', 'skin', `${skinType}.json`);
 
-    try {
-      const data = await fs.readFile(protocolPath, 'utf-8');
-      return {
-        success: true,
-        data: JSON.parse(data)
-      };
-    } catch (err) {
-      return {
-        success: false,
-        error: 'PROTOCOL_NOT_FOUND',
-        message: 'Az ápolási protokoll nem található.'
-      };
-    }
+  try {
+    const data = await fs.readFile(protocolPath, 'utf-8');
+    return { success: true, data: JSON.parse(data) };
   } catch (err) {
     console.error('Error loading protocol:', err);
-    return {
-      success: false,
-      error: 'PROTOCOL_ERROR',
-      message: 'Hiba történt az ápolási protokoll betöltése során.'
-    };
+    return { success: false, error: 'PROTOCOL_NOT_FOUND', message: 'Az ápolási protokoll nem található.' };
   }
 }
 

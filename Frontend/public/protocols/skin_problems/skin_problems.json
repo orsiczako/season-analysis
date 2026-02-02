@@ -1,0 +1,155 @@
+{
+    "skinProblemsDatabase": {
+        "acneMasterProtocol": {
+            "metaData": {
+                "problemId": "activeAcne",
+                "displayName": "Pattanások ",
+                "description": "Stratégia a gyulladás lehúzására.",
+                "tags": [
+                    "gyulladás",
+                    "baktérium",
+                    "nyugtatás"
+                ]
+            },
+            "visualDiagnostics": {
+                "symptoms": "Jellemzően vöröses színű, kiemelkedő bőrelváltozások, amelyek nyomásérzékenyek lehetnek. Egyes esetekben fehéres vagy sárgás lehet a középpontjuk.",
+                "locationLogic": "Az állvonal környékén megjelenő pattanások gyakran összefüggésbe hozhatók hormonális hatásokkal, míg a homlokon jelentkezők esetében külső irritáló tényezők (például hajápolási termékek, izzadás, bőrfedés) is szerepet játszhatnak.",
+                "whatNotToDo": "Az elváltozások nyomkodása kerülendő, különösen akkor, ha nem látható fehér vagy sárgás középpont, mivel ez fokozhatja a gyulladást és növelheti a hegesedés kockázatát."
+            },
+            "routineAddons": {
+                "cleansingTweak": "Használj szalicilsavas (BHA) lemosót vagy gélt naponta egyszer, inkább este. Ez segít tisztán tartani a pórusokat és csökkenti a mitesszereket és gyulladást. Ne erőltesd többször naponta, mert irritációt okozhat.",
+                "treatmentStep": "Helyi kezelés: a spot-treatment krémeket vagy géleket csak a problémás pöttyre vidd fel — ne vastagon az egész arcra. A benzoil-peroxid baktériumölő, a azelaic sav pedig gyulladást csökkent és a foltokat is segíti.",
+                "emergencyHack": "Pimple Patch (Pattanástapasz). Éjszakára ragaszd le, ez kiszívja a váladékot, ráadásul megakadályozza, hogy piszkáld."
+            },
+            "makeupAdjustments": {
+                "színKorrekció": "Ha szeretnéd a pirosságot eltüntetni: használj zöld korrektort, de csak vékonyan, alapozó előtt.",
+                "technika": "Óvatos, ütögető mozdulatokkal vidd fel a korrektort és az alapozót a jobb fedés érdekében.",
+                "higiénia": "Minden használat után mosd ki az ecseteid, vagy használj eldobható szivacsot a fertőzött területeken."
+            },
+            "ingredientLogic": {
+                "hero": "Benzoyl Peroxide (baktériumölő), Azelaic Acid - csökkenti a gyulladást, pirosságot és később a foltokat is segít eltűntetni.",
+                "avoid": "Kókuszolaj, Shea vaj (eltömít)."
+            }
+        },
+        "miliaMasterProtocol": {
+            "metaData": {
+                "problemId": "milia",
+                "displayName": "Milia / Gríz",
+                "description": "Apró, fehér, a bőr felszíne alatt ülő elváltozások megjelenésének csökkentése. Lassú folyamat, kíméletes megközelítést igényel.",
+                "tags": [
+                    "keratin",
+                    "elzáródás",
+                    "hámlasztás"
+                ]
+            },
+            "visualDiagnostics": {
+                "symptoms": "Apró, kemény, gyöngyházfehér golyók a bőr alatt. Nem piros, nem fáj, nem lehet kinyomni.",
+                "locationLogic": "Leggyakrabban a szemkörnyéken és az arccsont tetején.",
+                "rootCause": "Gyakran a bőr természetes hámlásának zavara áll a háttérben, amikor a keratin nem tud kiürülni. Ezt fokozhatja a túl nehéz, zsíros krémek használata különösen vékony bőrterületeken."
+            },
+            "routineAddons": {
+                "cleansingTweak": "Dupla tisztítás kötelező, különösen olajos lemosóval.",
+                "treatmentStep": "Enyhe kémiai hámlasztók (például AHA) vagy retinoidok segíthetnek a bőr megújulásában, így idővel a milia felszínre kerülhet vagy eltűnhet. A hatás fokozatos, nem azonnali.",
+                "criticalWarning": "Soha ne próbáld kinyomni otthon! Csak felsérted a bőrt. Kozmetikus vagy bőrgyógyász steril tűvel szedi ki."
+            },
+            "makeupAdjustments": {
+                "foundationTexture": "Kerüld a vastag, teljes fedésű alapozókat ezen a területen, mert 'domborzati térképet' csinálnak a miliából.",
+                "productSelection": "Válts folyékony, könnyű textúrákra a szem alatt."
+            },
+            "ingredientLogic": {
+                "hero": "Glycolic Acid (AHA), Retinol.",
+                "avoid": "Nehéz olajok, vazelin a szemkörnyéken."
+            }
+        },
+        "bagsMasterProtocol": {
+            "metaData": {
+                "problemId": "eyeBags",
+                "displayName": "Szem alatti Táskák",
+                "description": "A szem alatti duzzanat megjelenésének csökkentése, főként hűtéssel és a folyadék-visszatartás mérséklésével.",
+                "tags": [
+                    "szemkörnyék",
+                    "duzzanat",
+                    "nyirokkeringés"
+                ]
+            },
+            "visualDiagnostics": {
+                "symptoms": "Puffadt, kiemelkedő párnák a szem alatt. Reggel általában rosszabb.",
+                "test": "Ha felfelé nézel, és a táska láthatóbbá válik, akkor zsírpárna. Ha reggel rosszabb, de este jobb, akkor vízfelgyülemlés.",
+                "lifestyleLink": "Túl sok sós étel, alkohol vagy kevés alvás azonnal meglátszik."
+            },
+            "routineAddons": {
+                "tool": "Jade roller vagy hideg kanál reggel. A hideg összehúzza az ereket.",
+                "creamApplication": "Szemkörnyékápolót 'pöttyözz' (tapping), ne húzz! A nyirokkeringést a belső szemzugtól kifelé haladva simítsd.",
+                "storage": "Tartsd a szemkrémedet a hűtőben."
+            },
+            "makeupAdjustments": {
+                "concealerTrick": "A táska 'árnyékát' kell világosítani, nem magát a táskát! Ha a duzzanatra teszel világosat, még nagyobbnak tűnik. Csak a táska alatti sötét árokba tegyél korrektort.",
+                "colorTheory": "Barack (Peach) színű korrektor semlegesíti a táska kékes árnyékát."
+            },
+            "ingredientLogic": {
+                "hero": "Koffein (Caffeine - vízhajtó), Zöld tea kivonat, Peptidek.",
+                "avoid": "Túl zsíros szemkrémek éjszakára (bedagasztják a szemet)."
+            }
+        },
+        "whiteheadMasterProtocol": {
+            "metaData": {
+                "problemId": "whiteheads",
+                "displayName": "Fehér Mitesszerek (Congestion Protocol)",
+                "description": "Stratégia az eltömődött, de nem gyulladt pórusok ellen.",
+                "tags": [
+                    "pórusok",
+                    "tisztítás",
+                    "BHA"
+                ]
+            },
+            "visualDiagnostics": {
+                "symptoms": "Apró, fehér vagy sárgás pöttyök, vagy bőrszínű rücskök (zárt komedók).",
+                "texture": "Ha megfeszíted a bőrt (pl. álladon), sok kis 'darára' emlékeztető dudor látszik.",
+                "difference": "Különbözik a pattanástól, mert nem piros és nem fáj."
+            },
+            "routineAddons": {
+                "cleansingTweak": "Olajos lemosó (Oil Cleansing) elengedhetetlen! Az 'olaj oldja az olajat' elv alapján ez szedi ki legjobban a dugókat.",
+                "activeIngredient": "BHA (Szalicilsav) vagy Agyagmaszk. Ezek behatolnak a pórus mélyére.",
+                "technique": "Fiddy Snipes módszer (Heti 1x): BHA folyadék -> Agyagmaszk -> Olajos masszázs."
+            },
+            "makeupAdjustments": {
+                "primer": "Kerüld a szilikonos primereket, ha hajlamos vagy eltömődésre. Használj vizes bázisú primert.",
+                "foundation": "Non-comedogenic (nem mitesszerképző) feliratot keress."
+            },
+            "ingredientLogic": {
+                "hero": "Salicylic Acid (BHA), Kaolin Clay (agyag), Jojoba olaj.",
+                "avoid": "Isopropyl Myristate, Kókuszolaj (erősen komedogén)."
+            }
+        },
+        "rednessMasterProtocol": {
+            "metaData": {
+                "problemId": "rednessRosacea",
+                "displayName": "Pirosság / Érzékenység (Calm Down Protocol)",
+                "description": "Az irritáció, rosacea-hajlam és a 'lángoló arc' hűtése.",
+                "tags": [
+                    "érzékenység",
+                    "nyugtatás",
+                    "barrier"
+                ]
+            },
+            "visualDiagnostics": {
+                "symptoms": "Bőröd könnyen kipirul (hidegre, melegre, fűszeresre). Látható hajszálerek az orr tövénél.",
+                "feeling": "Égő, viszkető vagy feszülő érzés.",
+                "triggerWarning": "A forró víz és a dörzsölés ellenség."
+            },
+            "routineAddons": {
+                "cleansingTweak": "Langyos víz! Sose moss arcot forró vízben zuhany alatt. Törölközővel ne dörzsöld, csak itasd fel.",
+                "products": "Barrier-erősítő krémek (Ceramidok). Minél kevesebb összetevő, annál jobb.",
+                "mist": "Használj nyugtató arcpermetet napközben."
+            },
+            "makeupAdjustments": {
+                "baseCorrection": "Zöld (Green) primer vagy CC krém. A zöld szín a színkörön a piros ellentéte, így semlegesíti a 'lángolást'.",
+                "foundationTone": "Kerüld a rózsaszín tónusú alapozókat (ez csak fokozza a hatást). Válassz sárgás/meleg tónust, ami ellensúlyoz."
+            },
+            "ingredientLogic": {
+                "hero": "Centella Asiatica (Cica), Azelaic Acid (zseniális pirosság ellen), Panthenol.",
+                "avoid": "Alkohol, Illatanyagok (Fragrance), Illóolajok (pl. levendula, mentol - ezek irritálnak!), Fizikai radírok."
+            }
+        }
+    }
+}

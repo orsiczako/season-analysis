@@ -39,7 +39,7 @@
         <div v-if="user" class="user-profile">
           <!--A usernek mini avatar a kezdőbetűjéből-->
           <div class="user-avatar">
-            {{ ((user.fullName).charAt(0).toUpperCase()) }}
+            {{ (user?.fullName ? user.fullName.charAt(0).toUpperCase() : '?') }}
           </div>
           <div class="user-details">
             <div class="user-name">
@@ -159,6 +159,29 @@
               <div class="feature-cta">
                 <span class="cta-text">{{ module.ctaText }}</span>
                 <span class="cta-arrow-text">→</span>
+              </div>
+            </div>
+
+            <!-- Videó/Info szekció jobb oldalon -->
+            <div v-if="module.media" class="feature-media">
+              <div class="media-card">
+                <div v-if="module.media.type === 'video'" class="video-wrapper">
+                  <video 
+                    :src="module.media.src" 
+                    :poster="module.media.poster"
+                    controls
+                    playsinline
+                    class="tutorial-video"
+                  />
+                </div>
+                <div v-else-if="module.media.type === 'image'" class="image-wrapper">
+                  <img :src="module.media.src" :alt="module.media.alt" class="tutorial-image" />
+                </div>
+                <div v-else class="placeholder-wrapper">
+                  <div class="placeholder-icon">▶</div>
+                  <span class="placeholder-text">{{ module.media.placeholder || 'Bemutató videó hamarosan' }}</span>
+                </div>
+                <p v-if="module.media.caption" class="media-caption">{{ module.media.caption }}</p>
               </div>
             </div>
           </div>
@@ -290,7 +313,6 @@ body {
   transform: translateX(-50%);
   gap: var(--space-2);
   animation: bounce 2s ease-in-out infinite;
-  /* Most már van definíciója! */
 }
 
 .scroll-text {
@@ -315,7 +337,7 @@ body {
 
 .feature-wrapper {
   display: grid;
-  grid-template-columns: 80px minmax(600px, 800px) 80rem;
+  grid-template-columns: 80px minmax(500px, 700px) minmax(300px, 450px);
   gap: var(--space-8);
   align-items: center;
   animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1);
@@ -452,7 +474,65 @@ body {
   transform: translateX(4px);
 }
 
+/* Feature Media Section */
+.feature-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 
+.media-card {
+  @include glass-card;
+  padding: var(--space-4);
+  width: 100%;
+  max-width: 400px;
+}
+
+.video-wrapper,
+.image-wrapper,
+.placeholder-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  aspect-ratio: 16 / 9;
+}
+
+.tutorial-video,
+.tutorial-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.placeholder-wrapper {
+  @include flex-col-center;
+  gap: var(--space-3);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border: 2px dashed var(--border-secondary);
+}
+
+.placeholder-icon {
+  font-size: var(--text-4xl);
+  color: var(--secondary-500);
+  opacity: 0.6;
+}
+
+.placeholder-text {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 0 var(--space-4);
+}
+
+.media-caption {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: var(--space-3);
+  line-height: 1.4;
+}
 
 @media (max-width: 1023px) {
 
@@ -513,7 +593,6 @@ body {
     font-size: var(--text-sm);
   }
 
-  /* 5. A LEÍRÁS - Ez az egyetlen, ami görgethető és rugalmas */
   .feature-description {
     flex-grow: 1;
     /* Kitölti az összes maradék helyet */
@@ -564,7 +643,8 @@ body {
   .scroll-indicator,
   .number-line,
   .number-text,
-  .header-nav {
+  .header-nav,
+  .feature-media {
     display: none !important;
   }
 
@@ -597,7 +677,6 @@ body {
 
   .hero-text {
     width: 100%;
-    /* Ez a kulcs: ha nem fér ki, akkor ITT görgessen, ne az oldalt tolja el */
     max-height: 100%;
     overflow-y: auto;
     padding: 0 5px;
@@ -660,6 +739,11 @@ body {
   /* A Hero cím betűméretét kicsit visszavesszük tableten */
   .hero-title {
     font-size: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* Tablet: elrejtjük a média szekciót */
+  .feature-media {
+    display: none;
   }
 
   /* A legfontosabb: A Feature Wrapper Grid átméretezése */
@@ -755,8 +839,27 @@ body {
   border-top: 1px solid var(--border-primary);
 }
 
+
 .nav-item {
   @include nav-item;
+  color: var(--text-primary);
+}
+
+.nav-item.is-active {
+  color: var(--text-primary) !important;
+}
+
+.user-avatar {
+  @include avatar-wrapper(40px);
+  background: var(--primary);
+  color: var(--text-primary);
+  @include flex-center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.theme-dark .user-avatar {
+  color: var(--text-primary);
 }
 
 .logout-btn {
@@ -844,5 +947,56 @@ body {
 .theme-dark .nav-menu * {
   color: var(--primary-700);
 
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+  .fullscreen-section {
+    height: auto !important;
+    min-height: 100vh;
+    padding: 60px var(--space-4) 40px !important;
+    overflow: visible !important;
+  }
+
+  .hero-section {
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 80px !important;
+  }
+
+  .hero-wrapper {
+    margin: 40px 0;
+  }
+
+  .feature-wrapper {
+    display: block !important;
+    height: auto !important;
+    margin: 20px 0;
+  }
+
+  .feature-main {
+    max-height: none !important;
+    overflow: visible !important;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .feature-description {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .scroll-container {
+    scroll-snap-type: none !important;
+    /* Kikapcsoljuk a "ragadós" görgetést */
+  }
+
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  .section-number {
+    display: none !important;
+  }
 }
 </style>

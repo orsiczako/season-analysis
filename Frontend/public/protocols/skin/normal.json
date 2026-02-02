@@ -1,0 +1,188 @@
+{
+  "normalSkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Normál Bőr (A 'Szerencsés' Típus)",
+      "version": "5.0 User-Friendly Edition",
+      "complexityLevel": "Könnyen érthető / Edukációs",
+      "description": "Gyakorlati útmutató arról, hogyan őrizd meg a bőröd tökéletes állapotát hosszú távon, és hogyan ne rontsd el felesleges termékekkel.",
+      "lastUpdated": "2024-Jelenleg",
+      "tags": ["megelőzés", "ragyogás", "egyszerű-rutin", "állagmegóvás"]
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "normalSkin",
+      "clinicalDefinition": "A bőröd pont jó: nem tocsog a zsírban, de nem is húzódik a szárazságtól. A védőréteged (barrier) erős és jól működik.",
+      "visualMapping": {
+        "Global_Face": {
+          "area": "Teljes arc",
+          "symptoms": "Egységes a bőrszíned, nincsenek nagy, feltűnő pórusaid (persze közelről mindenkin látszanak, ez természetes!)."
+        },
+        "Micro_Circulation": {
+          "area": "Orcák",
+          "symptoms": "Ha kipirulsz edzés után, az hamar elmúlik. A bőröd élettel teli, nem szürkés."
+        }
+      },
+      "sensoryAnalysis": {
+        "morning": "Ébredéskor nem feszül az arcod, és nem is érzed úgy, mintha olajba mártották volna. Egyszerűen 'kényelmes'.",
+        "midDay": "A sminked nem folyik le rólad délre, és nem is repedezik be.",
+        "touchTest": "Ha megsimítod, puha és rugalmas, nincsenek rajta érdes foltok."
+      },
+      "riskFactor": "A 'túl nagy nyugalom'. Mivel most nincs baj, hajlamos lehetsz ellustulni a fényvédelemmel. A mostani hanyagság viszont 10 év múlva ráncok formájában fog visszaköszönni."
+    },
+    "physiologicalBasis": {
+      "rootCause": "Szerencsés géneket örököltél: a bőröd pont annyi olajat termel, amennyi a puhasághoz kell, de nem többet. A sejtjeid szabályosan cserélődnek.",
+      "barrierStatus": "Erős, mint egy jó várfal. Nem engedi ki a vizet, és nem engedi be a bacikat.",
+      "metabolism": "A bőröd jól működik magától is, a feladatunk csak annyi, hogy támogassuk ebben, nem pedig, hogy átvegyük az irányítást."
+    },
+    "coreMethodologies": {
+      "StatusQuoMaintenance": "A legfontosabb szabály: Ne rontsd el! Ne használj túl erős, maró hatású szereket, mert csak felborítod a bőröd természetes békéjét.",
+      "TheGlowProtocol": "Mivel nincsenek pattanások, amiket takargatni kell, koncentrálj a bőrfényre (Glow)! A cél az üde, kipihent hatás.",
+      "AntioxidantBanking": "Gondolj a jövőre! Amit ma felkensz (C-vitamin, fényvédő), azzal a 40 éves kori önmagadnak spórolsz meg ráncokat.",
+      "MicroDosing": "Ha erős hatóanyagot (pl. retinol) szeretnél próbálni, csak nagyon kicsit használj. A bőrödnek nincs szüksége drasztikus beavatkozásra."
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1_Cleansing": {
+          "goal": "Gyengéd ébresztés.",
+          "product": "Sima langyos víz VAGY egy nagyon híg, nem habzó lemosó.",
+          "technique": "Reggel a normál bőrnek gyakran felesleges a tisztítószer. A túl sok mosás csak gyengíti a védekező képességét. Egy frissítő öblítés elég."
+        },
+        "step2_Essence": {
+          "goal": "Extra ragyogás.",
+          "product": "Esszencia vagy hidratáló permet.",
+          "benefit": "Olyan ez a bőrnek, mint egy pohár víz ébredés után. Feltölti és előkészíti a krémekre."
+        },
+        "step3_FunctionalSerums": {
+          "primary": "C-vitamin szérum (Antioxidáns)",
+          "reason": "Ez a bőröd testőre. Láthatatlan pajzsot képez a szmog, a stressz és a napsugárzás káros hatásaival szemben.",
+          "secondary": "Peptid szérum",
+          "reason": "Ha már elmúltál 25, ez segít megőrizni a bőröd rugalmasságát ('hogy ne ereszkedjen meg')."
+        },
+        "step4_Moisturizing": {
+          "concept": "Csak lazán.",
+          "product": "Könnyű Gél-Krém vagy Lotion.",
+          "technique": "Nem kell vastagon kenni! Egy borsónyi mennyiség elég az egész arcra, hogy bezárd a nedvességet."
+        },
+        "step5_SunProtection": {
+          "critical": "Ez az egyetlen lépés, amit TILOS kihagyni.",
+          "formula": "Könnyed, modern fényvédő (SPF 30 vagy 50).",
+          "finish": "Olyat válassz, amit szívesen kensz fel, és nem érzed maszknak. Normál bőrön szinte mindegyik jól működik."
+        }
+      },
+      "eveningRegimen": {
+        "step1_DoubleCleansing": {
+          "goal": "A nap levakarása.",
+          "phase1": "Micellás víz vagy olajos lemosó (ha sminkelsz).",
+          "phase2": "Kímélő, vizes bázisú lemosó.",
+          "rule": "Este alaposnak kell lenni: a tiszta bőr tud csak éjszaka regenerálódni."
+        },
+        "step2_ActiveTreatments": {
+          "concept": "Váltogatós módszer (Skin Cycling) - hogy ne und meg.",
+          "Night1_Exfoliation": "Gyengéd hámlasztó (AHA sav) - ez leszedi az elhalt hámsejteket, hogy a bőröd 'babapopsi' simaságú legyen.",
+          "Night2_Retinoid": "Retinol (kicsi dózisban) - ez serkenti a sejteket, hogy frissek maradjanak. Megelőzi a ráncokat.",
+          "Night3_4_Recovery": "Pihenőnapok: Csak hidratálás. Hagyd a bőrödet is pihenni!"
+        },
+        "step3_NightCream": {
+          "goal": "Töltődés.",
+          "product": "Hidratáló krém antioxidánsokkal (pl. Q10).",
+          "tip": "Ne legyen túl zsíros a krém! A bőröd termel magától is olajat, ha túl zsírosat kensz rá, lusta lesz, vagy apró grízek (milia) jelenhetnek meg."
+        }
+      },
+      "weekendSpaProtocol": {
+        "frequency": "Heti 1-szer, amikor van időd magadra.",
+        "steps": [
+          "Egy gyengéd, nem-dörzsölős peeling (enzimes).",
+          "Egy C-vitaminos fátyolmaszk (Sheet Mask) a 'wow' hatásért.",
+          "Egy kis arcmasszázs (kézzel vagy rollerrel), hogy felpezsdítsd a vérkeringést."
+        ]
+      }
+    },
+    "ingredientArchitecture": {
+      "heroIngredients": [
+        {
+          "name": "C-vitamin",
+          "role": "A Testőr",
+          "synergy": "Reggel használd a fényvédő alá, így extra védelmet adsz a bőrödnek."
+        },
+        {
+          "name": "Peptidek",
+          "role": "A Személyi Edző",
+          "importance": "Edzésben tartják a bőrt, hogy feszes maradjon."
+        },
+        {
+          "name": "Fermentált összetevők",
+          "role": "A Bőrflóra Barátja",
+          "benefit": "Segítenek fenntartani a bőröd természetes, egészséges baktériumflóráját."
+        },
+        {
+          "name": "Niacinamide (kis mennyiségben)",
+          "role": "A Kiegyensúlyozó",
+          "note": "Segít, hogy a pórusaid ne táguljanak ki, és a bőrkép egységes maradjon."
+        }
+      ],
+      "riskyCombinations": [
+        "Túl sok minden egyszerre: Ha egy este kensz fel savat, retinolt és C-vitamint, azzal még a normál bőrt is 'megégetheted'.",
+        "Nehéz olajok (pl. Kókuszolaj): Feleslegesen eltömíthetik a pórusaidat, ne kockáztass pattanásokat."
+      ]
+    },
+    "professionalMakeupArtistry": {
+      "prepAndPrime": {
+        "philosophy": "A kevesebb több.",
+        "strategy": "Neked valószínűleg nem is kell primer (sminkalap). A hidratált bőröd a legjobb tapadófelület.",
+        "ifNeeded": "Ha mégis szeretnél: válassz egy fényes (illuminating) primert az extra csillogásért."
+      },
+      "foundationEngineering": {
+        "textureMatch": "Színezett hidratáló, BB krém vagy nagyon vékony alapozó.",
+        "technique": "Ne maszkold el magad! Csak oda tegyél korrektort, ahol tényleg kell (pl. szem alatt). Hagyd, hogy a szép bőröd látszódjon!",
+        "goal": "Azt mondják: 'Milyen szép a bőröd!', ne azt, hogy 'Milyen szép az alapozód!'."
+      },
+      "powderStrategy": {
+        "targeted": "Csak a homlokodra és orrodra tegyél pici púdert, ha nem szereted, hogy fénylik. Az arcod többi részét hagyd szabadon ragyogni.",
+        "product": "Áttetsző por."
+      },
+      "fixation": {
+        "mistSelection": "Egy egyszerű fixáló permet, ami nem mattít le teljesen, de nem is csinál diszkógömböt az fejedből."
+      }
+    },
+    "troubleshootingAndCrisisManagement": {
+      "scenario_ProductOverload": {
+        "symptoms": "Apró piros pöttyök a száj vagy orr körül, miután kipróbáltál valami újat.",
+        "fix": "Ez a 'túlkezelés' jele. Unalmadban sokat kísérleteztél? Hagyj abba mindent! 1 hétig csak langyos víz. A bőröd meggyógyítja magát."
+      },
+      "scenario_SeasonalDullness": {
+        "symptoms": "Télen kicsit szürkébbnek látod az arcod.",
+        "fix": "Használj picit több C-vitamint, és iktass be heti kétszer egy gyengéd hámlasztást."
+      },
+      "scenario_SuddenDryness": {
+        "symptoms": "Repülés vagy utazás után feszül a bőröd.",
+        "fix": "Csinálj egy 3 napos fátyolmaszk-kúrát (minden este egy maszk). Pikk-pakk helyreáll a rend."
+      }
+    },
+    "seasonalAdaptationStrategy": {
+      "Spring": {
+        "focus": "Ébresztő.",
+        "action": "Jöhetnek a ragyogásfokozó szérumok, és válthatsz könnyebb krémre."
+      },
+      "Summer": {
+        "focus": "Védelem.",
+        "action": "Reggel elég lehet a szérum + fényvédő. A hidratálót elhagyhatod, ha meleged van. Este viszont moss arcot alaposan a naptej miatt!"
+      },
+      "Autumn": {
+        "focus": "Megújulás.",
+        "action": "Ilyenkor érdemes elkezdeni a retinolozást vagy hámlasztást, hogy kijavítsd a nyári 'bűnöket'."
+      },
+      "Winter": {
+        "focus": "Támogatás.",
+        "action": "Ha fűtenek és száraz a levegő, tegyél egy csepp olajat az esti krémedbe, hogy ne száradj ki."
+      }
+    },
+    "holisticLifestyleFactors": {
+      "dietaryInputs": {
+        "colorfulPlate": "Egyél sok színes zöldséget-gyümölcsöt. Ez olyan, mint egy 'belső naptej', segít megőrizni a bőröd fiatalságát.",
+        "sugar": "A túl sok cukor sajnos a normál bőrt is öregíti (megkeményíti a rugalmas rostokat). Csínján bánj az édességgel!"
+      },
+      "circadianRhythm": {
+        "sleep": "A szépítő alvás nem mítosz. Éjfél és hajnal 2 között dolgozik a bőröd a legkeményebben a regenerálódáson. Próbálj meg időben lefeküdni!"
+      }
+    }
+  }
+}

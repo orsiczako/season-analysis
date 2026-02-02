@@ -1,7 +1,6 @@
 <template>
   <div class="module-layout">
     <AnimatedBackground />
-
     <PageHeader back-to="/dashboard" />
 
     <div class="module-content">
@@ -10,7 +9,16 @@
           Bőrelemzés AI-al
         </h1>
 
-        <div v-if="!analysisResult && !isAnalyzing" class="upload-card">
+        <div v-if="isLoadingPage" class="upload-card">
+          <div class="analyzing-state">
+            <div class="spinner" />
+            <p class="analyzing-text">
+              Adatok betöltése...
+            </p>
+          </div>
+        </div>
+
+        <div v-if="!analysisResult && !isAnalyzing && !isLoadingPage" class="upload-card">
           <div class="upload-section">
             <div class="icon-wrapper">
               <img src="/media/ai.png" alt="Bőrelemzés" class="feature-icon">
@@ -31,9 +39,7 @@
                 @change="handleFileSelect">
               <BaseButton v-if="!selectedFile" variant="primary" size="lg" :disabled="isAnalyzing"
                 @click="triggerFileInput">
-                <span class="button-content">
-                  Kép kiválasztása
-                </span>
+                <span class="button-content">Kép kiválasztása</span>
               </BaseButton>
             </div>
 
@@ -51,7 +57,7 @@
                 <BaseButton variant="primary" size="lg" @click="analyzeImage">
                   Elemzés indítása
                 </BaseButton>
-                <BaseButton variant="outline" size="md" @click="clearSelection">
+                <BaseButton variant="secondary" size="md" @click="clearSelection">
                   Törlés
                 </BaseButton>
               </div>
@@ -59,7 +65,7 @@
           </div>
         </div>
 
-        <div v-if="isAnalyzing" class="upload-card">
+        <div v-if="isAnalyzing && !isLoadingPage" class="upload-card">
           <div class="analyzing-state">
             <div class="spinner" />
             <p class="analyzing-text">
@@ -71,13 +77,10 @@
           </div>
         </div>
 
-        <div v-if="analysisResult && !isAnalyzing" class="success-container">
+        <div v-if="analysisResult && !isAnalyzing && !isLoadingPage" class="success-container">
           <div class="success-card">
             <div class="success-icon">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round" stroke-linejoin="round" />
-                <polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <CheckCircle :size="64" />
             </div>
             <h2 class="success-title">
               Elemzés sikeres!
@@ -93,8 +96,9 @@
             <div v-if="detectedProblems.length > 0" class="problems-result">
               <span class="result-label">Észlelt bőrproblémák:</span>
               <div class="problems-tags">
-                <span v-for="problem in detectedProblems" :key="problem.problem" class="problem-tag">
-                  {{ problem.name_hu }}
+                <span v-for="problem in detectedProblems" :key="problem.problem || problem.name_hu || problem"
+                  class="problem-tag">
+                  {{ getProblemLabel(problem) }}
                 </span>
               </div>
             </div>
@@ -109,7 +113,7 @@
               <BaseButton variant="primary" size="sm" @click="goToResults">
                 Eredmények megtekintése
               </BaseButton>
-              <BaseButton variant="outline" size="sm" @click="resetAnalysis">
+              <BaseButton variant="secondary" size="sm" @click="resetAnalysis">
                 Új elemzés
               </BaseButton>
             </div>
@@ -130,96 +134,124 @@
     </div>
   </div>
 </template>
-
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+//Reaktív változók,származtatott érték és komponens importok  
+import { ref, computed, onMounted, watch } from 'vue'
+// Vue Router használata az oldalváltáshoz
+import { useRouter, useRoute } from 'vue-router'
+import { CheckCircle } from 'lucide-vue-next'
 import AnimatedBackground from '@/layouts/AnimatedBackground.vue'
 import PageHeader from '@/components/common/layout/PageHeader.vue'
 import BaseButton from '@/components/common/base/BaseButton.vue'
 import { apiClient, userService } from '@/services'
-import { useLocalStorage } from '@/composables/useLocalStorage'
+import { useAuth } from '@/composables/useAuth'
 
 const router = useRouter()
+const route = useRoute()
 const fileInput = ref(null)
 const selectedFile = ref(null)
 const previewUrl = ref(null)
-const isAnalyzing = ref(false)
+
+// Állapotjelzők
+const isAnalyzing = ref(false)     // Képelemzés folyamatban
+const isLoadingPage = ref(true)    //Oldal betöltése
 const analysisResult = ref(null)
 const errorMessage = ref(null)
 
-const SESSION_STORAGE_KEY = 'skin_analysis_result'
-
 const detectedProblems = computed(() => {
+  //Csak akkor megy a következőre, ha van analysisResult és benne analysis és skinProblems és detected, hogy ne legyen undefined -> üres tömb
   return analysisResult.value?.analysis?.skinProblems?.detected || []
 })
 
-onMounted(async () => {
-  // 1. Session Storage ellenőrzése
-  try {
-    const storedResult = sessionStorage.getItem(SESSION_STORAGE_KEY)
-    if (storedResult) {
-      analysisResult.value = JSON.parse(storedResult)
-      return
-    }
-  } catch (err) { console.error(err) }
+// Ez a függvény tölti be az adatokat induláskor
+const loadInitialData = async () => {
+  isLoadingPage.value = true // Betöltés indul
 
-  // 2. Local Storage (cache) ellenőrzése
   try {
-    const { getAnalysisResult, getUserId } = useLocalStorage()
+    const { setAnalysisResult, getUserId } = useAuth()
     const userId = getUserId()
-    if (userId) {
-      const cached = getAnalysisResult(userId)
-      if (cached) {
-        analysisResult.value = (!cached.analysis && cached.skinType) ? { analysis: cached } : cached
-        sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(analysisResult.value))
-        return
-      }
-    }
-  } catch (err) { console.error(err) }
 
-  // 3. API lekérés (ha nincs cache)
-  try {
+    // MINDIG az API-ból töltünk, cache-t kikerüljük (hogy friss adatot kapjunk)
     const res = await userService.getAnalysesResults()
-    if (res.success && res.data?.skinAnalysis) {
-      analysisResult.value = (!res.data.skinAnalysis.analysis && res.data.skinAnalysis.skinType)
-        ? { analysis: res.data.skinAnalysis }
-        : res.data.skinAnalysis
 
+    // Itt a kulcs: Ha van eredmény, mentsük el. Ha nincs, legyen NULL.
+    if (res.success && res.data?.skinAnalysis) {
+      const skinAnalysisData = res.data.skinAnalysis
+
+      // Formátálás: az API skinProblems lehet tömb vagy objektum
+      // Ha tömb, csomagoljuk { detected: [...] } formátumba
+      let detectedProblems = []
+      if (Array.isArray(skinAnalysisData.skinProblems)) {
+        // Ha csak sima tömb, már formázott vagy stringek
+        detectedProblems = skinAnalysisData.skinProblems
+      } else if (skinAnalysisData.skinProblems?.detected) {
+        // Ha már { detected: [...] } formátum
+        detectedProblems = skinAnalysisData.skinProblems.detected
+      }
+
+      analysisResult.value = {
+        analysis: {
+          skinType: skinAnalysisData.skinType,
+          skinProblems: {
+            detected: detectedProblems
+          },
+          analyzedAt: skinAnalysisData.analyzedAt
+        }
+      }
+
+      // Protocol adatok hozzáadása, ha vannak
       if (res.data.protocol) {
         analysisResult.value.protocol = res.data.protocol
       }
+      if (res.data.problemsProtocol) {
+        analysisResult.value.problemsProtocol = res.data.problemsProtocol
+      }
 
       // Cache mentése
-      try {
-        const { setAnalysisResult, getUserId } = useLocalStorage()
-        const userId = getUserId()
-        if (userId) setAnalysisResult(analysisResult.value, userId)
-        sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(analysisResult.value))
-      } catch (err) { console.error(err) }
+      if (userId) setAnalysisResult(analysisResult.value, userId)
+
+    } else {
+      // Ha nincs adat az adatbázisban, explicit nullázzuk, hogy megjelenjen az Upload kártya
+      analysisResult.value = null
     }
-  } catch (err) { console.error(err) }
+
+  } catch (err) {
+    console.error('Hiba az adatok betöltésekor:', err)
+    // Hiba esetén is nullázunk, hogy a felhasználó tudjon új elemzést indítani
+    analysisResult.value = null
+  } finally {
+    // Bármi történik, a töltést leállítjuk, így megjelenik a felület
+    isLoadingPage.value = false
+  }
+}
+
+onMounted(() => {
+  loadInitialData()
 })
 
-const triggerFileInput = () => {
-  fileInput.value?.click()
-}
+// Figyeljük a route változását (navigációt), és újratöltjük az adatokat
+watch(
+  () => route.fullPath,
+  () => {
+    loadInitialData()
+  }
+)
+
+// ... A többi függvény (triggerFileInput, handleFileSelect, stb.) marad változatlan ...
+const triggerFileInput = () => { fileInput.value?.click() }
 
 const handleFileSelect = (event) => {
   const file = event.target.files[0]
   if (!file) return
-
   if (file.size > 10 * 1024 * 1024) {
     errorMessage.value = 'A fájl mérete túl nagy! Maximum 10MB lehet.'
     return
   }
-
   const validTypes = ['image/jpeg', 'image/jpg', 'image/png']
   if (!validTypes.includes(file.type)) {
     errorMessage.value = 'Érvénytelen fájlformátum! Csak JPG és PNG képek engedélyezettek.'
     return
   }
-
   selectedFile.value = file
   previewUrl.value = URL.createObjectURL(file)
   errorMessage.value = null
@@ -228,32 +260,27 @@ const handleFileSelect = (event) => {
 const clearSelection = () => {
   selectedFile.value = null
   previewUrl.value = null
-  if (fileInput.value) {
-    fileInput.value.value = ''
-  }
+  if (fileInput.value) fileInput.value.value = ''
 }
 
 const analyzeImage = async () => {
   if (!selectedFile.value) return
-
   isAnalyzing.value = true
   errorMessage.value = null
-
   try {
     const formData = new FormData()
     formData.append('image', selectedFile.value)
-
     const response = await apiClient.post('/api/ai/analyze-skin', formData)
-
     if (response.data?.success) {
       analysisResult.value = {
         analysis: response.data.analysis,
         protocol: response.data.protocol,
         problemsProtocol: response.data.problemsProtocol
       }
-      try {
-        sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(analysisResult.value))
-      } catch (e) { }
+      // Cache mentése
+      const { setAnalysisResult, getUserId } = useAuth()
+      const userId = getUserId()
+      if (userId) setAnalysisResult(analysisResult.value, userId)
     } else {
       errorMessage.value = response.data?.message || 'Hiba történt az elemzés során.'
     }
@@ -268,7 +295,6 @@ const analyzeImage = async () => {
 const resetAnalysis = () => {
   analysisResult.value = null
   clearSelection()
-  try { sessionStorage.removeItem(SESSION_STORAGE_KEY) } catch (e) { }
 }
 
 const goToResults = () => {
@@ -290,8 +316,24 @@ const getSkinTypeLabel = (type) => {
   }
   return labels[type] || type
 }
-</script>
 
+const getProblemLabel = (problem) => {
+  // Ha objektum, használjuk a name_hu-t vagy problem-ot
+  const problemName = problem?.problem || problem?.name_hu || problem
+  const labels = {
+    'Acne': 'Pattanások',
+    'Bags': 'Szem alatti karikák',
+    'Redness': 'Bőrpír',
+    'Milia': 'Mília (fehér pontok)',
+    'WhiteHead': 'Mitesszer',
+    'Wrinkles': 'Ráncok',
+    'Dark Spots': 'Pigmentfoltok',
+    'Dryness': 'Szárazság',
+    'Oiliness': 'Zsírosság'
+  }
+  return labels[problemName] || problem?.name_hu || problemName
+}
+</script>
 <style scoped lang="scss">
 @use '@/assets/mixins.scss' as *;
 

@@ -223,15 +223,6 @@
   }
 }
 
-// Response/feedback card - AI válaszok, stb.
-@mixin response-card {
-  background: linear-gradient(135deg, var(--secondary-50), rgba(180, 120, 100, 0.1));
-  border: 1px solid var(--secondary-200);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  animation: slideUp 0.4s ease-out;
-}
-
 // Icon button - kör alakú gomb
 @mixin icon-btn($size: 36px) {
   width: $size;
@@ -252,32 +243,6 @@
 
   &:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-// Kör alakú küldés gomb
-@mixin send-btn($size: 44px) {
-  width: $size;
-  height: $size;
-  border-radius: 50%;
-  border: none;
-  background: linear-gradient(135deg, var(--secondary-500), var(--secondary-600));
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-
-  &:hover:not(:disabled) {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(180, 120, 100, 0.4);
-  }
-
-  &:disabled {
-    opacity: 0.4;
     cursor: not-allowed;
   }
 }
@@ -489,21 +454,6 @@
   }
 }
 
-
-// Module layout wrapper (for pages with AnimatedBackground)
-@mixin module-layout {
-  min-height: 100vh;
-  background: var(--bg-primary);
-  position: relative;
-}
-
-// Module content wrapper
-@mixin module-content {
-  position: relative;
-  z-index: 2;
-  padding: 80px var(--space-4) var(--space-8);
-  min-height: 100vh;
-}
 
 // Fullscreen section for scroll-snap pages
 @mixin fullscreen-section {

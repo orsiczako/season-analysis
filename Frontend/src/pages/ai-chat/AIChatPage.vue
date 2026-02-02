@@ -12,19 +12,11 @@
 
         <div class="mode-switcher">
           <button class="mode-btn" :class="{ active: !cameraMode }" @click="cameraMode = false">
-            <!--Source: https://feathericons.com/-->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
+            <MessageSquare :size="20" />
             Chat
           </button>
           <button class="mode-btn" :class="{ active: cameraMode }" @click="switchToCameraMode">
-            <!--Source: https://feathericons.com/-->
-
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-              <circle cx="12" cy="13" r="4" />
-            </svg>
+            <Camera :size="20" />
             Kamera
           </button>
         </div>
@@ -36,53 +28,39 @@
             <canvas ref="canvasElement" style="display: none;" />
 
             <div v-if="!isCameraOn" class="camera-placeholder">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" />
-              </svg>
+              <Camera :size="64" :stroke-width="1.5" />
               <p>Kamera kikapcsolva</p>
             </div>
           </div>
 
           <div class="camera-controls">
             <button v-if="!isCameraOn" class="camera-btn start" @click="startCamera">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" />
-              </svg>
+              <Camera :size="24" />
               Kamera indítása
             </button>
 
             <template v-else>
               <button class="camera-btn stop" @click="stopCamera">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="6" y="6" width="12" height="12" />
-                </svg>
+                <Square :size="24" />
                 Leállítás
               </button>
               <button class="camera-btn analyze" :disabled="isCameraLoading" @click="analyzeCurrentFrame">
-                <svg v-if="!isCameraLoading" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 16v-4M12 8h.01" />
-                </svg>
+                <Info v-if="!isCameraLoading" :size="24" />
                 <span v-else class="btn-spinner" />
                 {{ isCameraLoading ? 'Elemzés...' : 'Mit szólsz ehhez?' }}
               </button>
             </template>
           </div>
 
-          <!-- Camera Response -->
           <div v-if="cameraResponse" class="camera-response">
             <div class="response-header">
               <img src="/media/ai.png" alt="AI" class="response-avatar">
               <span class="response-label">Stylist véleménye</span>
               <button class="speak-btn" :disabled="isSpeaking" @click="speakResponse">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                </svg>
+                <Volume2 :size="20" />
+              </button>
+              <button class="stop-speak-btn" :disabled="!isSpeaking" @click="stopSpeech">
+                <Square :size="20" />
               </button>
             </div>
             <p class="response-text">
@@ -153,18 +131,14 @@
                 </p>
                 <div class="action-buttons">
                   <button class="action-btn primary" @click="goToResults">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M9 12l2 2 4-4" />
-                      <circle cx="12" cy="12" r="10" />
-                    </svg>
+                    <CheckCircle :size="20" />
                     <span>Eredmények megtekintése</span>
                   </button>
                   <button class="action-btn secondary" @click="goToSkinAnalysis">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z" />
-                      <path d="M12 6v6l4 2" />
-                    </svg>
+                    <CheckCircle v-if="hasSkinAnalysis" :size="20" />
+                    <Clock v-else :size="20" />
                     <span>Bőrtípus elemzés</span>
+                    <span v-if="hasSkinAnalysis" class="check-badge" />
                   </button>
                 </div>
               </div>
@@ -185,10 +159,7 @@
               <input v-model="userMessage" type="text" class="message-input" placeholder="Írj egy üzenetet..."
                 :disabled="isLoading" @keyup.enter="sendMessage">
               <button class="send-btn" :disabled="!userMessage.trim() || isLoading" @click="sendMessage">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="22" y1="2" x2="11" y2="13" />
-                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                </svg>
+                <Send :size="20" />
               </button>
             </div>
           </div>
@@ -201,10 +172,11 @@
 <script setup>
 import { ref, nextTick, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { MessageSquare, Camera, Square, Info, Volume2, CheckCircle, Clock, Send } from 'lucide-vue-next';
 import PageHeader from '@/components/common/layout/PageHeader.vue';
 import BaseButton from '@/components/common/base/BaseButton.vue';
 import { aiService, userService } from '@/services';
-import { useLocalStorage } from '@/composables/useLocalStorage';
+import { useAuth } from '@/composables/useAuth';
 
 const router = useRouter()
 
@@ -213,6 +185,7 @@ const conversationHistory = ref([]);
 const userMessage = ref('');
 const isLoading = ref(false);
 const analysisResult = ref(null);
+const hasSkinAnalysis = ref(false);
 
 const cameraMode = ref(false);
 const videoElement = ref(null);
@@ -226,7 +199,7 @@ const isSpeaking = ref(false);
 const mediaStream = ref(null);
 const userColorSeason = ref(null);
 
-const { getUserId } = useLocalStorage();
+const { getUserId } = useAuth();
 
 const getStorageKey = (prefix) => {
   const id = getUserId();
@@ -451,6 +424,9 @@ const analyzeCurrentFrame = async () => {
   cameraResponse.value = '';
 
   try {
+    // Kis várakozás, hogy a user felkészülhessen
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
     const imageBase64 = captureFrame();
     if (!imageBase64) {
       throw new Error('Nem sikerült képet készíteni');
@@ -520,6 +496,11 @@ const speakResponse = () => {
   window.speechSynthesis.speak(utterance);
 };
 
+const stopSpeech = () => {
+  window.speechSynthesis.cancel();
+  isSpeaking.value = false;
+};
+
 
 onMounted(async () => {
   const hasHistory = loadConversationHistory();
@@ -534,6 +515,16 @@ onMounted(async () => {
         userColorSeason.value = analysisResult.value.season;
       }
     }
+  }
+
+  // Bőrtípus elemzés ellenőrzése API-ból
+  try {
+    const res = await userService.getAnalysesResults();
+    if (res.success && res.data?.skinAnalysis) {
+      hasSkinAnalysis.value = true;
+    }
+  } catch (e) {
+    console.warn('Could not check skin analysis:', e);
   }
 
   if (!hasHistory) {
@@ -551,7 +542,6 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 @use '@/assets/mixins.scss' as *;
-@import '@/assets/view-common.css';
 
 /* Page Title */
 .main-title {
@@ -604,7 +594,10 @@ onUnmounted(() => {
   background: linear-gradient(135deg, var(--secondary-400), var(--secondary-500));
 
   img {
-    filter: brightness(0) invert(1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
   }
 }
 
@@ -755,7 +748,6 @@ onUnmounted(() => {
 }
 
 .analysis-actions {
-  @include response-card;
   border-radius: var(--radius-xl);
   margin-top: var(--space-2);
 }
@@ -1016,9 +1008,7 @@ onUnmounted(() => {
   @include spinner;
 }
 
-.camera-response {
-  @include response-card;
-}
+
 
 .response-header {
   display: flex;

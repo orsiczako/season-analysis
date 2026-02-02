@@ -1,21 +1,22 @@
-/**
- * UNIFIED SERVICES FILE
- * All frontend services consolidated for simplicity
- */
 
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  headers: { 'Content-Type': 'application/json' }
+  baseURL: API_BASE_URL
 })
 
 // Auth interceptor
 apiClient.interceptors.request.use(config => {
   const token = localStorage.getItem('authToken')
   if (token) config.headers.Authorization = `Bearer ${token}`
+
+  // Ha nincs FormData, akkor állítsuk be a JSON Content-Type-ot
+  if (!(config.data instanceof FormData)) {
+    config.headers['Content-Type'] = 'application/json'
+  }
+
   return config
 })
 
@@ -24,9 +25,10 @@ export async function apiCall(axiosCall, errorMessage = 'API hiba történt') {
     const response = await axiosCall()
     return { success: true, data: response.data }
   } catch (error) {
-    const message = error.response?.data?.message || errorMessage
-    console.error('API Error:', message, error)
-    return { success: false, message, error }
+    // Hibakód használata, ha van (errorCode > message > fallback)
+    const errorCode = error.response?.data?.errorCode || error.response?.data?.message || errorMessage
+    console.error('API Error:', errorCode, error)
+    return { success: false, message: errorCode, error }
   }
 }
 
@@ -40,10 +42,22 @@ export const aiService = {
     )
   },
 
-  async chatGuest(message, conversationHistory = [], context = null) {
+  /**
+   * Kamera alapú chat - kép küldése a Gemini API-nak elemzésre
+   * @param {string} imageBase64 - Base64 kódolt kép (fejléc nélkül)
+   * @param {string} prompt - A kérdés/utasítás a képhez
+   * @param {Array} conversationHistory - Korábbi beszélgetés előzményei
+   * @param {Object} userContext - User kontextus (pl. színtípus)
+   */
+  async chatWithImage(imageBase64, prompt, conversationHistory = [], userContext = null) {
     return apiCall(
-      () => apiClient.post('/api/ai/chat-guest', { message, conversationHistory, context }),
-      'AI chat hiba'
+      () => apiClient.post('/api/ai/chat-with-image', {
+        imageBase64,
+        prompt,
+        conversationHistory,
+        userContext
+      }),
+      'Képelemzés hiba'
     )
   },
 
@@ -96,33 +110,22 @@ export const userService = {
       () => apiClient.put('/api/user/color-season', { season }),
       'Színtípus frissítési hiba'
     )
-  }
-}
+  },
 
-export const favoriteColorsService = {
-  async getFavoriteColors() {
+  async getAnalysesResults() {
     return apiCall(
-      () => apiClient.get('/api/user/favorite-colors'),
-      'Kedvenc színek betöltési hiba'
+      () => apiClient.get('/api/user/analyses-results'),
+      'Elemzési eredmények betöltési hiba'
     )
   },
 
-  async addFavoriteColor(colorHex) {
+  async updateProfile(profileData) {
     return apiCall(
-      () => apiClient.post('/api/user/favorite-colors', { colorHex }),
-      'Kedvenc szín hozzáadási hiba'
+      () => apiClient.put('/api/user/profile', profileData),
+      'Profil frissítési hiba'
     )
   },
 
-  async removeFavoriteColor(colorHex) {
-    return apiCall(
-      () => apiClient.delete(`/api/user/favorite-colors/${encodeURIComponent(colorHex)}`),
-      'Kedvenc szín törlési hiba'
-    )
-  }
-}
-
-export const authService = {
   async forgotPassword(email, emailTemplate) {
     return apiCall(
       () => apiClient.post('/api/user/forgot-password', { email, emailTemplate }),
@@ -153,14 +156,14 @@ class ThemeService {
   getInitialTheme() {
     const savedTheme = localStorage.getItem('selected-theme')
     if (savedTheme && ['light', 'dark'].includes(savedTheme)) return savedTheme
-    
+
     if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) return 'dark'
     return 'light'
   }
 
   setTheme(theme) {
     if (!['light', 'dark'].includes(theme)) return
-    
+
     this.currentTheme = theme
     localStorage.setItem('selected-theme', theme)
     this.applyTheme(theme)
@@ -182,10 +185,10 @@ class ThemeService {
 
   addListener(callback) { this.listeners.push(callback) }
   removeListener(callback) { this.listeners = this.listeners.filter(l => l !== callback) }
-  
+
   addThemeChangeListener(callback) { this.addListener(callback) }
   removeThemeChangeListener(callback) { this.removeListener(callback) }
-  
+
   notifyListeners(theme) { this.listeners.forEach(cb => cb(theme)) }
 
   setupSystemThemeListener() {
@@ -200,31 +203,6 @@ class ThemeService {
 }
 
 export const themeService = new ThemeService()
-
-class ToastService {
-  constructor() {
-    this.listeners = []
-  }
-
-  addListener(callback) { this.listeners.push(callback) }
-  removeListener(callback) { this.listeners = this.listeners.filter(l => l !== callback) }
-  
-  success(message, duration = 4000) { this.show(message, 'success', duration) }
-  error(message, duration = 5000) { this.show(message, 'error', duration) }
-  warning(message, duration = 4000) { this.show(message, 'warning', duration) }
-  info(message, duration = 4000) { this.show(message, 'info', duration) }
-
-  show(message, type = 'success', duration = 4000) {
-    const toast = {
-      id: Date.now() + Math.random(),
-      message, type, duration, visible: true
-    }
-    this.listeners.forEach(listener => listener(toast))
-    return toast.id
-  }
-}
-
-export const toastService = new ToastService()
 
 export function generatePasswordRecoveryTemplate(recoveryLink, locale = 'hu', userFullName = '') {
   const templates = {
@@ -241,7 +219,7 @@ export function generatePasswordRecoveryTemplate(recoveryLink, locale = 'hu', us
   }
 
   const content = templates[locale] || templates.hu
-  
+
   return {
     subject: content.subject,
     html: `<!DOCTYPE html><html><head><title>${content.subject}</title></head><body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;"><div style="background: #ec4899; color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;"><h1>${content.title}</h1></div><div style="background: white; padding: 30px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;"><p>${content.greeting}</p><p>${content.description}</p><div style="text-align: center; margin: 30px 0;"><a href="${recoveryLink}" style="background: #ec4899; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">${content.buttonText}</a></div><p style="background: #fff3cd; padding: 15px; border-radius: 5px; color: #856404;">${content.expiryInfo}</p><p>${content.notYou}</p><hr><p>${content.footer}</p></div></body></html>`,
@@ -257,23 +235,12 @@ export const ThemePlugin = {
   }
 }
 
-export const ToastPlugin = {
-  install(app) {
-    app.config.globalProperties.$toast = toastService
-    app.provide('toast', toastService)
-  }
-}
-
 export default {
   apiCall,
   apiClient,
   aiService,
   userService,
-  favoriteColorsService,
-  authService,
   themeService,
-  toastService,
   generatePasswordRecoveryTemplate,
-  ThemePlugin,
-  ToastPlugin
+  ThemePlugin
 }

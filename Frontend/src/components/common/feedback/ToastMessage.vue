@@ -1,119 +1,85 @@
-
-
 <template>
   <Transition name="toast">
-    <!-- Vue beépített transition komponense 
-     toast-message az az alapstílus, és a toast-${type} a típus szerinti stílus
-     pl ha type= success akkor toast-success -->
-    <div 
-      v-if="visible" 
-      :class="['toast-message', `toast-${type}`]"
-      @click="hide"
-    >
-    <!-- Toast tartalom 
-     Itt jelennek meg a toast üzenetek tartalmai 
-     -->
+    <div v-if="visible" :class="['toast-message', `toast-${type}`]" @click="hide">
       <div class="toast-content">
         <span class="toast-text">{{ message }}</span>
-        <button @click="hide" class="toast-close">
-          ×
-        </button>
+        <button class="toast-close" @click="hide">×</button>
       </div>
     </div>
   </Transition>
 </template>
 
-<script>
-export default {
-  /**Majd így lehet <ToastMessage message="Üzenet" /> */
-  name: 'ToastMessage',
-  props: {
-    message: {
-      type: String,
-      required: true
-    },
-    type: {
-      type: String,
-      default: 'success',
-      validator: value => ['success', 'error', 'warning', 'info'].includes(value)
-    },
-    duration: {
-      type: Number,
-      default: 4000
-    },
-    visible: {
-      type: Boolean,
-      default: false
-    }
-  },
-  /**Automatikus eltüntetés */
-  watch: {
-    visible(newVal) {
-      if (newVal && this.duration > 0) {
-        setTimeout(() => {
-          this.hide()
-        }, this.duration)
-      }
-    }
-  },
-  methods: {
-    hide() {
-      this.$emit('hide')
-    }
-  }
-}
+<script setup>
+import { watch } from 'vue'
+
+const props = defineProps({
+  message: { type: String, required: true },
+  type: { type: String, default: 'success', validator: v => ['success', 'error', 'warning', 'info'].includes(v) },
+  duration: { type: Number, default: 4000 },
+  visible: { type: Boolean, default: false }
+})
+
+const emit = defineEmits(['hide'])
+const hide = () => emit('hide')
+
+watch(() => props.visible, (val) => {
+  if (val && props.duration > 0) setTimeout(hide, props.duration)
+})
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/mixins.scss';
+@use '@/assets/mixins.scss' as *;
+
 .toast-message {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
+  top: var(--space-5);
+  right: var(--space-5);
+  z-index: var(--z-tooltip);
   min-width: 300px;
   max-width: 500px;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   backdrop-filter: blur(10px);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
+  font-family: var(--font-sans);
 }
 
 .toast-success {
-  background: rgba(34, 197, 94, 0.95);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: white;
+  background: var(--success);
+  border: 1px solid var(--success-dark);
+  color: var(--text-inverse);
 }
 
 .toast-error {
-  background: rgba(239, 68, 68, 0.95);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: white;
+  background: var(--error);
+  border: 1px solid var(--error-dark);
+  color: var(--text-inverse);
 }
 
 .toast-warning {
-  background: rgba(245, 158, 11, 0.95);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  color: white;
+  background: var(--warning);
+  border: 1px solid var(--warning-dark);
+  color: var(--text-inverse);
 }
 
 .toast-info {
-  background: rgba(59, 130, 246, 0.95);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  color: white;
+  background: var(--info);
+  border: 1px solid var(--info-dark);
+  color: var(--text-inverse);
 }
 
 .toast-content {
   @include flex-between;
-  padding: 1rem 1.25rem;
-  gap: 0.75rem;
+  padding: var(--space-4) var(--space-5);
+  gap: var(--space-3);
 }
 
 .toast-text {
   flex: 1;
-  font-weight: 500;
-  line-height: 1.4;
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
 }
 
 .toast-close {
@@ -121,13 +87,13 @@ export default {
   border: none;
   color: currentColor;
   cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 4px;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
   opacity: 0.8;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-fast);
   flex-shrink: 0;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: var(--font-bold);
   line-height: 1;
   width: 24px;
   height: 24px;
@@ -139,10 +105,9 @@ export default {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Transition animációk */
 .toast-enter-active,
 .toast-leave-active {
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
 }
 
 .toast-enter-from {
@@ -155,18 +120,14 @@ export default {
   opacity: 0;
 }
 
-/* Dark mode támogatás */
-[data-theme="dark"] .toast-message {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+:global(.theme-dark) .toast-message {
+  box-shadow: var(--shadow-xl);
 }
 
-
-
-/* Responsive */
 @media (max-width: 640px) {
   .toast-message {
-    left: 10px;
-    right: 10px;
+    left: var(--space-3);
+    right: var(--space-3);
     min-width: auto;
     max-width: none;
   }

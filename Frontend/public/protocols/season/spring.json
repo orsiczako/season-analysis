@@ -1,0 +1,107 @@
+{
+  "springColorAnalysisProfile": {
+    "metaData": {
+      "targetSeason": "Tavasz (Spring)",
+      "profileId": "springMasterProfile",
+      "version": "2.0 Detailed",
+      "description": "A Tavasz típus részletes elemzése, altípusok (Light, True, Bright) szerinti bontásban, smink és stílus tanácsokkal.",
+      "usage": "AI színanalízis és személyi styling tanácsadás"
+    },
+    "corePhilosophy": {
+      "primaryAttributes": ["Warm (Meleg)", "Clear (Tiszta/Élénk)", "Light (Világos)"],
+      "essence": "A Tavasz típus a természet ébredését szimbolizálja. Színei melegek, frissek, ragyogóak és élettel teliek. Hiányzik belőlük a 'porosság' (ami a Nyárra jellemző) és a nehéz sötétség (ami a Télre/Őszre).",
+      "goldenRule": "A cél a természetes, aranyló ragyogás megőrzése. A túl sötét vagy túl hideg színek 'lekapcsolják a villanyt' a Tavasz típus arcán."
+    },
+    "visualDiagnostics": {
+      "skinCharacteristics": {
+        "undertone": "Kifejezetten meleg, sárgás (yellow-based) vagy barackos (peachy) alaptónus.",
+        "appearance": "A bőr gyakran áttetsző, vékony, könnyen kipirul (barackos pír). Gyakoriak az aranybarna szeplők.",
+        "reactionToSun": "Általában érzékeny a napra, könnyen leég, vagy nehezen barnul (kivéve az Élénk Tavaszt, aki jobban bírja).",
+        "veinTest": "A csukló erei természetes fénynél zöldesnek vagy türkiznek tűnnek (nem kéknek)."
+      },
+      "hairCharacteristics": {
+        "commonShades": ["Aranyszőke", "Mézszőke", "Eperszőke (Strawberry Blonde)", "Vörösesszőke", "Rézvörös", "Meleg csokoládébarna"],
+        "highlightReflections": "A hajban mindig van egy meleg, aranyló vagy rezes csillogás. Sosem hamvas vagy ezüstös."
+      },
+      "eyeCharacteristics": {
+        "commonShades": ["Türkizkék", "Meleg zöld", "Világos mogyoróbarna", "Topáz", "Borostyán"],
+        "pattern": "Az írisz gyakran tartalmaz egy sárgás vagy arany gyűrűt a pupilla körül ('sunburst' minta), ami élénkké teszi a tekintetet."
+      }
+    },
+    "seasonalSubtypes": {
+      "lightSpring": {
+        "name": "Világos Tavasz (Light Spring)",
+        "description": "A legfinomabb, leglégiesebb típus. Átmenet a Nyár felé.",
+        "characteristics": "Nagyon világos haj, szinte áttetsző bőr, világos szemek.",
+        "makeupAdvice": "A kevesebb több. Kerüld a sötét kontúrokat, maradj a pasztell baracknál és a pezsgőszínnél."
+      },
+      "trueSpring": {
+        "name": "Valódi/Meleg Tavasz (True/Warm Spring)",
+        "description": "A 'tankönyvi' Tavasz. A legmelegebb típus, átmenet az Ősz felé.",
+        "characteristics": "Aranyszőke vagy vöröses haj, láthatóan meleg bőrtónus.",
+        "makeupAdvice": "A narancs, a korall és az élénk fűzöld áll a legjobban. A hideg színek (pl. ezüst) azonnal sápasztják."
+      },
+      "brightSpring": {
+        "name": "Élénk Tavasz (Bright/Clear Spring)",
+        "description": "A legkontrasztosabb Tavasz. Átmenet a Tél felé.",
+        "characteristics": "Sötétebb haj (akár sötétbarna), de ragyogó, élénk szemek. Bírja az erősebb színeket.",
+        "makeupAdvice": "Bátran használhat élénkebb rúzsokat (pipacsvörös) és fekete szempillaspirált is (amit a többi Tavasz nem)."
+      }
+    },
+    "detailedMakeupProtocol": {
+      "faceBase": {
+        "foundationStrategy": {
+          "undertoneChoice": "Válassz 'Warm', 'Golden', 'Yellow' vagy 'Peach' jelölésű alapozókat.",
+          "finish": "A fényes (Dewy), szatén vagy természetes (Natural) finish emeli ki legjobban a bőr üdeségét. A teljesen matt, púderezett arc öregítheti.",
+          "avoid": "Rózsaszín (Cool/Pink) tónusú alapozók (beteges, szürke hatást keltenek)."
+        },
+        "bronzerAndHighlighter": {
+          "bronzer": "Világos, tejeskávé vagy méz színű bronzosító. Kerüld a túl sötét, földes színeket.",
+          "highlighter": "Pezsgő (Champagne) vagy Arany (Gold) színű. Az ezüstös highlighter tilos!"
+        }
+      },
+      "cheekColors": {
+        "palette": ["Barack (Peach)", "Korall (Coral)", "Lazac", "Meleg rózsaszín", "Sárgabarack"],
+        "technique": "Az üde, 'friss' hatás a cél. A krémpirosítók (Cream Blush) különösen jól működnek, mert beleolvadnak a bőrbe.",
+        "warning": "A hideg mályva, szilva vagy bogyós színek foltosnak tűnhetnek az arcon."
+      },
+      "eyeMakeup": {
+        "eyeshadows": {
+          "baseColors": "Krém, Csontszín, Pezsgő, Tevebarna (Camel).",
+          "accentColors": "Türkiz, Almazöld, Élénk lila (meleg tónusban), Barack, Arany.",
+          "finish": "A csillogó (Shimmer) és selyemfényű porok jobban állnak, mint a teljesen matt textúrák."
+        },
+        "eyelinerAndMascara": {
+          "rule": "Kerüld a koromfeketét (kivéve Bright Spring).",
+          "recommendation": "Használj csokoládébarnát, meleg szürkét vagy akár sötétzöldet/kéket a lágyabb kontrasztért."
+        }
+      },
+      "lipColors": {
+        "dailyShades": ["Barackos Nude", "Meleg rózsaszín", "Korall"],
+        "dramaticShades": ["Pipacsvörös (Poppy Red)", "Narancsvörös", "Élénk Lazac"],
+        "texture": "A szájfények (Lip Gloss), szatén rúzsok és ajakolajok (Lip Oil) kiemelik a Tavasz típus fiatalos kisugárzását."
+      }
+    },
+    "wardrobeColorPalette": {
+      "bestColors": [
+        { "name": "Camel", "hex": "#C19A6B", "note": "A legjobb bázisszín fekete helyett." },
+        { "name": "Cream/Ivory", "hex": "#FFFFF0", "note": "Fehér helyett." },
+        { "name": "Coral", "hex": "#FF7F50", "note": "Az arc közelében ragyogást ad." },
+        { "name": "Turquoise", "hex": "#40E0D0", "note": "Kiemeli a szemszínt." },
+        { "name": "Apple Green", "hex": "#8DB600", "note": "Frissítő hatású." },
+        { "name": "Golden Yellow", "hex": "#FFD700", "note": "Bátor választás, de remekül áll." }
+      ],
+      "colorsToAvoid": [
+        { "name": "Black", "reason": "Túl kemény, öregít és elnyomja az arcot." },
+        { "name": "Snow White", "reason": "Sápaszt, helyette törtfehér ajánlott." },
+        { "name": "Cool Grey", "reason": "Élettelenné teszi a bőrt." },
+        { "name": "Fuchsia/Cool Berry", "reason": "Túl hideg és kék alapú." }
+      ]
+    },
+    "accessoriesAndJewelry": {
+      "metals": "Sárga Arany (Yellow Gold), Rózsaarany (Rose Gold), Sárgaréz.",
+      "stones": "Türkiz, Borostyán, Topáz, Citrin, Opál (meleg tónusú).",
+      "glasses": "Arany vagy teknőcpáncél (tortoiseshell) keret. Kerüld a fekete vagy ezüst kereteket."
+    }
+  }
+}

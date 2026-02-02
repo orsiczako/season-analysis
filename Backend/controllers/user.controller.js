@@ -20,72 +20,13 @@ function formatUserWithSeason(user) {
   return formatted;
 }
 
-async function login(username, password) {
-
-  // Input validáció
-  if (!username || !password) {
-    return { success: false, error: 'USERNAME_AND_PASSWORD_REQUIRED' };
-  }
-
-  if (username.length < 3 || password.length < 6) {
-    return { success: false, error: 'INVALID_CREDENTIALS_FORMAT' };
-  }
-
-  //Meghívjuk a service login függvényét, az visszaadja az eredményt
-  const result = await userService.login(username, password);
-
-  return result;
-}
-
-/**
- * Regisztrációs függvény, a bemenet egy formázott objektum, ezt a service réteg kezeli
- */
-async function register(userData) {
-  // Input validáció
-  if (!userData || !userData.username || !userData.password || !userData.email || !userData.fullName) {
-    return { success: false, error: 'MISSING_REQUIRED_FIELDS' };
-  }
-
-  if (userData.username.length < 3) {
-    return { success: false, error: 'USERNAME_TOO_SHORT' };
-  }
-
-  if (userData.password.length < 6) {
-    return { success: false, error: 'PASSWORD_TOO_SHORT' };
-  }
-
-  //A minta a szöveg elején kezdődik, legalább egy karakter, ami nem szóköz
-  //és nem @, legalább egy @ karakter, majd legalább egy karakter, ami nem szóköz és nem @,
-  //egy pont, majd legalább egy karakter, ami nem szóköz és nem @, a szöveg végén
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //True vagy false lesz az eredmény
-  if (!emailRegex.test(userData.email)) {
-    return { success: false, error: 'INVALID_EMAIL_FORMAT' };
-  }
-
-  return await userService.register(userData);
-}
-
-async function forgotPassword(email, emailTemplate) {
-  return await userService.forgotPassword(email, emailTemplate);
-}
-
-async function resetPassword(token, newPassword) {
-  // Input validáció
-  if (!token || !newPassword) {
-    return { success: false, error: 'TOKEN_AND_PASSWORD_REQUIRED' };
-  }
-
-  if (newPassword.length < 6) {
-    return { success: false, error: 'PASSWORD_TOO_SHORT' };
-  }
-
-  return await userService.resetPassword(token, newPassword);
-}
+// Egyszerű átmenő függvények - a middleware már validált
+const login = (username, password) => userService.login(username, password);
+const register = (userData) => userService.register(userData);
+const forgotPassword = (email, emailTemplate) => userService.forgotPassword(email, emailTemplate);
+const resetPassword = (token, newPassword) => userService.resetPassword(token, newPassword);
 
 async function getUserProfile(userId) {
-  // Debug: asszociációk ellenőrzése
-
   const user = await User.findOne({
     where: { account_id: userId },
     include: [
@@ -107,15 +48,7 @@ async function getUserProfile(userId) {
 }
 
 async function changePassword(userId, currentPassword, newPassword) {
-
-  if (!userId || !currentPassword || !newPassword) {
-    return { success: false, error: 'MISSING_REQUIRED_FIELDS' };
-  }
-
-  if (newPassword.length < 6) {
-    return { success: false, error: 'PASSWORD_TOO_SHORT' };
-  }
-
+  // A middleware+router már validálta
   return await userService.changePassword(userId, currentPassword, newPassword);
 }
 
@@ -125,19 +58,20 @@ async function deleteAccount(userId) {
     return { success: false, error: 'MISSING_USER_ID' };
   }
 
-  const user = await User.findOne({ where: { account_id: userId } });
-
-  if (!user) {
-    return { success: false, error: 'USER_NOT_FOUND' };
-  }
-
   try {
-    await user.destroy();
+    const user = await User.findOne({ where: { account_id: userId } });
+    if (!user) {
+      return { success: false, error: 'USER_NOT_FOUND' };
+    }
 
+    await user.destroy();
     return { success: true };
   } catch (error) {
     console.error('Error deleting user account:', error);
-    return { success: false, error: 'DELETE_FAILED' };
+    if (error && error.stack) {
+      console.error(error.stack);
+    }
+    return { success: false, error: error.message || 'DELETE_FAILED' };
   }
 }
 
@@ -159,7 +93,6 @@ async function updateColorSeason(userId, season) {
   }
 
   // Megkeressük a color_season rekordot a season név alapján
-  const { ColorSeason } = require('../dbo');
   const colorSeason = await ColorSeason.findOne({ where: { season_name: season } });
 
   if (!colorSeason) {
@@ -189,7 +122,7 @@ async function updateColorSeason(userId, season) {
 }
 
 async function getAnalysesResults(userId) {
-  const { SkinAnalysis } = require('../dbo');
+  const { SkinAnalysis } = dbModels;
 
   const user = await User.findOne({
     where: { account_id: userId },
@@ -264,6 +197,38 @@ async function getAnalysesResults(userId) {
   };
 }
 
+/**
+ * Profil frissítése: teljes név, felhasználónév, email
+ */
+async function updateProfile(userId, { fullName, username, email }) {
+  if (!userId) {
+    return { success: false, message: 'USER_ID_REQUIRED' };
+  }
+  if (!fullName && !username && !email) {
+    return { success: false, message: 'NO_FIELDS_TO_UPDATE' };
+  }
+
+  const user = await User.findOne({ where: { account_id: userId } });
+  if (!user) {
+    return { success: false, message: 'USER_NOT_FOUND' };
+  }
+
+  // Only update provided fields
+  const updateData = {};
+  if (fullName) updateData.full_name = fullName;
+  if (username) updateData.login_name = username;
+  if (email) updateData.email_address = email;
+
+  try {
+    await user.update(updateData);
+    // Frissített user visszaadása
+    return { success: true, user: formatUserWithSeason(user) };
+  } catch (error) {
+    console.error('Profile update error:', error);
+    return { success: false, message: 'UPDATE_FAILED' };
+  }
+}
+
 module.exports = {
   login,
   register,
@@ -273,5 +238,6 @@ module.exports = {
   changePassword,
   deleteAccount,
   updateColorSeason,
-  getAnalysesResults
+  getAnalysesResults,
+  updateProfile
 };

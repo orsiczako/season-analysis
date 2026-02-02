@@ -199,8 +199,7 @@ async function findUserByToken(token) {
  * Megformázza a user objektumot a kliens felé
  */
 function formatUser(user) {
-
-  const formatted = {
+  return {
     id: user.account_id,
     username: user.login_name,
     email: user.email_address,
@@ -208,9 +207,6 @@ function formatUser(user) {
     colorSeason: user.colorSeason ? user.colorSeason.season_name : null,
     colorAnalysisDate: user.color_analysis_date
   };
-
-
-  return formatted;
 }
 
 /**
@@ -235,8 +231,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   changePassword,
-  formatUser,
-  checkUserExists,
-  findUserByToken,
-  prepareEmailContent
+  formatUser
 };

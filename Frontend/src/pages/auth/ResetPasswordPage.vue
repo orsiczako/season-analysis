@@ -1,56 +1,84 @@
 ﻿<template>
-  <div class="content-wrapper">
-    <AnimatedBackground />
-    <div class="header-controls">
-      <ThemeSwitcher />
-    </div>
-    <div class="reset-container">
-      <h2>Jelszó visszaállítása</h2>
-      <form @submit.prevent="handleSubmit">
-        <label for="password">Új jelszó</label>
-        <input type="password" id="password" v-model="form.password" required placeholder="Új jelszó">
-        <label for="confirmPassword">Jelszó megerősítése</label>
-        <input type="password" id="confirmPassword" v-model="form.confirmPassword" required placeholder="Jelszó megerősítése">
-        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
-        <div v-if="successMessage" class="success">{{ successMessage }}</div>
-        <button type="submit" :disabled="loading">{{ loading ? 'Mentés...' : 'Jelszó beállítása' }}</button>
-        <button type="button" @click="backToLogin" class="back-btn">Vissza a bejelentkezéshez</button>
-      </form>
-    </div>
-  </div>
+  <AuthLayout title="Jelszó visszaállítása" container-class="reset-container">
+    <form novalidate @submit.prevent="handleSubmit">
+      <FormInput id="password" v-model="form.password" label="Új jelszó" type="password" placeholder="Új jelszó"
+        :error="errors.password" @blur="validateField('password')" />
+
+      <FormInput id="confirmPassword" v-model="form.confirmPassword" label="Jelszó megerősítése" type="password"
+        placeholder="Jelszó megerősítése" :error="errors.confirmPassword" @blur="validateField('confirmPassword')" />
+
+      <MessageDisplay :error-message="errorMessage" :success-message="successMessage" />
+
+      <BaseButton type="submit" variant="primary" size="lg" full-width :loading="loading">
+        Jelszó beállítása
+      </BaseButton>
+
+      <BaseButton type="button" variant="ghost" size="md" full-width @click="backToLogin">
+        Vissza a bejelentkezéshez
+      </BaseButton>
+    </form>
+  </AuthLayout>
 </template>
+
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { authService } from '@/services'
+import { userService } from '@/services'
 import { useAuth } from '@/composables/useAuth.js'
-import ThemeSwitcher from '@/components/common/theme/ThemeSwitcher.vue'
-import AnimatedBackground from '@/components/layout/AnimatedBackground.vue'
+import { validateForm, fieldValidators } from '@/data/validation-messages.js'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import FormInput from '@/components/common/forms/FormInput.vue'
+import MessageDisplay from '@/components/common/feedback/MessageDisplay.vue'
+import BaseButton from '@/components/common/base/BaseButton.vue'
+
 export default {
   name: 'ResetPasswordView',
-  components: { ThemeSwitcher, AnimatedBackground },
+  components: {
+    AuthLayout,
+    FormInput,
+    MessageDisplay,
+    BaseButton
+  },
   setup() {
     const route = useRoute()
-    const { errorMessage, successMessage, loading, validateForm, withLoading, navigateToLogin, setError, setSuccess } = useAuth()
+    const { errorMessage, successMessage, loading, withLoading, navigateToLogin, setError, setSuccess } = useAuth()
     const form = ref({ password: '', confirmPassword: '' })
+    const errors = reactive({})
     const token = ref(null)
+
+    const rules = {
+      password: 'password',
+      confirmPassword: (value, formData) => fieldValidators.passwordConfirm(value, formData.password)
+    }
+
     onMounted(() => {
       token.value = route.query.token
       if (!token.value) setError('Érvénytelen token')
     })
-    const handleSubmit = async () => {
-      if (!validateForm(form.value, ['password', 'confirmPassword'])) return
-      if (form.value.password !== form.value.confirmPassword) {
-        setError('A jelszavak nem egyeznek')
-        return
+
+    const validateField = (field) => {
+      const rule = rules[field]
+      if (typeof rule === 'string') {
+        errors[field] = fieldValidators[rule]?.(form.value[field]) || null
+      } else if (typeof rule === 'function') {
+        errors[field] = rule(form.value[field], form.value) || null
       }
+    }
+
+    const handleSubmit = async () => {
+      // Validálás
+      const result = validateForm(form.value, rules)
+      Object.assign(errors, result.errors)
+      if (!result.isValid) return
+
       if (!token.value) {
         setError('Érvénytelen token')
         return
       }
+
       await withLoading(async () => {
-        const result = await authService.resetPassword(token.value, form.value.password)
-        if (result.success) {
+        const apiResult = await userService.resetPassword(token.value, form.value.password)
+        if (apiResult.success) {
           setSuccess('Jelszó sikeresen megváltoztatva!')
           form.value.password = ''
           form.value.confirmPassword = ''
@@ -58,11 +86,21 @@ export default {
         }
       })
     }
-    const backToLogin = () => navigateToLogin()
-    return { form, errorMessage, successMessage, loading, handleSubmit, backToLogin }
+
+    return {
+      form,
+      errors,
+      errorMessage,
+      successMessage,
+      loading,
+      handleSubmit,
+      validateField,
+      backToLogin: navigateToLogin
+    }
   }
 }
 </script>
+
 <style scoped>
-@import '@/assets/components/auth-common.css';
+/* Auth stílusok a main.js-ből jönnek */
 </style>

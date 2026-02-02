@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import svgLoader from 'vite-svg-loader'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
@@ -10,10 +11,10 @@ const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
 export default defineConfig(({ mode }) => {
   // Környezeti változók betöltése
   const env = loadEnv(mode, process.cwd(), '')
-  
+
   return {
     base: '/',
-    plugins: [vue()],
+    plugins: [vue(), svgLoader()],
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src')
@@ -27,7 +28,7 @@ export default defineConfig(({ mode }) => {
       port: parseInt(env.VITE_PORT),
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL ,
+          target: env.VITE_API_BASE_URL,
           changeOrigin: true,
         }
       }

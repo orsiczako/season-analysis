@@ -1,182 +1,108 @@
 <template>
-  <div class="content-wrapper">
-    <!-- Animált háttér komponens -->
-    <AnimatedBackground />
+  <AuthLayout title="Bejelentkezés" container-class="login-container">
+    <form novalidate @submit.prevent="handleSubmit">
+      <FormInput id="username" v-model="form.username" label="Felhasználónév" type="text" placeholder="Felhasználónév"
+        autocomplete="username" :error="errors.username" @blur="validateField('username')" />
 
-    <!-- Fejléc komponensek -->
-    <div class="header-controls">
-      <ThemeSwitcher />
-    </div>
+      <FormInput id="password" v-model="form.password" label="Jelszó" type="password" placeholder="Jelszó"
+        autocomplete="current-password" :error="errors.password" @blur="validateField('password')" />
 
-    <!-- Bejelentkezési form -->
-    <div class="login-container">
-      <h2>Bejelentkezés</h2>
-      <form @submit.prevent="handleSubmit">
-        <label for="username">Felhasználónév</label>
-        <input 
-          type="text" 
-          id="username" 
-          v-model="form.username" 
-          placeholder="Felhasználónév"
-          autocomplete="username"
-          required
-        >
-        
-        <label for="password">Jelszó</label>
-        <input 
-          type="password" 
-          id="password" 
-          v-model="form.password" 
-          placeholder="Jelszó"
-          autocomplete="current-password"
-          required
-        >
-        
-        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
-        <div v-if="successMessage" class="success">{{ successMessage }}</div>
-        
-        <button type="submit" :disabled="loading" @click="handleSubmit">
-          {{ loading ? 'Bejelentkezés...' : 'Belépés' }}
-        </button>
-        
-        <button type="button" @click="goToRegister">
-          Regisztráció
-        </button>
-        
-        <button type="button" @click="goToForgotPassword" class="forgot-password-btn">
-          Elfelejtettem a jelszót
-        </button>
-        
-        <div class="guest-section">
-          <hr class="divider">
-          <p class="guest-text">Nem szeretnél regisztrálni?</p>
-          <button type="button" @click="goToGuestMode" class="guest-btn">
-            Kipróbálás vendégként
-          </button>
-          <p class="guest-disclaimer">
-            Vendég módban is beszélhetsz az AI-al.
-          </p>
-        </div>
-      </form>
-    </div>
-  </div>
+      <MessageDisplay :error-message="errorMessage" :success-message="successMessage" />
+
+      <BaseButton type="submit" variant="primary" size="lg" full-width :loading="loading">
+        Belépés
+      </BaseButton>
+
+      <BaseButton type="button" variant="secondary" size="md" full-width @click="goToRegister">
+        Regisztráció
+      </BaseButton>
+
+      <BaseButton type="button" variant="secondary" size="md" full-width @click="goToForgotPassword">
+        Elfelejtettem a jelszót
+      </BaseButton>
+    </form>
+  </AuthLayout>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-  import { useAuth } from '@/composables/useAuth.js'
-import ThemeSwitcher from '@/components/common/theme/ThemeSwitcher.vue'
-import AnimatedBackground from '@/components/layout/AnimatedBackground.vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useAuth } from '@/composables/useAuth.js'
+import { validateForm, fieldValidators, translateError } from '@/data/validation-messages.js'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import FormInput from '@/components/common/forms/FormInput.vue'
+import MessageDisplay from '@/components/common/feedback/MessageDisplay.vue'
+import BaseButton from '@/components/common/base/BaseButton.vue'
 
 export default {
   name: 'LoginView',
   components: {
-    ThemeSwitcher,
-    AnimatedBackground
+    AuthLayout,
+    FormInput,
+    MessageDisplay,
+    BaseButton
   },
   setup() {
     const route = useRoute()
-    const router = useRouter()
-    const { login, errorMessage, successMessage, loading, validateForm, withLoading, checkQueryMessages, navigateToRegister, navigateToForgotPassword, navigateToDashboard, setError } = useAuth()
+    const { login, errorMessage, successMessage, loading, withLoading, checkQueryMessages, navigateToRegister, navigateToForgotPassword, navigateToDashboard, setError } = useAuth()
 
-    // Local form state
     const form = ref({
       username: '',
       password: ''
     })
-    const errors = ref({})
+    const errors = reactive({})
+
+    // Validációs szabályok
+    const rules = {
+      username: 'required',
+      password: 'required'
+    }
 
     onMounted(() => {
       checkQueryMessages(route)
     })
 
-    const handleSubmit = async () => {
-      if (!validateForm(form.value, ['username', 'password'])) {
-        return
+    const validateField = (field) => {
+      const validator = rules[field]
+      if (typeof validator === 'string') {
+        errors[field] = fieldValidators[validator]?.(form.value[field]) || null
       }
+    }
+
+    const handleSubmit = async () => {
+      // Validálás
+      const result = validateForm(form.value, rules)
+      Object.assign(errors, result.errors)
+
+      // Ha van hiba, nem küldünk
+      if (!result.isValid) return
 
       await withLoading(async () => {
-        const result = await login(form.value.username, form.value.password)
+        const loginResult = await login(form.value.username, form.value.password)
 
-        if (result.success) {
+        if (loginResult.success) {
           navigateToDashboard()
         } else {
-          setError(result.message || 'auth.login_error')
+          setError(translateError(loginResult.message))
         }
       })
     }
 
-    const goToRegister = () => {
-      navigateToRegister()
-    }
-
-    const goToForgotPassword = () => {
-      navigateToForgotPassword()
-    }
-
-    const goToGuestMode = () => {
-      // Vendég módba lépés - meglévő chat oldalra irányítás guest paraméterrel
-      router.push('/chat?guest=true')
-    }
-
     return {
       form,
+      errors,
       errorMessage,
       successMessage,
       loading,
       handleSubmit,
-      goToRegister,
-      goToForgotPassword,
-      goToGuestMode
+      validateField,
+      goToRegister: navigateToRegister,
+      goToForgotPassword: navigateToForgotPassword,
     }
   }
 }
 </script>
 
 <style scoped>
-@import '@/assets/components/auth-common.css';
-
-.guest-section {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--border-color);
-  margin: 1.5rem 0;
-  opacity: 0.3;
-}
-
-.guest-text {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.guest-btn {
-  background: var(--accent-color);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-.guest-btn:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-}
-
-.guest-disclaimer {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  margin-top: 0.5rem;
-}
+/* Auth stílusok a main.js-ből jönnek */
 </style>

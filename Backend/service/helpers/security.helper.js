@@ -6,24 +6,6 @@ const jwt = require('jsonwebtoken')
  * Itt mindenféle biztonsági cucc van
  */
 
-//Megmondjuk milyen algoval hasheljen
-const SECURITY_HASH_ALGO = 'sha512'
-
-/**
-Kap egy sima szöveget, meghatározzuk mivel hashel 
- */
-const getHash = function (clearText) {
-
-    //létrehoz egy hash objektumot, ami majd azt a hasht csinálja, amit megadtunk neki
-    let hasher = crypto.createHash(SECURITY_HASH_ALGO)
-
-    //Itt a szöveg, itt a kódolás
-    let hash = hasher.update(clearText, 'utf-8')
-
-    //Hexadecimális formátumban adjuk vissza a szöveget
-    return hash.digest('hex')
-}
-
 /**
 Meg kellene sózni
 Generálunk véletlenszerű sót, 10 a salt round, közben az await toporog
@@ -92,33 +74,18 @@ Generálunk egy JWT tokent, minden kérésnél küldjük (papíron)
  */
 const generateJwtToken = function (userData, expiresIn = '24h') {
     const secret = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production'
-    
+
     //Ezeket tartalmazza a token
     const payload = {
         id: userData.id,
         username: userData.username,
         email: userData.email
     }
-    
+
     return jwt.sign(payload, secret, { expiresIn })
 }
 
-/**
-Ellenőrizzük a JWT tokent
- */
-const verifyJwtToken = function (token) {
-    try {
-        const secret = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production'
-        
-        return jwt.verify(token, secret)
-    } catch (error) {
-
-        return null
-    }
-}
-
 module.exports = {
-    getHash,
     encryptPassword,
     verifyPassword,
     generateSecureToken,
@@ -126,6 +93,5 @@ module.exports = {
     verifyToken,
     generateExpiration,
     isExpired,
-    generateJwtToken,
-    verifyJwtToken
+    generateJwtToken
 }

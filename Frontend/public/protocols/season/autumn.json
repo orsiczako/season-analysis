@@ -1,0 +1,107 @@
+{
+  "autumnColorAnalysisProfile": {
+    "metaData": {
+      "targetSeason": "Ősz (Autumn)",
+      "profileId": "autumnMasterProfile",
+      "version": "2.0 Detailed",
+      "description": "Az Ősz típus részletes elemzése, altípusok (Soft, True, Deep) szerinti bontásban, smink és stílus tanácsokkal.",
+      "usage": "AI színanalízis és személyi styling tanácsadás"
+    },
+    "corePhilosophy": {
+      "primaryAttributes": ["Warm (Meleg)", "Muted (Lágy/Tört)", "Deep (Mély)"],
+      "essence": "Az Ősz típus a természet gazdagságát és az aratási időszak bőségét szimbolizálja. Színei melegek, mélyek, földesek és aranylóak. Hiányzik belőle a Tél éles hidegsége és a Tavasz harsány élénksége.",
+      "goldenRule": "A cél a melegség és a természetesség hangsúlyozása. Az Ősz típusnak állnak a legjobban a 'koszos', tört színek (mustár, olíva, terrakotta), amelyek más típusokat öregítenének."
+    },
+    "visualDiagnostics": {
+      "skinCharacteristics": {
+        "undertone": "Kifejezetten meleg, aranyló (golden), bronzos vagy meleg olíva (warm olive) alaptónus.",
+        "appearance": "A bőrnek van egy természetes 'ragyogása', de nem a Tavasz üdesége, hanem egy mélyebb, gazdagabb tónus. Gyakran szeplős (aranybarna szeplők).",
+        "reactionToSun": "Általában jól barnul, tartós, aranybarna színt kap (kivéve a nagyon világos Lágy Őszöket).",
+        "veinTest": "A csukló erei természetes fénynél zöldesnek vagy olívazöldnek tűnnek."
+      },
+      "hairCharacteristics": {
+        "commonShades": ["Vörös (minden árnyalat: réz, mahagóni, gesztenye)", "Aranybarna", "Meleg csokoládébarna", "Sötétszőke (arany fénnyel)"],
+        "highlightReflections": "A hajban mindig dominál a melegség: vöröses, rezes vagy mézszínű csillogás. Sosem hamvas vagy szürkés."
+      },
+      "eyeCharacteristics": {
+        "commonShades": ["Olívazöld", "Aranybarna", "Borostyán", "Meleg mogyoró", "Pávakék (zöldes beütéssel)"],
+        "pattern": "Az írisz gyakran tartalmaz arany vagy barna pöttyöket ('aztec sun' minta), a tekintet meleg és lágy."
+      }
+    },
+    "seasonalSubtypes": {
+      "softAutumn": {
+        "name": "Lágy Ősz (Soft Autumn)",
+        "description": "A legfinomabb, legkevésbé kontrasztos típus. Átmenet a Nyár felé (de melegebb).",
+        "characteristics": "Haja 'egérszürke' szőkének tűnhet, de arany fénnyel. Szemei lágyak. Alacsony kontraszt az arcvonások között.",
+        "makeupAdvice": "Kerüld a sötét, drámai színeket. A monokróm, bézs-barna 'nude' smink áll a legjobban, lágy eldolgozással."
+      },
+      "trueAutumn": {
+        "name": "Valódi/Meleg Ősz (True/Warm Autumn)",
+        "description": "A klasszikus, 'tankönyvi' Ősz. A legmelegebb típus, átmenet a Tavasz felé (de sötétebb).",
+        "characteristics": "Vöröses haj, szeplők, egyértelműen meleg kisugárzás. Az őszi erdő színei (rozsda, mustár) rajta élnek igazán.",
+        "makeupAdvice": "A bronzosító és a terrakotta pirosító kötelező. A hideg színek (pl. pink) azonnal idegenül hatnak."
+      },
+      "deepAutumn": {
+        "name": "Sötét Ősz (Deep/Dark Autumn)",
+        "description": "A legdrámaibb, legsötétebb típus. Átmenet a Tél felé (de melegebb).",
+        "characteristics": "Sötét haj és sötét szem, de a bőr tónusa meleg. Bírja az erősebb kontrasztokat.",
+        "makeupAdvice": "Jöhetnek a mélyebb, gazdagabb színek: csokoládébarna, sötétbordó, padlizsán. A túl világos pasztellek sápasztják."
+      }
+    },
+    "detailedMakeupProtocol": {
+      "faceBase": {
+        "foundationStrategy": {
+          "undertoneChoice": "Válassz 'Warm', 'Golden', 'Honey' vagy 'Warm Olive' jelölésű alapozókat.",
+          "finish": "A matt, bársonyos (Velvet) vagy természetes finish illik legjobban a földes színekhez. A túl fényes (glass skin) hatás néha idegen az Ősz típus textúrájától.",
+          "avoid": "Rózsaszín (Cool/Pink) vagy semleges-szürke tónusú alapozók (maszkhatás)."
+        },
+        "bronzerAndHighlighter": {
+          "bronzer": "Az Ősz típus az egyetlen, aki bátran használhat sok bronzosítót. Az arany-barna árnyalatok harmonizálnak a bőrével.",
+          "highlighter": "Arany (Gold), Bronz vagy Réz. Az ezüstös vagy gyöngyházfényű highlighterek szürke foltnak tűnnek."
+        }
+      },
+      "cheekColors": {
+        "palette": ["Terrakotta", "Rozsdabarna", "Téglavörös", "Meleg Barack", "Bronz"],
+        "technique": "A pirosítás legyen meleg és lágy. A kontúrozás (bronzosítóval) fontosabb lehet, mint a 'pirosítás'.",
+        "warning": "A babarózsaszín és a fukszia 'olcsónak' vagy bohócosnak hat az Ősz típuson."
+      },
+      "eyeMakeup": {
+        "eyeshadows": {
+          "baseColors": "Krém, Bézs, Tevebarna, Mustár, Olíva.",
+          "accentColors": "Smaragdzöld (meleg), Réz, Arany, Padlizsán, Rozsdabarna.",
+          "finish": "A matt földszínek és a metálos bronz/arany textúrák kombinációja a nyerő."
+        },
+        "eyelinerAndMascara": {
+          "rule": "A fekete gyakran túl kemény (kivéve Deep Autumn).",
+          "recommendation": "Használj kávébarnát (Coffee), olívazöldet vagy sötét padlizsánt. A tusvonal helyett a satírozott ceruza (smudged liner) jobban illik a lágy vonásokhoz."
+        }
+      },
+      "lipColors": {
+        "dailyShades": ["Nude (barnás)", "Fahéj", "Meleg rózsafa", "Karamell"],
+        "dramaticShades": ["Téglavörös (Brick Red)", "Vörösbor", "Chili", "Rozsda", "Mélybarna"],
+        "texture": "A matt rúzsok (Matte Lipstick) rendkívül elegánsak és kifinomultak az Ősz típuson. A túl csillogó szájfény kevésbé előnyös."
+      }
+    },
+    "wardrobeColorPalette": {
+      "bestColors": [
+        { "name": "Olive Green", "hex": "#556B2F", "note": "Az Ősz típus 'királyi' színe." },
+        { "name": "Mustard Yellow", "hex": "#FFDB58", "note": "Kevés embernek áll jól, de az Ősznek tökéletes." },
+        { "name": "Rust/Terracotta", "hex": "#CC4E5C", "note": "Kiemeli a bőr melegségét." },
+        { "name": "Cream/Beige", "hex": "#F5F5DC", "note": "A fehér helyett." },
+        { "name": "Chocolate Brown", "hex": "#D2691E", "note": "A fekete helyett a legjobb bázisszín." },
+        { "name": "Teal (Meleg)", "hex": "#008080", "note": "A kék egyetlen árnyalata, ami igazán jó (pávakék)." }
+      ],
+      "colorsToAvoid": [
+        { "name": "Black", "reason": "Túl kemény és élettelenné teszi az arcot (kivéve deréktól lefelé)." },
+        { "name": "White", "reason": "Sápaszt, elüt a meleg bőrtónustól." },
+        { "name": "Neon Colors", "reason": "Túl mesterségesek a természetes Ősz palettához képest." },
+        { "name": "Baby Pink/Blue", "reason": "Túl hidegek és gyerekesek az Ősz érett karakteréhez." }
+      ]
+    },
+    "accessoriesAndJewelry": {
+      "metals": "Sárga Arany (lehet matt vagy antikolt), Vörösréz, Bronz, Sárgaréz.",
+      "stones": "Borostyán, Tigrisszem, Jáde, Gránát, Fa és Bőr ékszerek.",
+      "glasses": "Teknőcpáncél (Tortoiseshell) a legjobb választás. Arany vagy barna keret."
+    }
+  }
+}

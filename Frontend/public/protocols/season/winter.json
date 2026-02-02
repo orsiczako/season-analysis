@@ -1,0 +1,107 @@
+{
+  "winterColorAnalysisProfile": {
+    "metaData": {
+      "targetSeason": "Tél (Winter)",
+      "profileId": "winterMasterProfile",
+      "version": "2.0 Detailed",
+      "description": "A Tél típus részletes elemzése, altípusok (Deep, True, Bright) szerinti bontásban, smink és stílus tanácsokkal.",
+      "usage": "AI színanalízis és személyi styling tanácsadás"
+    },
+    "corePhilosophy": {
+      "primaryAttributes": ["Cool (Hideg)", "Clear (Tiszta/Élénk)", "Deep (Mély)"],
+      "essence": "A Tél típus a drámai kontrasztok és a kristálytiszta színek megtestesítője. Mint a havas táj: vakító fehér, koromfekete és jeges csillogás. Nincs benne a Nyár típus 'ködössége' vagy az Ősz típus 'földessége'.",
+      "goldenRule": "A cél a kontraszt fenntartása. A Tél típus az egyetlen, aki nemcsak elviseli, de igényli is a fekete színt és az éles kontúrokat. A 'természetes, elmosódott' smink gyakran kevésnek hat rajtuk."
+    },
+    "visualDiagnostics": {
+      "skinCharacteristics": {
+        "undertone": "Kifejezetten hideg, kékes (blue-based) vagy hűvös olíva (cool olive) alaptónus.",
+        "appearance": "Lehet nagyon világos, porcelánfehér (Hófehérke-típus), de lehet bézs vagy sötétbarna is. A közös pont a sárgás/aranyos ragyogás teljes hiánya.",
+        "reactionToSun": "Változó; a sötétebb telek barnulnak (szürkésbarnára), a világos telek leégnek.",
+        "veinTest": "A csukló erei természetes fénynél kékeknek vagy lilásnak tűnnek."
+      },
+      "hairCharacteristics": {
+        "commonShades": ["Kékesfekete", "Koromfekete", "Sötét étcsokoládé", "Ezüstös ősz", "Platinaszőke (ritka, de előfordul)"],
+        "highlightReflections": "A hajnak nincs vöröses fénye. Hamvas, hideg vagy ezüstös csillogás jellemzi."
+      },
+      "eyeCharacteristics": {
+        "commonShades": ["Sötétbarna (majdnem fekete)", "Jeges kék", "Smaragdzöld", "Hideg mogyoró", "Szürke"],
+        "pattern": "Gyakran éles a határvonal az írisz és a szemfehérje között. A szemfehérje (sclera) feltűnően tiszta és fehér, ami drámai tekintetet ad."
+      }
+    },
+    "seasonalSubtypes": {
+      "deepWinter": {
+        "name": "Sötét Tél (Deep/Dark Winter)",
+        "description": "A legrejtélyesebb típus. Átmenet az Ősz felé (kicsit semlegesebb).",
+        "characteristics": "Dominánsan sötét haj és sötét szemek. A bőre lehet olívás.",
+        "makeupAdvice": "Bírja a kicsit mélyebb, gazdagabb színeket (pl. vérvörös, sötétcsokoládé). A túl világos pasztellek sápasztják."
+      },
+      "trueWinter": {
+        "name": "Hideg/Valódi Tél (True/Cool Winter)",
+        "description": "A klasszikus Tél. A leghidegebb típus, átmenet a Nyár felé, de sokkal kontrasztosabb.",
+        "characteristics": "A 'Hófehérke' effektus: sötét haj, világos bőr, hideg szemek.",
+        "makeupAdvice": "A leghidegebb színek állnak jól: fukszia, királykék, jeges rózsaszín. A narancs és a barna szigorúan tilos."
+      },
+      "brightWinter": {
+        "name": "Élénk Tél (Bright/Clear Winter)",
+        "description": "A legfeltűnőbb típus. Átmenet a Tavasz felé (kicsit élénkebb).",
+        "characteristics": "Szembetűnően élénk, 'világító' szemek (pl. kék vagy zöld) sötét hajjal.",
+        "makeupAdvice": "Bírja a neon színeket és a legütősebb kontrasztokat. A fekete tusvonal + hot pink rúzs kombináció rajtuk a legszebb."
+      }
+    },
+    "detailedMakeupProtocol": {
+      "faceBase": {
+        "foundationStrategy": {
+          "undertoneChoice": "Válassz 'Cool', 'Neutral', 'Rose' vagy 'Cool Olive' jelölésű alapozókat.",
+          "finish": "A fél-matt (Semi-Matte) vagy porcelánhatású finish emeli ki a Tél típus eleganciáját. A túl fényes (dewy) alapozás néha zsírosnak hathat a kontrasztos arcon.",
+          "avoid": "Sárgás (Warm Yellow/Golden) alapozók – ezek sárgaságnak vagy maszknak tűnnek a hideg bőrön."
+        },
+        "bronzerAndHighlighter": {
+          "bronzer": "A bronzosító használata veszélyes! A legtöbb bronzosító vöröses/narancsos, ami 'koszos' foltot hagy a Tél típus arcán. Helyette kontúrozz hideg szürkésbarna (Taupe) színnel.",
+          "highlighter": "Ezüst (Silver), Jeges fehér (Icy White) vagy hűvös rózsaszín. Az arany tilos!"
+        }
+      },
+      "cheekColors": {
+        "palette": ["Fukszia", "Hideg Rózsaszín (Cool Pink)", "Mély Bordó", "Szilva", "Jeges Mályva"],
+        "technique": "Kevesebb pirosítót használj, mint a Tavasz típus. A cél nem a 'kipirultság', hanem a csontozat finom kiemelése hideg árnyalatokkal.",
+        "warning": "A barack (Peach) és a korall (Coral) színek ütik a bőr hideg tónusát."
+      },
+      "eyeMakeup": {
+        "eyeshadows": {
+          "baseColors": "Hófehér, Szürke, Ezüst, Fekete, Jeges rózsaszín.",
+          "accentColors": "Királykék, Smaragdzöld, Lila, Élénk Citromsárga (csak Bright Winternek).",
+          "finish": "A Tél típusnak remekül állnak a metálfényű és csillámos textúrák, de a matt fekete/szürke is alapdarab."
+        },
+        "eyelinerAndMascara": {
+          "rule": "A Fekete a legjobb barátod.",
+          "recommendation": "Éles, fekete tusvonal (Liquid Liner) és fekete szempillaspirál. A barna spirál fáradtnak mutatja a Tél típust."
+        }
+      },
+      "lipColors": {
+        "dailyShades": ["Hideg Mályva", "Cseresznyepiros", "Mély Rózsaszín"],
+        "dramaticShades": ["Tűzpiros (True Red - kék alaptónussal)", "Vérvörös", "Magenta", "Fukszia", "Sötétlila"],
+        "texture": "Az élénk, tiszta színek matt vagy szatén finish-sel drámai hatást keltenek. A nude rúzsoknál vigyázni kell, hogy ne legyenek barnásak/sárgásak."
+      }
+    },
+    "wardrobeColorPalette": {
+      "bestColors": [
+        { "name": "Pure White", "hex": "#FFFFFF", "note": "Hófehér – csak a Tél típusnak áll igazán jól az arc közelében." },
+        { "name": "True Black", "hex": "#000000", "note": "A legerősebb bázisszín." },
+        { "name": "Royal Blue", "hex": "#4169E1", "note": "Királykék, a hideg elegancia színe." },
+        { "name": "Emerald Green", "hex": "#50C878", "note": "Tiszta, mély zöld." },
+        { "name": "Ruby Red", "hex": "#E0115F", "note": "Kékes beütésű vörös." },
+        { "name": "Icy Pastels", "hex": "#E0FFFF", "note": "Jeges kék, jeges rózsaszín (nem a lágy pasztellek!)." }
+      ],
+      "colorsToAvoid": [
+        { "name": "Orange", "reason": "A Tél típus legnagyobb ellensége. Sápaszt és betegessé tesz." },
+        { "name": "Mustard Yellow", "reason": "Túl meleg és tompa." },
+        { "name": "Earth Tones", "reason": "A bézs, barna és khaki unalmassá teszi a drámai Tél típust." },
+        { "name": "Warm Gold", "reason": "Elüt a bőrtónustól." }
+      ]
+    },
+    "accessoriesAndJewelry": {
+      "metals": "Ezüst, Fehérarany, Platina, Acél.",
+      "stones": "Gyémánt (a ragyogása miatt), Zafír, Rubin, Smaragd, Ónix.",
+      "glasses": "Fekete, Ezüst vagy feltűnő (pl. kék/piros) keret. A barna/teknőc keret kerülendő."
+    }
+  }
+}

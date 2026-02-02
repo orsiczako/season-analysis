@@ -1,0 +1,185 @@
+{
+  "combinationSkinMasterProtocol": {
+    "metaData": {
+      "targetProfile": "Kombinált Bőr (A 'Kétarcú' Típus)",
+      "version": "5.0 User-Friendly Edition",
+      "complexityLevel": "Könnyen érthető / Edukációs",
+      "description": "Gyakorlati útmutató a 'T-zóna' megszelídítéséhez és az 'U-zóna' kényeztetéséhez – anélkül, hogy megőrülnél a fürdőszobában.",
+      "lastUpdated": "2024-Jelenleg",
+      "tags": [
+        "zónázás",
+        "egyensúly",
+        "multi-tasking",
+        "stratégia"
+      ]
+    },
+    "profileDiagnostics": {
+      "skinTypeId": "combinationSkin",
+      "clinicalDefinition": "A bőröd nem tud dönteni: középen tinédzser (zsíros, pattanásos), a széleken viszont sivatagi (száraz, húzódik). Ez a leggyakoribb bőrtípus.",
+      "visualMapping": {
+        "Zone_T": {
+          "area": "Homlok, orr, áll (a T-betű vonala)",
+          "symptoms": "Itt tágabbak a pórusaid, fénylik, mintha ki lenne világítva, és itt jelennek meg a mitesszerek (fekete pontok)."
+        },
+        "Zone_U": {
+          "area": "Orcák, állkapocs",
+          "symptoms": "Itt a bőröd normál vagy kifejezetten száraz. Arcmosás után feszül, húzódik, néha még hámlik is."
+        }
+      },
+      "sensoryAnalysis": {
+        "morning": "Reggel az orrod síkos/zsíros tapintású, de az arcod széle száraznak érződik.",
+        "midDay": "A sminked az orrodról lefolyik (vagy 'felúszik'), az orcádon viszont repedezik vagy 'poros' hatású lesz.",
+        "touchTest": "Ha végighúzod az ujjad a homlokodon, olajos lesz, de ha az arccsontodon, ott száraz."
+      },
+      "riskFactor": "Az 'egyenlősdi'. A legnagyobb hiba, ha az egész arcodat ugyanúgy kezeled. Ha mindenhova zsíros bőrre való krémet kensz, az orcáid kiszáradnak. Ha száraz bőrre valót, a T-zónád pattanásos lesz."
+    },
+    "physiologicalBasis": {
+      "rootCause": "Genetikai lottó. A T-zónádban több és aktívabb faggyúmirigy van, míg az arcod szélén kevesebb a védőzsír.",
+      "barrierStatus": "Zavaros. Középen túl sok a védelem (olaj), szélen túl kevés. A feladatunk kiegyenlíteni a pályát.",
+      "phBalance": "Középen savasabb, szélen lúgosabb lehet tisztítás után, ezért fontos a pH-kiegyenlítő tonik."
+    },
+    "coreMethodologies": {
+      "ZoneTherapy": "A 'Zónázás' a titok. Nem muszáj mindent mindenhova kenni! Amit az orrodra teszel (pl. szárító cuccok), azt TILOS az orcákra tenni.",
+      "HydrationFirst": "A víz a közös nevező. Zsíros és száraz résznek is szüksége van vízre (hidratálás), de nem ugyanannyi olajra (táplálás).",
+      "LayeringTechnique": "A 'maradék-elv': Kend be rendesen az orcáidat a krémmel, és ami az ujjadon maradt (szinte semmi), csak azt simítsd át a T-zónán.",
+      "TheNiacinamideBridge": "Keress olyan hatóanyagot (pl. Niacinamide), ami mindkét félnek jó: a zsírosnak mattít, a száraznak véd."
+    },
+    "comprehensiveSkincareRoutine": {
+      "morningRegimen": {
+        "step1_Cleansing": {
+          "goal": "Szelektív tisztítás.",
+          "product": "Gyengéd gél lemosó.",
+          "technique": "A habot masszírozd a T-zónába (ott van az olaj), az orcáidon pedig épp csak fusson át a víz öblítéskor. Ne dörzsöld a száraz részeket feleslegesen!"
+        },
+        "step2_EssenceToner": {
+          "goal": "Kiegyensúlyozás.",
+          "product": "Könnyű hidratáló tonik.",
+          "technique": "Tenyérrel nyomkodd be mindenhova. Ez visszaállítja a pH-t és előkészít."
+        },
+        "step3_FunctionalSerums": {
+          "primary": "Niacinamide ",
+          "reason": "Ez az egyetlen dolog, ami zseniális a kombinált bőrre: csökkenti az olajat középen, de nem szárítja ki a széleket.",
+          "application": "Mehet az egész arcra."
+        },
+        "step4_ZoneMoisturizing": {
+          "concept": "Okos krémezés.",
+          "product": "Könnyű gél-krém vagy lotion.",
+          "technique": "Kezdd a krémezést az orcákon (U-zóna). Amikor már alig van krém a kezeden, a maradékot simítsd át a homlokodon és orrodon. A T-zónának gyakran elég ennyi."
+        },
+        "step5_SunProtection": {
+          "critical": "Könnyed védelem.",
+          "formula": "Fluid állagú fényvédő.",
+          "finish": "Olyat keress, ami 'beszívódik' és nem hagy zsíros réteget, de nem is szívja le az arcodat."
+        }
+      },
+      "eveningRegimen": {
+        "step1_DoubleCleansing": {
+          "goal": "Tiszta lap.",
+          "phase1": "Micellás víz vagy könnyű olaj. (Ne félj az olajtól a T-zónán sem, segít feloldani a mitesszereket!)",
+          "phase2": "Vizes bázisú lemosó."
+        },
+        "step2_ActiveTreatments": {
+          "concept": "Célzott lövés (Spot Treatment).",
+          "OptionA_Blackheads": "BHA (Szalicilsav) lötyi vattakorongon: Töröld át vele CSAK a T-zónát (orr, homlok, áll). Az orcákat hagyd ki!",
+          "OptionB_AntiAging": "Retinol szérum mehet mindenhova, de az orcákra tegyél alá hidratálót ('szendvics módszer'), a T-zónára mehet direktben.",
+          "OptionC_Recovery": "Csak hidratálás."
+        },
+        "step3_NightCream": {
+          "goal": "Differenciált táplálás.",
+          "product": "Közepes hidratáló.",
+          "hack": "Ha az orcád nagyon száraz: a tenyeredben lévő krémadaghoz cseppents egy csepp olajat, és azt csak az orcádra kend. A T-zóna kapja a 'sima' krémet."
+        }
+      },
+      "weekendSpaProtocol": {
+        "frequency": "Heti 1x 'Multi-Masking' (A kombinált bőr legjobb barátja).",
+        "steps": [
+          "T-zóna: Kenj fel egy agyagmaszkot (tisztító) csak az orrodra, homlokodra és álladra.",
+          "U-zóna: Kenj fel egy hidratáló krémmaszkot az orcáidra UGYANAKKOR.",
+          "Viccesen nézel ki, de ez a profi megoldás: minden terület azt kapja, ami jár neki."
+        ]
+      }
+    },
+    "ingredientArchitecture": {
+      "heroIngredients": [
+        {
+          "name": "Niacinamide",
+          "synergy": "Nyugtatja a pattanást és hidratálja a száraz területeket."
+        },
+        {
+          "name": "Szalicilsav (BHA)",
+          "bestUse": "Csak a T-zónában használatos! Az orcákon túl erős lehet és száríthat."
+        },
+        {
+          "name": "Hialuronsav",
+          "note": "Könnyű hidratálás, ami nem tömíti el a pórusokat, de itatja a bőrt."
+        },
+        {
+          "name": "Szkvalán (Squalane)",
+          "benefit": "Könnyű olaj, a T-zónát sem zsírosítja tovább, de az orcákat szépen puhítja."
+        }
+      ],
+      "riskyCombinations": [
+        "Agyagmaszk az egész arcra: A T-zónád örülni fog, de az orcáid sivataggá válnak és viszketni fognak.",
+        "Túl zsíros krém mindenhova: Az orcáid puhák lesznek, de az orrod tele lesz pattanással."
+      ]
+    },
+    "professionalMakeupArtistry": {
+      "prepAndPrime": {
+        "zoningPrime": "Két primer trükk: Mattítót tegyél a T-zónára (ütögetve a pórusokba), és hidratálós/fényes primert az orcákra. Ha csak egyet akarsz: válassz egy könnyű, hidratáló primert.",
+        "waitRule": "Várj egy percet, mielőtt alapozol."
+      },
+      "foundationEngineering": {
+        "textureMatch": "Szatén vagy Természetes (Natural) finisű alapozó. Ez az arany középút: nem túl matt (nem repedezik be oldalt), és nem túl fényes (nem folyik le középen).",
+        "sheerOutMethod": "Középről (orrtól) kifelé dolgozz. Az orrra kerüljön több fedés, az orcák széle felé halványítsd el az anyagot."
+      },
+      "powderStrategy": {
+        "microPowdering": "Ne púderezd le az egész fejed! Vegyél egy kisebb ecsetet, és csak a T-zónát (homlok, orr, áll) mattítsd le. Az orcák maradjanak üdék.",
+        "bakingLite": "Ha az orrod nagyon zsírosodik, ott hagyhatod a púdert állni 2 percig."
+      },
+      "fixation": {
+        "mistSelection": "Egy közepes erősségű fixáló, ami tartósít, de nem szárít kopogósra."
+      }
+    },
+    "troubleshootingAndCrisisManagement": {
+      "scenario_DehydratedOily": {
+        "symptoms": "Az orrod zsíros, mégis hámlik a bőre.",
+        "fix": "Túlkezelted! Hagyd abba a szárító tonikokat és radírokat. Csak hidratálj ezerrel (vízbázisú szérumokkal). Ha a barrier helyreáll, a hámlás megszűnik."
+      },
+      "scenario_BreakoutOnCheeks": {
+        "symptoms": "Pattanások jönnek ki a száraz orcádon.",
+        "fix": "Ez gyanús! Általában külső ok: koszos telefonkijelző, ritkán cserélt párnahuzat vagy koszos sminkecset. Fertőtleníts!"
+      },
+      "scenario_MakeupSeparation": {
+        "symptoms": "Az alapozó 'pikkelyesedik' az orrodon délután.",
+        "fix": "Reggel túl sok krémet tettél az orrodra. Próbáld ki, hogy az orrodra nem teszel hidratálót, csak a fényvédőt."
+      }
+    },
+    "seasonalAdaptationStrategy": {
+      "Spring": {
+        "focus": "Ébredés.",
+        "action": "Válts könnyebb krémre, ahogy melegszik az idő."
+      },
+      "Summer": {
+        "focus": "Faggyúkontroll.",
+        "action": "Nyáron a kombinált bőr eltolódik a zsíros irányba. Használj többet a mattító termékekből, és az orcákra is elég lehet egy könnyű fluid."
+      },
+      "Autumn": {
+        "focus": "Helyreállítás.",
+        "action": "Vezesd vissza az esti gazdagabb krémeket, legalább az U-zónára."
+      },
+      "Winter": {
+        "focus": "Védelem.",
+        "action": "Télen a kombinált bőr eltolódik a száraz irányba. Ilyenkor az egész arcra mehet a testesebb krém, és kevesebbet kell mattítani."
+      }
+    },
+    "holisticLifestyleFactors": {
+      "dietaryTriggers": {
+        "sugarAndDairy": "A cukor és a tejtermékek a T-zónádat fogják 'büntetni' extra pattanásokkal.",
+        "hydration": "Igyál vizet! Ha belülről ki vagy száradva, a bőröd olajjal próbál kompenzálni."
+      },
+      "stressManagement": {
+        "cortisolSpike": "Vizsgaidőszak vagy stresszes hét? A T-zónád azonnal jelezni fog (zsírosodás, rügyezés). Ilyenkor vesd be a BHA hámlasztót megelőzésképpen!"
+      }
+    }
+  }
+}

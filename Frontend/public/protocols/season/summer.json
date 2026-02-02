@@ -1,0 +1,107 @@
+{
+  "summerColorAnalysisProfile": {
+    "metaData": {
+      "targetSeason": "Nyár (Summer)",
+      "profileId": "summerMasterProfile",
+      "version": "2.0 Detailed",
+      "description": "A Nyár típus részletes elemzése, altípusok (Light, True, Soft) szerinti bontásban, smink és stílus tanácsokkal.",
+      "usage": "AI színanalízis és személyi styling tanácsadás"
+    },
+    "corePhilosophy": {
+      "primaryAttributes": ["Cool (Hideg)", "Muted (Lágy/Tört)", "Light (Világos)"],
+      "essence": "A Nyár típus a hűvös elegancia és a kifinomultság megtestesítője. Színei, mint egy párás hajnal vagy egy angolkert eső után: pasztellesek, hamvasak, szürkével tompítottak. Hiányzik belőle a Tavasz sárgás vibrálása és a Tél éles kontrasztja.",
+      "goldenRule": "A cél a lágyság megőrzése. A Nyár típus arcát a túl sötét (fekete) és a túl élénk (neon) színek elnyomják. A harmonikus, tónus-a-tónusban (tone-on-tone) megjelenés áll neki a legjobban."
+    },
+    "visualDiagnostics": {
+      "skinCharacteristics": {
+        "undertone": "Kifejezetten hideg, rózsás (rosy), kékes (blue-based) vagy semleges-hideg bézs alaptónus.",
+        "appearance": "A bőr gyakran vékony, áttetsző, 'porcelánszerű'. Az arcpirosságra hajlamos lehet (de ez hideg pír, nem barackos).",
+        "reactionToSun": "Változó; a világosabb típusok leégnek, a sötétebbek barnulhatnak, de a barnaságuknak van egy szürkés (nem arany) tónusa.",
+        "veinTest": "A csukló erei természetes fénynél kékeknek vagy lilásnak tűnnek."
+      },
+      "hairCharacteristics": {
+        "commonShades": ["Hamvas szőke (Ash Blonde)", "Ezüstös szőke", "Hamvas barna (Mousy Brown)", "Sötét hamvas barna", "Ezüstös ősz"],
+        "highlightReflections": "A hajban soha nincs vöröses vagy arany csillogás. Napfényben ezüstös, szürkés vagy gyöngyházfényű."
+      },
+      "eyeCharacteristics": {
+        "commonShades": ["Szürkéskék", "Acélszürke", "Szürkészöld", "Hideg barna", "Lágy mogyoró (zöldes-szürkés)"],
+        "pattern": "A tekintet gyakran 'fátyolos' vagy 'ködös'. Az írisz széle nem éles vonallal határolt, hanem lágyan mosódik bele a szemfehérjébe ('cracked glass' minta előfordulhat)."
+      }
+    },
+    "seasonalSubtypes": {
+      "lightSummer": {
+        "name": "Világos Nyár (Light Summer)",
+        "description": "A leglégiesebb, legvilágosabb típus. Átmenet a Tavasz felé (de hideg).",
+        "characteristics": "Nagyon világos hamvas szőke haj, világos kék/zöld szem, sápadt bőr. Alacsony kontraszt.",
+        "makeupAdvice": "Csak a legvilágosabb pasztellszínek működnek. A sötét színek azonnal öregítik. A babarózsaszín és az égszínkék a legjobb barátja."
+      },
+      "trueSummer": {
+        "name": "Valódi/Hideg Nyár (True/Cool Summer)",
+        "description": "A klasszikus, 'tankönyvi' Nyár. A leghidegebb típus, átmenet a Tél felé (de lágyabb).",
+        "characteristics": "Egyértelműen hideg színek, semmi melegség. A haj lehet sötétebb hamvas barna is. Szeme gyakran tiszta kék vagy szürke.",
+        "makeupAdvice": "Bírja a kicsit élénkebb hideg színeket (málnapiros, dinnye). A narancssárga a legrosszabb szín számára."
+      },
+      "softSummer": {
+        "name": "Lágy Nyár (Soft Summer)",
+        "description": "A legtitokzatosabb, legfüstösebb típus. Átmenet az Ősz felé (de hideg).",
+        "characteristics": "Gyakran 'egérszürke' haj (amit sokan unalmasnak tartanak és befestenek), szürkés-zöldes szemek. A színei nagyon törtek.",
+        "makeupAdvice": "A monokróm mályva és szürke smink áll a legjobban. Kerülnie kell a tiszta, éles színeket."
+      }
+    },
+    "detailedMakeupProtocol": {
+      "faceBase": {
+        "foundationStrategy": {
+          "undertoneChoice": "Válassz 'Cool', 'Rose', 'Neutral' vagy 'Beige' (rózsás beütéssel) jelölésű alapozókat.",
+          "finish": "A matt, púderes vagy szatén finish illik a Nyár típus 'hűvös' karakteréhez. A túl fényes, olajos hatás nem előnyös.",
+          "avoid": "Sárgás (Yellow/Golden/Honey) alapozók – ezek elütnek a nyaktól és sárgaságnak tűnnek."
+        },
+        "bronzerAndHighlighter": {
+          "bronzer": "Óvatosan! A legtöbb bronzosító túl narancssárga. Keress kifejezetten 'rózsás' vagy 'szürkés' tónusú bronzosítót (kontúrpúdert).",
+          "highlighter": "Ezüst (Silver), Gyöngyház (Pearl) vagy hűvös rózsaszín. Az arany highlighter idegenül hat."
+        }
+      },
+      "cheekColors": {
+        "palette": ["Hideg Rózsaszín (Cool Pink)", "Mályva (Mauve)", "Bogyószínek (Berry - halványan)", "Rózsafa", "Orchidea"],
+        "technique": "A 'természetes kipirulás' hatása a cél. A por állagú pirosítók (Powder Blush) remekül működnek a lágy hatáshoz.",
+        "warning": "A barack (Peach) és a korall (Coral) színek 'lázassá' vagy foltossá tehetik az arcot."
+      },
+      "eyeMakeup": {
+        "eyeshadows": {
+          "baseColors": "Törtfehér, Szürke, Ezüst, Hideg barna (Taupe), Levendula.",
+          "accentColors": "Farmerkék, Mályva, Mentazöld, Szilva (Plum), Acélkék.",
+          "finish": "A matt és a gyöngyházfényű (Satin/Pearl) textúrák a legjobbak. A nagy, darabos csillámok (Glitter) gyakran túl soknak hatnak."
+        },
+        "eyelinerAndMascara": {
+          "rule": "A szürke az új fekete.",
+          "recommendation": "Használj grafitszürkét (Charcoal), sötétkéket (Navy) vagy hideg sötétbarnát. A koromfekete tusvonal túl kemény és öregítheti a lágy vonásokat."
+        }
+      },
+      "lipColors": {
+        "dailyShades": ["Mályva (Mauve)", "Fáradt rózsaszín (Dusty Rose)", "Bogyós Nude", "Szilva (világos)"],
+        "dramaticShades": ["Málnapiros (Raspberry)", "Meggypiros", "Hideg Fukszia", "Borvörös (lágyítva)"],
+        "texture": "A krémes, szatén vagy gyöngyházfényű rúzsok emelik ki a legjobban a Nyár típus eleganciáját. A túl matt, sötét rúzsok szigorúvá tehetik."
+      }
+    },
+    "wardrobeColorPalette": {
+      "bestColors": [
+        { "name": "Pastel Blue/Baby Blue", "hex": "#89CFF0", "note": "A Nyár típus egyik legjobb színe." },
+        { "name": "Soft Navy", "hex": "#000080", "note": "A fekete helyett ez a tökéletes sötét bázis." },
+        { "name": "Lavender", "hex": "#E6E6FA", "note": "Kiemeli a szem színét." },
+        { "name": "Grey (Minden árnyalat)", "hex": "#808080", "note": "A legjobb semleges szín." },
+        { "name": "Mint Green", "hex": "#98FF98", "note": "Hűvös és frissítő." },
+        { "name": "Raspberry Red", "hex": "#E30B5C", "note": "A piros hideg, kékes árnyalata." }
+      ],
+      "colorsToAvoid": [
+        { "name": "Black", "reason": "Túl kemény, 'agyonnyomja' a lágy színeket (kivéve deréktól lefelé)." },
+        { "name": "Orange", "reason": "A Nyár típus ellentéte. Sápaszt és üti a bőrt." },
+        { "name": "Mustard/Gold", "reason": "Beteges arcszínt kölcsönöz." },
+        { "name": "Neon Colors", "reason": "Túl harsányak a finom, fátyolos típushoz." }
+      ]
+    },
+    "accessoriesAndJewelry": {
+      "metals": "Ezüst, Fehérarany, Platina, Rózsaarany (ha hűvösebb árnyalatú).",
+      "stones": "Gyöngy (a legjobb!), Rózsakvarc, Ametiszt, Akvamarin, Holdkő.",
+      "glasses": "Ezüst, szürke vagy áttetsző pasztell keret. A fekete keret gyakran túl domináns."
+    }
+  }
+}

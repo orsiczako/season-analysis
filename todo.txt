@@ -1,0 +1,16 @@
+
+ha valaki kijelentkezik töröljük a cachet
+ha már valaki elvégzett egy bőrelemzést, és ugyebár ennek az eredményét tároltuk az adatbázisban, akkor
+ugyebár ezt a cacheben tároljuk, na de ha a cache üres, akkor csekkolja, hogy van e eredménye az adatbázisban, lesz akkor egy api hívás, és ha igen akkor töltse be 
+
+https://app.haikei.app/
+
+
+Bőrproblémák:
+
+https://www.kaggle.com/datasets/dwikrisda/skin-problem-dataset
+
+
+A bőröm nagyon világos, festett fekete a hajam, az eredeti színe világosbarna, könnyen leégek, a pasztel színeket szeretem, a khakit és narancsot nagyon utálom, ezüst, és nincs
+
+

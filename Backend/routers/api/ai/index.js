@@ -7,7 +7,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const aiController = require('../../../controllers/ai.controller');
-const { authenticateToken } = require('../../../service/middlewares/auth.middleware');
+const { authenticateToken } = require('../../../service/middlewares');
 
 // Multer konfiguráció - memória tárolás (nem mentjük a képet diszkre)
 const upload = multer({
